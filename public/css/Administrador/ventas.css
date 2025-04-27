@@ -1,0 +1,68 @@
+/* ----------------- TABLA----------------------*/
+.apartadoVentas{
+    width: 90%;
+}
+
+#tittleVentas{
+    width: 250px;
+    height: 60px;
+    position: relative;
+    left: 100px;
+    top: 20px;
+}
+#tittleDetalleVentas{
+    width: 370px;
+    height: 60px;
+    position: relative;
+    left: 100px;
+    top: 20px;
+}
+#tittleVentas h1,#tittleDetalleVentas{
+
+    color: #804e23;
+}
+
+#tableVentas{
+    position: relative;
+    left: 100px;
+    top: 20px;
+    width: 1300px;
+    background-color: #804e23;
+    border-radius: 20px;
+    height: 600px;
+}
+
+#table1{
+    width: 1200px;
+    background-color: #804e23;
+    position: relative;
+    top: 50px;
+    left: 49px;
+    height: auto;
+    border: 2px solid #804e23;
+
+}
+
+#table2{
+    width: 1200px;
+    background-color: #804e23;
+    position: relative;
+    top: 50px;
+    left: 49px;
+    height: auto;
+    border: 2px solid #804e23;
+
+}
+table td{
+    padding: 20px;
+    border: 2px solid #f7f7f7;
+    color: #f7f7f7;
+
+
+}
+.img{
+    width: 70px;
+}
+.editarProd{
+    background-color: #804e23;
+}

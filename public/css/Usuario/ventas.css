@@ -1,0 +1,509 @@
+* {
+    font-family: "Montserrat", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*:before,
+*:after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#bodyCreditos {
+    margin: 0;
+}
+body{
+    height: 1257px;
+
+}
+
+/* encabezado  */
+
+#headerCreditos {
+    background-color: #d3b386;
+    margin: 0;
+    width: 100%;
+    height: 26%;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    border-bottom: 3px solid #804e23;
+}
+
+#Logos {
+    display: flex;
+    height: 250px;
+}
+
+#Nav {
+    margin-top: -80px;
+    margin-left: 200px;
+    height: 80px;
+    padding-top: 10px;
+}
+
+.form-inline {
+    margin-left: 352px;
+    padding-top: 80px;
+    height: 150px;
+}
+
+#Listas {
+    display: flex;
+    margin-bottom: -50px;
+}
+
+#Listas li {
+    position: relative;
+    letter-spacing: 0.5px;
+    list-style: none;
+    padding-left: 100px;
+    margin-left: 150px;
+    font-size: 19px;
+    color: #804e23;
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+
+#Listas li:after {
+    content: "";
+    position: absolute;
+    background-color: #804e23;
+    height: 3px;
+    width: 0;
+    left: 0;
+    bottom: -10px;
+    transition: 0.3s;
+}
+
+#Listas li:hover:after {
+    width: 100%;
+}
+
+
+/*navegacion */
+
+body {
+    background-color: #f9f7dc;
+    width: 100%;
+    height: 100vh;
+}
+
+
+a .btn{
+    background-color: #804e23;
+    color: white;
+    border-radius: 100px;
+    width: 160px;
+    font-size: 19px;
+    margin-left: 150px;
+    margin-top: -20px;
+    position: relative;
+    top: 10px;
+    height: 40px;
+    border: none;
+}
+
+a .btn:hover{
+    background-color: beige;
+    color: #804e23;
+    border-radius: 100px;
+}
+
+#menu {
+    background-color: #804e23;
+    width: 85%;
+    height: 600px;
+}
+
+.tipos {
+    font-size: 26px;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+#pro {
+    padding-top: 20px;
+    padding-left: 1000px;
+    border: #804e23;
+    background-color: #906a48;
+    width: 50px;
+    height: 50px;
+}
+
+a {
+    text-decoration: none;
+    color: #804e23;
+    font-size: 14px;
+}
+
+
+/* menu */
+
+.nav_ {
+    width: 400px;
+    background-color: #804e23;
+    color: #f9f7dc;
+    height: 900px;
+    position: relative;
+
+}
+
+.nav_link {
+    color: #f9f7dc;
+    display: block;
+    padding: 20px 0;
+    text-decoration: none;
+}
+
+.nav_link--inside:hover {
+    background: #906a48;
+}
+
+.nav_link--inside {
+    border-radius: 6px;
+    padding-left: 15px;
+    font-size: 12px;
+}
+
+.lista {
+    width: 100%;
+    height: 45vh;
+    display: flex;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    justify-content: center;
+    flex-direction: column;
+    text-decoration: none;
+}
+
+.lista_item {
+    list-style: none;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.lista_item--click {
+    cursor: pointer;
+}
+
+.lista_button {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.lista_flecha {
+    margin-left: auto;
+    transition: transform 0.3s;
+}
+
+.flecha .lista_flecha {
+    transform: rotate(90deg);
+}
+
+.lista_show {
+    width: 80%;
+    list-style: none;
+    margin-left: auto;
+    border-left: 2px solid #906a48;
+    transition: height 0.4s;
+    height: 0;
+}
+
+.lista_img {
+    width: 70px;
+}
+
+.user {
+    width: 100px;
+    color: #f9f7dc;
+}
+
+.correo {
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+
+/*  contenido */
+.contentContent{
+    display: flex;
+    background-color: #f9f7dc;
+    position: relative;
+    top: 249px;
+}
+#principal{
+
+    width: 56.8%;
+    height: 58.8%;
+    position: relative;
+    top: 50px;
+    left: 300px;
+    height: 700px;
+}
+#principal table{
+    width: 100%;
+    border: 2px solid #804e23;
+    background-color: #804e23;
+    border-collapse: collapse;
+    font-size: 18px;
+    color: #e4d8cd;
+    
+}
+tr,td{
+    border: 2px solid #f9f7dc;
+    padding: 20px;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+/* boton*/
+
+.factura {
+    width: 100px;
+    height: 100px;
+    background-color: #f9f7dc;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    top: 100px;
+    right: 250px;
+    
+}
+
+.factura button {
+    background-color: #804e23;
+    height: 50px;
+    width: 200px;
+    margin-top: 20px;
+    border-radius: 30px;
+    color: #f9f7dc;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.factura button:hover {
+    background-color: #906a48;
+}
+
+
+/* factura digital*/
+
+.factura_ {
+    background-color: #804e23;
+    width: 100%;
+    height: 8%;
+    border-bottom: 3px solid #f9f7dc;
+    justify-content: center;
+    text-align: center;
+}
+
+.factura_ h2 {
+    padding-top: 10px;
+    color: #f9f7dc;
+}
+
+.conten-fac-principal {
+    width: 100%;
+    height: 40%;
+    background-color: #804e23;
+    border-bottom: 10px solid #f9f7dc;
+    display: flex;
+}
+
+.fac-principal1 {
+    width: 30%;
+    height: 100%;
+    border-right: 3px solid #f9f7dc;
+    justify-content: center;
+    text-align: center;
+}
+
+.fac-principal1 h2 {
+    color: #f9f7dc;
+    padding-top: 20px;
+}
+
+.señor {
+    width: 100%;
+    height: 33%;
+    border-bottom: 3px solid #f9f7dc;
+}
+
+.telefono {
+    width: 100%;
+    height: 33%;
+}
+
+.direccion {
+    width: 100%;
+    height: 33%;
+    border-bottom: 3px solid #f9f7dc;
+}
+
+.fac-principal2 {
+    width: 70%;
+    height: 100%;
+    background-color: #d3b386;
+}
+
+.señor-tex {
+    width: 100%;
+    height: 33%;
+    border-bottom: 3px solid #f9f7dc;
+}
+
+.direccion-tex {
+    width: 100%;
+    height: 33%;
+    border-bottom: 3px solid #f9f7dc;
+}
+
+.telefono-tex {
+    width: 100%;
+    height: 33%;
+}
+
+
+/* */
+
+.conten-fac-segun {
+    width: 100%;
+    height: 53%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.conten-fac-segun h2 {
+    color: #f9f7dc;
+    padding-top: 3px;
+}
+
+.cantidad {
+    width: 33.3%;
+    height: 100%;
+}
+
+.precio {
+    width: 33.4%;
+    height: 100%;
+}
+
+.producto {
+    width: 33.3%;
+    height: 100%;
+}
+
+.fac-titu {
+    width: 100%;
+    height: 10%;
+    background-color: #804e23;
+    border-bottom: 3px solid #f9f7dc;
+    border-right: 3px solid #e4d8cd;
+}
+
+.cantidad-tex {
+    width: 100%;
+    height: 92%;
+    background-color: #d3b386;
+    border-right: 3px solid #f9f7dc;
+}
+
+.precio-tex {
+    width: 100%;
+    height: 92%;
+    background-color: #d3b386;
+    border-right: 3px solid #f9f7dc;
+}
+
+.producto-tex {
+    width: 100%;
+    height: 92%;
+    background-color: #d3b386;
+}
+
+
+/* pie de pagina */
+
+footer {
+    background-color: #d3b386;
+    padding: 50px;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    border-top: 3px solid #804e23;
+    position: relative; 
+}
+
+.footerContainer {
+    height: 144px;
+    top: 216px;
+}
+
+.contactos h1 {
+    position: relative;
+    bottom: 30px;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+    font-family: serif;
+    font-size: 40px;
+}
+
+.socialIcons {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 40px;
+}
+
+.socialIcons a {
+    text-decoration: none;
+    padding: 10px;
+    background-color: white;
+    margin: 10px;
+    border-radius: 50%;
+}
+
+.socialIcons a i {
+    font-size: 2em;
+    color: black;
+    opacity: 0.9;
+}
+
+
+/* Animacion */
+
+.socialIcons a:hover {
+    background-color: #111;
+    transition: 0.5s;
+}
+
+.socialIcons a:hover i {
+    color: white;
+    transition: 0.5s;
+}
+
+.cabecera a:after {
+    content: "";
+    position: absolute;
+    background-color: #804e23;
+    height: 3px;
+    width: 0;
+    left: 0;
+    bottom: -10px;
+    transition: 0.3s;
+}
+
+.cabecera a:hover:after {
+    width: 100%;
+}

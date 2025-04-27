@@ -1,0 +1,101 @@
+*{
+    font-family: "Montserrat", sans-serif;
+}
+
+.apartadoCategoria{
+    width: 90%;
+}
+#tittleDashboard{
+    width: 250px;
+    height: 60px;
+    position: relative;
+    left: 100px;
+    top: 20px;
+}
+
+#tittleDashboard h1{
+    color: #804e23;
+}
+
+#ContenidoCat{
+    position: relative;
+    left: 150px;
+    top: 90px;
+    width: 1300px;
+    height: 590px;
+    background-color: #804e23;
+    border: 1px solid white;
+    border-radius: 20px;
+    
+}
+
+#ContenidoCat #btnNuevaCat{
+
+    border-radius: 100px;
+    position: relative;
+    left: 50px;
+    top: 20px;
+    background-color: #d3b386;
+    border: none;
+    width: 200px;
+    height: 50px;
+    color: #804e23;
+}
+
+
+#ContenidoCat #btnNuevaCat a{
+    text-decoration: none;
+    color: #804e23;
+}
+
+#ContenidoCat #btnNuevaCat:hover{
+    background-color: beige;
+    transform: scale(1.1);
+    transition: 0.6s;
+}
+
+#tablaCat{
+    position: relative;
+    top: 40px;
+    left: 49px;
+    width: 1200px;
+    padding-left: 50px;
+    background-color: #804e23;
+}
+
+#tablaCat td, #tablaCat thead th{
+   
+    text-align: center;
+    color: #f7f7f7;
+    padding: 10px;
+    border: 2px solid #f7f7f7;
+}
+
+#tablaCat img{
+
+    width: 50px;
+    height: 50px;
+}
+
+#editCat #editImg:hover, #deleteCat #deleteImg:hover{
+
+    transform: scale(1.4);
+    transition: 0.6s;
+    cursor: pointer;
+}
+
+.paginacion {
+    position: absolute;
+    right: 400px;
+    bottom: -140px;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+
+.Flechas {
+    width: 120px;
+}

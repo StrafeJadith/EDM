@@ -1,0 +1,172 @@
+*{
+    font-family: "Montserrat", sans-serif;
+}
+
+
+#tittleDashboard{
+    width: 250px;
+    height: 60px;
+    position: relative;
+    left: 100px;
+    top: 20px;
+
+}
+
+#tittleDashboard h1{
+    color: #804e23;
+}
+
+.apartadoClientes,.apartadoVendedores{
+    min-height: 500px; /* ajustá esto según el diseño general */
+    position: relative;
+    width: 90%;
+}
+
+
+
+#Reportes{
+    width: 250px;
+    height: 60px;
+    position: relative;
+    left: 950px;
+
+}
+
+#Reportes #generarReportesUs{
+
+    position: relative;
+    top: 30px;
+    background-color: #d3b386;
+    color: #804e23;
+}
+
+#Reportes #generarReportesUs:hover, #Reportes #generarReportesVen:hover{
+
+    background-color: beige;
+    transition: 0.6s;
+    transform: scale(1.1);
+}
+
+#Reportes #generarReportesVen{
+    width: 250px;
+    position: relative;
+    bottom: 20px;
+    background-color: #d3b386;
+    color: #804e23;
+}
+
+
+#Cl{
+    width: 1200px;
+    background-color: #804e23;
+    position: relative;
+    top: 50px;
+    left: 49px;
+    /* display: block;
+    max-height: 500px;
+    overflow-y: auto; */
+
+
+}
+
+#Cl td, #TableVen td{
+   
+    text-align: center;
+    color: #f7f7f7;
+    padding: 10px;
+    border: 2px solid #f7f7f7;
+
+    
+}
+
+#Cl img, #TableVen img{
+
+    width: 50px;
+    height: 50px;
+}
+
+button{
+    background-color: #804e23;
+    border: none;
+
+}
+
+#TableVen{
+    width: 1200px;
+    position: relative;
+    top: 50px;
+    left: 49px;
+    background-color: #804e23;
+}
+
+#tablaUsers{
+    position: relative;
+    left: 100px;
+    top: 100px;
+    width: 1300px;
+    background-color: #804e23;
+    border-radius: 20px;
+    height: 600px;
+    min-height: 300px;
+}
+
+.TablaAgregarVen{
+
+    position: relative;
+    left: 100px;
+    top: 100px;
+    width: 1300px;
+    height: 600px;
+    background-color: #804e23;
+    border-radius: 20px;
+
+}
+
+.TablaAgregarVen #aggVen{
+    border-radius: 100px;
+    position: relative;
+    left: 20px;
+    top: 20px;
+    background-color: #d3b386;
+    border: none;
+    width: 200px;
+    height: 50px;
+    color: #804e23;
+
+}
+
+.TablaAgregarVen #aggVen:hover{
+    background-color: beige;
+    transform: scale(1.1);
+    transition: 0.6s;
+
+}
+
+
+#editarUs #editarImg:hover, #editarVendedor #editarImg:hover{
+
+    transform: scale(1.4);
+    transition: 0.6s;
+}
+
+#deleteUs #deleteImg:hover, #deleteVendedor #deleteImg:hover{
+
+    transform: scale(1.4);
+    transition: 0.6s;
+}
+
+.paginacion {
+    position: absolute;
+    right: 400px;
+    bottom: -120px;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+
+.Flechas {
+    width: 120px;
+}

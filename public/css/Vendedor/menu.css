@@ -1,0 +1,373 @@
+*:before,
+*:after {
+    padding: 0;
+    margin: 0;
+    /* box-sizing: border-box; */
+}
+
+#bodyCreditos {
+    margin: 0;
+}
+
+#headerCreditos {
+    background-color: #d3b386;
+    margin: 0;
+    width: 100%;
+    height: 250px;
+}
+
+#Logos {
+    display: flex;
+    height: 250px;
+}
+
+#Nav {
+    margin-top: -80px;
+    margin-left: 200px;
+    height: 80px;
+    padding-top: 10px;
+}
+
+.form-inline {
+    margin-left: 352px;
+    padding-top: 80px;
+    height: 150px;
+}
+
+.perfil {
+    position: relative;
+    left: 1600px;
+    bottom: 15px;
+    width: 50px;
+}
+
+/* contenido */
+
+section {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    min-height: 83vh;
+    flex: wrap;
+    background-color: beige;
+}
+
+.contenedorprincipal {
+    display: flex;
+}
+
+.menu {
+    background-color: #804e23;
+    color: white;
+    width: 400px;
+    height: 900px;
+}
+
+.correo {
+    margin-left: 10px;
+}
+
+.imagen1 img {
+    position: relative;
+    right: 20px;
+    bottom: 10px;
+    width: 180px;
+}
+
+.subtitulomenu {
+    text-align: center;
+}
+
+.subtitulomenu a{
+    color: white;
+    text-decoration: none;
+}
+
+.imagenusuarios img {
+    width: 80px;
+}
+
+.usuariossubtitulo {
+    position: relative;
+    left: 100px;
+    bottom: 50px;
+}
+
+.usuariossubtitulo a{
+    color: white;
+    text-decoration: none;
+}
+
+.imagenproductos img {
+    width: 80px;
+}
+
+.productossubtitulo {
+    position: relative;
+    left: 100px;
+    bottom: 50px;
+    font-size: 3ex;
+}
+
+.productossubtitulo a{
+    color: white;
+    text-decoration: none;
+}
+
+.imagencreditos img {
+    width: 80px;
+}
+
+.creditossubtitulo {
+    position: relative;
+    left: 100px;
+    bottom: 50px;
+}
+
+.creditossubtitulo a{
+    color: white;
+    text-decoration: none;
+}
+
+.imagenventas img {
+    width: 90px;
+}
+
+.ventassubtitulo {
+    position: relative;
+    left: 100px;
+    bottom: 50px;
+}
+
+.ventassubtitulo a{
+    color: white;
+    text-decoration: none;
+}
+
+.APclientes {
+    position: relative;
+    top: 60px;
+    left: 150px;
+    background-color: #804e23;
+    color: white;
+    width: 350px;
+    height: 150px;
+}
+
+.imagenclientes img {
+    position: relative;
+    left: 20px;
+    top: 30px;
+    width: 100px;
+}
+
+.clientes {
+    position: relative;
+    left: 170px;
+    bottom: 50px;
+}
+
+.span1 {
+    position: relative;
+    left: 210px;
+    bottom: 50px;
+    font-size: 3ex;
+}
+
+.APproductos{
+    position: relative;
+    top: -80px;
+    left: 900px;
+    background-color: #804e23;
+    color: white;
+    width: 350px;
+    height: 150px;
+}
+
+.imagenproducto img{
+    position: relative;
+    left: 20px;
+    top: 30px;
+    width: 100px;
+}
+
+.productos2{
+    position: relative;
+    left: 170px;
+    bottom: 50px;
+}
+
+.span2 {
+    position: relative;
+    left: 210px;
+    bottom: 50px;
+    font-size: 3ex;
+}
+
+.APexistencias{
+    position: relative;
+    top: 60px;
+    left: 150px;
+    background-color: #804e23;
+    color: white;
+    width: 350px;
+    height: 150px;
+}
+
+.imagenesexistencias img{
+    position: relative;
+    left: 20px;
+    top: 30px;
+    width: 100px;
+}
+
+.existencias{
+    position: relative;
+    left: 170px;
+    bottom: 50px;
+}
+
+.span3 {
+    position: relative;
+    left: 210px;
+    bottom: 50px;
+    font-size: 3ex;
+}
+
+.APexistenciasvendida{
+    position: relative;
+    top: -90px;
+    left: 900px;
+    background-color: #804e23;
+    color: white;
+    width: 350px;
+    height: 150px;
+}
+
+.imagenesexistenciasvendida img{
+    position: relative;
+    left: 20px;
+    top: 30px;
+    width: 100px;
+}
+
+.existenciasvendidas{
+    position: relative;
+    left: 170px;
+    bottom: 50px;
+}
+
+.span4{
+    position: relative;
+    left: 210px;
+    bottom: 50px;
+    font-size: 3ex;
+}
+
+.APcreditos{
+    position: relative;
+    top: 60px;
+    left: 150px;
+    background-color: #804e23;
+    color: white;
+    width: 350px;
+    height: 150px;
+}
+
+.ImagenesCredito img{
+    position: relative;
+    left: 20px;
+    top: 30px;
+    width: 100px;
+}
+
+.Credito{
+    position: relative;
+    left: 170px;
+    bottom: 50px;
+}
+
+.span5{
+    position: relative;
+    left: 210px;
+    bottom: 50px;
+    font-size: 3ex;
+}
+
+.APventas{
+    position: relative;
+    top: -90px;
+    left: 900px;
+    background-color: #804e23;
+    color: white;
+    width: 350px;
+    height: 150px;
+}
+
+.Imagenesventas img{
+    position: relative;
+    left: 20px;
+    top: 30px;
+    width: 100px;
+}
+
+.Ventas{
+    position: relative;
+    left: 170px;
+    bottom: 50px;
+}
+
+.span6{
+    position: relative;
+    left: 199px;
+    bottom: 50px;
+    font-size: 3ex;
+}
+
+/* pie de pagina */
+
+footer {
+    background-color: #d3b386;
+    align-self: flex-end;
+    width: 100%;
+    height: 130px;
+    text-align: center;
+}
+
+.contactos {
+    display: flex;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+    font-family: serif;
+}
+
+.socialIcons {
+    display: flex;
+    justify-content: center;
+}
+
+.socialIcons a {
+    text-decoration: none;
+    padding: 10px;
+    background-color: rgb(0, 0, 0);
+    margin: 10px;
+    border-radius: 50%;
+}
+
+.socialIcons a i {
+    font-size: 2em;
+    color: #d3b386;
+    opacity: 0.9;
+}
+
+/* Animacion */
+
+.socialIcons a:hover {
+    background-color: #111;
+    transition: 0.5s;
+}
+
+.socialIcons a:hover i {
+    color: white;
+    transition: 0.5s;
+}

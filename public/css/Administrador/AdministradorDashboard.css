@@ -1,0 +1,183 @@
+
+.apartado{
+    width: 90%;
+}
+.APclientes {
+    position: relative;
+    top: 60px;
+    left: 150px;
+    background-color: #804e23;
+    color: white;
+    width: 350px;
+    height: 150px;
+}
+
+.imagenclientes img {
+    position: relative;
+    left: 20px;
+    top: 30px;
+    width: 100px;
+}
+
+.clientes {
+    position: relative;
+    left: 170px;
+    bottom: 50px;
+}
+
+.span1 {
+    position: relative;
+    left: 210px;
+    bottom: 50px;
+    font-size: 3ex;
+}
+
+.APproductos{
+    position: relative;
+    top: -80px;
+    left: 900px;
+    background-color: #804e23;
+    color: white;
+    width: 350px;
+    height: 150px;
+}
+
+.imagenproducto img{
+    position: relative;
+    left: 20px;
+    top: 30px;
+    width: 100px;
+}
+
+.productos2{
+    position: relative;
+    left: 170px;
+    bottom: 50px;
+}
+
+.span2 {
+    position: relative;
+    left: 210px;
+    bottom: 50px;
+    font-size: 3ex;
+}
+
+.APexistencias{
+    position: relative;
+    top: 60px;
+    left: 150px;
+    background-color: #804e23;
+    color: white;
+    width: 350px;
+    height: 150px;
+}
+
+.imagenesexistencias img{
+    position: relative;
+    left: 20px;
+    top: 30px;
+    width: 100px;
+}
+
+.existencias{
+    position: relative;
+    left: 170px;
+    bottom: 50px;
+}
+
+.span3 {
+    position: relative;
+    left: 210px;
+    bottom: 50px;
+    font-size: 3ex;
+}
+
+.APexistenciasvendida{
+    position: relative;
+    top: -90px;
+    left: 900px;
+    background-color: #804e23;
+    color: white;
+    width: 350px;
+    height: 150px;
+}
+
+.imagenesexistenciasvendida img{
+    position: relative;
+    left: 20px;
+    top: 30px;
+    width: 100px;
+}
+
+.existenciasvendidas{
+    position: relative;
+    left: 170px;
+    bottom: 50px;
+}
+
+.span4{
+    position: relative;
+    left: 210px;
+    bottom: 50px;
+    font-size: 3ex;
+}
+
+.APcreditos{
+    position: relative;
+    top: 60px;
+    left: 150px;
+    background-color: #804e23;
+    color: white;
+    width: 350px;
+    height: 150px;
+}
+
+.ImagenesCredito img{
+    position: relative;
+    left: 20px;
+    top: 30px;
+    width: 100px;
+}
+
+.Credito{
+    position: relative;
+    left: 170px;
+    bottom: 50px;
+}
+
+.span5{
+    position: relative;
+    left: 210px;
+    bottom: 50px;
+    font-size: 3ex;
+}
+
+.APventas{
+    position: relative;
+    top: -90px;
+    left: 900px;
+    background-color: #804e23;
+    color: white;
+    width: 350px;
+    height: 150px;
+}
+
+.Imagenesventas img{
+    position: relative;
+    left: 20px;
+    top: 30px;
+    width: 100px;
+}
+
+.Ventas{
+    position: relative;
+    left: 170px;
+    bottom: 50px;
+}
+
+.span6{
+    position: relative;
+    left: 210px;
+    bottom: 50px;
+    font-size: 3ex;
+}

@@ -1,0 +1,86 @@
+*{
+    font-family: "Montserrat", sans-serif;
+}
+
+.apartadoCreditos{
+
+    width: 90%;
+}
+
+#tittleDashboard{
+    width: 250px;
+    height: 60px;
+    position: relative;
+    left: 100px;
+    top: 20px;
+}
+
+#tittleDashboard h1{
+    color: #804e23;
+}
+
+#tablaCreditos{
+    position: relative;
+    left: 80px;
+    top: 100px;
+    width: 1350px;
+    height: 516px;
+    background-color: #804e23;
+    border-radius: 20px;
+
+}
+
+#Cred{
+  
+    width: 1200px;
+    position: relative;
+    left: 35px;
+    top: 30px;
+}
+
+#Cred td, #Cred thead tr th{
+   
+    text-align: center;
+    color: #f7f7f7;
+    padding: 10px;
+    border: 2px solid #f7f7f7;
+}
+
+#Cred img{
+
+    width: 50px;
+    height: 50px;
+}
+
+#tablaCreditos #SolicitudCreditos{
+
+    color: #f9f7dc;
+    padding-top: 5px;
+    padding-left: 5px;
+    width: 500px;
+    height: 60px;
+
+}
+
+#aceptarCr #aceptarImg:hover, #editarCr #editarImg:hover, #deleteCr #deleteImg:hover{
+
+    transform: scale(1.4);
+    transition: 0.6s;
+    cursor: pointer;
+}
+
+.paginacion {
+    position: absolute;
+    right: 400px;
+    bottom: -140px;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+
+.Flechas {
+    width: 120px;
+}

@@ -1,0 +1,134 @@
+*{
+    font-family: "Montserrat", sans-serif;
+}
+
+.apartadoProductos{
+    width: 90%;
+}
+
+#tittleDashboard{
+    width: 250px;
+    height: 60px;
+    position: relative;
+    left: 100px;
+    top: 20px;
+}
+
+#tittleDashboard h1{
+    color: #804e23;
+}
+
+#Reportes{
+    width: 250px;
+    height: 70px;
+    position: relative;
+    left: 950px;
+    bottom: 30px;
+}
+#Reportes #generarReportesProd{
+    width: 250px;
+    background-color: #d3b386;
+    color: #804e23;
+}
+
+#Reportes #generarReportesProd:hover{
+
+    background-color: beige;
+    transition: 0.6s;
+    transform: scale(1.1);
+
+}
+
+#tablaProductos{
+    position: relative;
+    left: 100px;
+    top: 100px;
+    width: 1300px;
+    height: 516px;
+    background-color: #804e23;
+    border-radius: 20px;
+   
+
+}
+
+#tablaProd{
+    width: 1200px;
+    background-color: #804e23;
+    position: relative;
+    left: 30px;
+    border-radius: 20px;
+}
+
+#tablaProd button{
+    
+    background-color: #804e23;
+    border: none;
+}
+
+#tablaProd td{
+   
+    text-align: center;
+    color: #f7f7f7;
+    padding: 10px;
+    border: 2px solid #f7f7f7;
+}
+
+#tablaProd img{
+
+    width: 50px;
+    height: 50px;
+}
+
+#tablaProd img{
+    width: 50px;
+}
+
+
+#tablaProductos .AggProd{
+    border-radius: 100px;
+    position: relative;
+    left: 20px;
+    top: 20px;
+    background-color: #d3b386;
+    border: none;
+    width: 200px;
+    height: 50px;
+    color: #804e23;
+   
+}
+
+#tablaProductos .AggProd:hover{
+    background-color: beige;
+    transform: scale(1.1);
+    transition: 0.6s;
+}
+
+#nuevoProd input{
+   
+    border-radius: 100px;
+    border: 1px solid #d3b386;
+    padding-left: 10px;
+    position: relative;
+    left: 150px;
+    bottom: 33px;
+}
+
+#editPro #editImg:hover, #deletePro #deleteImg:hover{
+
+    transform: scale(1.4);
+    transition: 0.6s;
+}
+
+.paginacion {
+    position: absolute;
+    right: 400px;
+    bottom: -150px;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.Flechas {
+    width: 120px;
+}
