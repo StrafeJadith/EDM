@@ -1,39 +1,28 @@
 <?php
-    include("../../model/Conexion.php");
 
-    session_start();
+    if(!isset($_SESSION['correo'])){
 
-    if (empty($_SESSION['correo'])) {
-        header("location: ../registro/inicio.php");
-        session_destroy();
-        die();
+        $insLogin->cerrarSesionControlador();
+        exit();
+        
     }
-    
-    $conexion = new Conexion();
-    $conn = $conexion->getConexion();
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle de ventas</title>
-    <?php require_once '../inc/headAdmin.php' ?>
-    <link rel="stylesheet" href="../../../public/css/Administrador/Ventas.css">
+    <?php require_once './app/view/inc/headAdmin.php' ?>
+    <link rel="stylesheet" href="<?= APP_URL ?>public/css/Administrador/Ventas.css">
     <!-- <link rel="stylesheet" href="../../../public/css/Administrador/AdministradorDashboard.css"> -->
     
 </head>
 
 <body>
 
-    <?php require_once '../inc/headerAdmin.php' ?>
+    <?php require_once './app/view/inc/headerAdmin.php' ?>
 
     <section>
 
         <div class="contenedorprincipal">
 
-            <?php require_once '../inc/MenuLateral.php' ?>
+            <?php require_once './app/view/inc/MenuLateral.php' ?>
 
             <div class="apartadoVentas">
                 <div id="tittleDetalleVentas">
@@ -56,10 +45,13 @@
                         <tbody>
                             <?php
 
-                            $query = " SELECT u.Nombre_US, m.Tipo_Pago_MTP, dv.* FROM detalle_de_venta dv, usuarios u, metodo_pago m WHERE dv.ID_US = u.ID_US and dv.ID_MTP = m.ID_MTP ";
-                            $resultado = mysqli_query($conn, $query);
+                            $query = $insLogin->ejecutarConsulta(" SELECT u.Nombre_US, m.Tipo_Pago_MTP, dv.* 
+                            FROM detalle_de_venta dv, usuarios u, metodo_pago m 
+                            WHERE dv.ID_US = u.ID_US and dv.ID_MTP = m.ID_MTP ");
+                            
+                            $rows = $query->fetchAll(PDO::FETCH_ASSOC);
 
-                            while ($row = mysqli_fetch_array($resultado)) { ?>
+                            foreach($rows as $row) { ?>
                             <tr>
                                 <td><?php echo $row['ID_US'] ?></td>
                                 <td><?php echo $row['Nombre_US'] ?></td>
@@ -81,13 +73,11 @@
                         </thead>
                         <tbody>
                             <?php
-                            $sql = "SELECT sum(TOTAL_DV)  FROM  detalle_de_venta ";
-                            $resultado = mysqli_query($conn, $sql);
-
-                            if ($resultado) {
-                                $row = $resultado->fetch_array(MYSQLI_NUM);
+                            $sql = $insLogin->ejecutarConsulta("SELECT sum(TOTAL_DV)  FROM  detalle_de_venta ");
+                            
+                                $row = $sql->fetch();
                                 $sum = (int) $row[0];
-                            }
+                            
 
                             ?>
 
@@ -104,4 +94,4 @@
 
 
 
-    <?php include '../../view/inc/footer.php' ?>
+    <?php include './app/view/inc/footer.php' ?>

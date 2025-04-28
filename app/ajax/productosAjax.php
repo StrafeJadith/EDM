@@ -18,13 +18,13 @@
 
         if($_POST['modulo_productos'] == "eliminar"){
 
-            echo $insCategoria->eliminarCategoriaControlador();
+            echo $insProductos->eliminarProductoControlador();
 
         }
 
         if($_POST['modulo_productos'] == "actualizar"){
 
-            echo $insCategoria->actualizarCategoriaControlador();
+            echo $insProductos->actualizarProductosControlador();
 
         }
     }

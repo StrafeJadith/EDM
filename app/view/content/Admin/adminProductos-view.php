@@ -41,7 +41,7 @@
                     <br><br><br>
 
                     <div id="Reportes">
-                        <a href="./ReportesProductos.php" class="btn" id="generarReportesProd"><strong>Generar reportes de vendedores</strong></a>
+                        <a href="<?= APP_URL; ?>adminReportesProductos/" class="btn" id="generarReportesProd"><strong>Generar reportes de vendedores</strong></a>
                     </div>
 
                     

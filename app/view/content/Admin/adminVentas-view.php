@@ -1,38 +1,28 @@
 <?php
-    include("../../model/Conexion.php");
 
-    session_start();
+    if(!isset($_SESSION['correo'])){
 
-    if (empty($_SESSION['correo'])) {
-        header("location: ../registro/inicio.php");
-        session_destroy();
-        die();
+        $insLogin->cerrarSesionControlador();
+        exit();
+        
     }
 
-    $conexion = new Conexion();
-    $conn = $conexion->getConexion();
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <?php require_once '../inc/headAdmin.php' ?>
-    <link rel="stylesheet" href="../../../public/css/Administrador/Ventas.css">
+    <?php require_once './app/view/inc/headAdmin.php' ?>
+    <link rel="stylesheet" href="<?= APP_URL; ?>public/css/Administrador/Ventas.css">
 
     
 </head>
 
 <body>
 
-    <?php require_once '../inc/headerAdmin.php' ?>
+    <?php require_once './app/view/inc/headerAdmin.php' ?>
 
     <section>
         <div class="contenedorprincipal">
 
-            <?php require_once '../inc/MenuLateral.php' ?>
+            <?php require_once './app/view/inc/MenuLateral.php' ?>
 
 
             <div class="apartadoVentas">
@@ -59,11 +49,11 @@
                         <tbody>
                             <?php
 
-                            $query = "SELECT * FROM ventas  Where Estado_VENT = 'Confirmado' ";
-                            $resultado = mysqli_query($conn, $query);
+                            $query = $insLogin->ejecutarConsulta("SELECT * FROM ventas Where Estado_VENT = 'Confirmado' ");
+                            $rows = $query->fetchAll(PDO::FETCH_ASSOC);
 
 
-                            while ($row = mysqli_fetch_array($resultado)) { ?>
+                            foreach($rows as $row) { ?>
                             <tr>
 
                                 <td><?php echo $row['ID_VENT'] ?></td>
@@ -89,16 +79,12 @@
                         </thead>
                         <tbody>
                             <?php
-                            $sql = "SELECT sum(v.Valor_total)  FROM ventas v Where v.Estado_VENT = 'Confirmado'";
-                            $resultado = mysqli_query($conn, $sql);
-
-                            if ($resultado) {
-                                $row = $resultado->fetch_array(MYSQLI_NUM);
+                            $sql = $insLogin->ejecutarConsulta("SELECT sum(v.Valor_total)  FROM ventas v Where v.Estado_VENT = 'Confirmado'");
+                            
+                                $row = $sql->fetch();
                                 $sum = (int) $row[0];
-                            }
 
                             ?>
-
                             <tr>
                                 <td><?php echo $sum ?></td>
                             </tr>
@@ -111,4 +97,4 @@
 
         </div>
     </section>
-    <?php include '../../view/inc/footer.php' ?>
+    <?php include './app/view/inc/footer.php' ?>

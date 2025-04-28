@@ -8,7 +8,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
    
-      <form action="../../controller/controllerAdministrador.php" method="post">
+      <form class="FormularioAjax" action="<?= APP_URL; ?>app/ajax/productosAjax.php" method="POST" autocomplete="off">
+        <input type="hidden" name="modulo_productos" value="eliminar">
         <div class="modal-body">
             <h4>¿Desea eliminar el producto <strong style="color: red;"><?php echo $row['Nombre_PRO']?></strong> ?</h4>
             <input type="hidden" name="ID_PRO" value="<?php echo $row['ID_PRO'] ?>">
