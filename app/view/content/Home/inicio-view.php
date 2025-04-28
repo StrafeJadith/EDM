@@ -58,7 +58,7 @@
                                         Sesion</button></a>
 
                             <?php } else { ?>
-                                <a href="<?= APP_URL; ?>indexCreditosInicio.php">
+                                <a href="<?= APP_URL; ?>indexCreditosInicio/">
                                     <li><strong> Creditos </strong></li>
                                 </a>
                                 <a href="<?= APP_URL; ?>log-Out/"><button type="button" class="btn">Cerrar Sesión</button></a>

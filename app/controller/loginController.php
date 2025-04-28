@@ -42,15 +42,43 @@
                             $_SESSION['nombre']=$check_usuario['Nombre_US'];
                             $_SESSION['correo']=$check_usuario['Correo_US'];
 
-                            if(headers_sent()){
+                            if($check_usuario['ID_TU'] == 1){
+                                if(headers_sent()){
 
-                                echo "
-                                    <script>
-                                        window.location.href='".APP_URL."adminDashboard/';    
-                                    </script>";
-                            }else{
+                                    echo "
+                                        <script>
+                                            window.location.href='".APP_URL."adminDashboard/';    
+                                        </script>";
+                                }else{
 
-                                header("Location: ".APP_URL."adminDashboard/");
+                                    header("Location: ".APP_URL."adminDashboard/");
+                                }
+                            }
+                            else if($check_usuario['ID_TU'] == 2){
+                                if(headers_sent()){
+
+                                    echo "
+                                        <script>
+                                            window.location.href='".APP_URL."vendMenu/';    
+                                        </script>";
+                                }else{
+
+                                    header("Location: ".APP_URL."vendMenu/");
+                                }
+
+                            }
+                            else if($check_usuario['ID_TU'] == 3){
+                                if(headers_sent()){
+
+                                    echo "
+                                        <script>
+                                            window.location.href='".APP_URL."userIndex/';    
+                                        </script>";
+                                }else{
+
+                                    header("Location: ".APP_URL."userIndex/");
+                                }
+
                             }
                         }else{
 

@@ -97,7 +97,7 @@ $conn = $conexion->getConexion();
                                         Sesion</button></a>
 
                             <?php } else { ?>
-                                <a href="../controlador/controladorcerrarsesion.php"><button type="button" class="btn">Cerrar Sesión</button></a>
+                                <a href="<?= APP_URL; ?>log-Out/"><button type="button" class="btn">Cerrar Sesión</button></a>
 
                                 <a href="../productos/carrito_compra.php">
                                     <li><img src="./imagenes/Carrito.png" width="40px" height="40px" style="margin-top: -18px;">
