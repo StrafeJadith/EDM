@@ -1,15 +1,8 @@
 <?php
 
-    
-
-    include("../../model/Conexion.php");
-    $conexion = new Conexion();
-    $conn = $conexion->getConexion();
-  
     header("Content-Type: application/xls");
     header("Content-Disposition: attachment; filename= Productos.xls");
 
-      
 ?>
 
 <table id="tablaProd">
@@ -32,17 +25,17 @@
                     <tbody>
                     
                     
-                       
+
                         <?php
 
-                           
+
                             
-                            $query = "SELECT c.Nombre_CAT,p.* FROM productos p, categoria_producto c where p.ID_CAT = c.ID_CAT";
-                            $resultado = mysqli_query($conn,$query);
+                            $query = $insLogin->ejecutarConsulta("SELECT c.Nombre_CAT,p.* FROM productos p, categoria_producto c where p.ID_CAT = c.ID_CAT");
+                            $rows = $query->fetchAll(PDO::FETCH_ASSOC);
                             
                             
-                            while($row = mysqli_fetch_array($resultado)){ ?>
-                               <tr>
+                            foreach($rows as $row){ ?>
+                                <tr>
                                     <td><img src='../<?= $row['Img']; ?>' alt=""></td>
                                     <td><?php echo $row['ID_PRO'] ?></td>
                                     <td><?php echo $row['Nombre_PRO'] ?></td>
@@ -57,8 +50,6 @@
                                 
                             <?php } ?>    
                             
-                            
-                              
 
                             
                     </tr>  

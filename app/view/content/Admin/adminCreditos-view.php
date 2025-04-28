@@ -1,46 +1,33 @@
 <?php 
-    include("../../model/Conexion.php");
 
-    session_start();
+    if(!isset($_SESSION['correo'])){
 
-    if (empty($_SESSION['correo'])) {
-        header("location: ../registro/inicio.php");
-        session_destroy();
-        die();
+        $insLogin->cerrarSesionControlador();
+        exit();
+        
     }
-    $conexion = new Conexion();
-    $conn = $conexion->getConexion();
-
+    
     $creditosPorPagina = 4;
     $paginaActual = isset($_GET['pagina']) ? (int) $_GET['pagina'] : 1;
     $offset = ($paginaActual - 1) * $creditosPorPagina;
 
-    $totalCreditosQuery = "SELECT COUNT(*) as total FROM credito";
-    $totalResult = mysqli_query($conn, $totalCreditosQuery);
-    $totalRow = mysqli_fetch_assoc($totalResult);
+    $totalCreditosQuery = $insLogin->ejecutarConsulta("SELECT COUNT(*) as total FROM credito");
+    $totalRow = $totalCreditosQuery->fetch();
     $totalPaginas = ceil($totalRow['total'] / $creditosPorPagina);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creditos</title>
-    <?php require_once '../inc/headAdmin.php' ?>
-    <link rel="stylesheet" href="../../../public/css/Administrador/AdministradorCreditos.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../../../public/js/alerts.js"></script>
+    <?php require_once './app/view/inc/headAdmin.php' ?>
+    <link rel="stylesheet" href="<?= APP_URL; ?>public/css/Administrador/AdministradorCreditos.css">
 </head>
 <body>
 
-    <?php require_once '../inc/headerAdmin.php' ?>
+    <?php require_once './app/view/inc/headerAdmin.php' ?>
 
     <section>
         <div class="contenedorprincipal">
             
 
-            <?php require_once '../inc/MenuLateral.php' ?>
+            <?php require_once './app/view/inc/MenuLateral.php' ?>
 
             <div class="apartadoCreditos">
                     <div id="tittleDashboard">
@@ -72,12 +59,12 @@
                         </thead>
                         <Tbody>
                             <?php 
-                                $query ="SELECT c.ID_CR, u.ID_US, u.Nombre_US, c.Correo_CR, c.Telefono_CR,
-                                        c.Direccion_CR, c.Estado_CR, c.Fecha_CR, c.Valor_CR
-                                        FROM credito c, usuarios u WHERE c.ID_US = u.ID_US LIMIT $creditosPorPagina OFFSET $offset";  
-                                $resul_tareas = mysqli_query($conn, $query);
+                                $query = $insLogin->ejecutarConsulta("SELECT c.ID_CR, u.ID_US, u.Nombre_US, c.Correo_CR, c.Telefono_CR,c.Direccion_CR, c.Estado_CR, c.Fecha_CR,c.Valor_CR 
+                                FROM credito c, usuarios u 
+                                WHERE c.ID_US = u.ID_US LIMIT $creditosPorPagina OFFSET $offset");  
+                                $rows = $query->fetchAll(PDO::FETCH_ASSOC);
 
-                                while($row = mysqli_fetch_array($resul_tareas)){
+                                foreach($rows as $row){
                             ?>
 
                             <tr>
@@ -94,38 +81,29 @@
 
                                 <td>
 
-                                    <div id="aceptarCr" data-bs-toggle="modal" data-bs-target="#Aceptar_credito<?php echo $row['ID_CR']?>"><img src="../../../public/img/Administrador/AceptarCreditos.png" alt="" class="btnedit" id="aceptarImg"></div>
+                                    <div id="aceptarCr" data-bs-toggle="modal" data-bs-target="#Aceptar_credito<?php echo $row['ID_CR']?>"><img src="<?= APP_URL; ?>public/img/Administrador/AceptarCreditos.png" alt="" class="btnedit" id="aceptarImg"></div>
 
                                 </td>
 
                                 <td>
 
-                                    <div id="editarCr" data-bs-toggle="modal" data-bs-target="#editar_credito<?php echo $row['ID_CR']?>"><img src="../../../public/img/Administrador/Editar.png" alt="" class="btnedit" id="editarImg"></div>
+                                    <div id="editarCr" data-bs-toggle="modal" data-bs-target="#editar_credito<?php echo $row['ID_CR']?>"><img src="<?= APP_URL; ?>public/img/Administrador/Editar.png" alt="" class="btnedit" id="editarImg"></div>
         
                                 </td>
 
                                 <td>
         
-                                    <div id="deleteCr" data-bs-toggle="modal" data-bs-target="#delete_creditos<?php echo $row['ID_CR']?>"><img src="../../../public/img/Administrador/Eliminar.png" alt="" id="deleteImg"  ></div>
+                                    <div id="deleteCr" data-bs-toggle="modal" data-bs-target="#delete_creditos<?php echo $row['ID_CR']?>"><img src="<?= APP_URL; ?>public/img/Administrador/Eliminar.png" alt="" id="deleteImg"  ></div>
                                 </td>
                             </tr>
 
-                        <?php include("../../model/Modals/modal_aceptar_creditos.php");
-                                include("../../model/Modals/modal_delete_creditos.php");
-                                include("../../model/Modals/modal_edit_creditos.php");
-                            }?>
-                        </Tbody>
                         <?php 
-                            if(isset($_SESSION["msg"])){
-                                $msg = $_SESSION["msg"];
-                                if($msg){
-                                    echo("<script> $msg </script>");
+                            include("./app/view/Modals/modal_aceptar_creditos.php");
+                            include("./app/view//Modals/modal_delete_creditos.php");
+                            include("./app/view/Modals/modal_edit_creditos.php");
 
-                                    unset($_SESSION["msg"]);
-                                }
-
-                            }
-                        ?>
+                        }?>
+                        </Tbody>
                         
                     </table>
                     
@@ -133,20 +111,20 @@
 
                                 <?php if ($paginaActual > 1): ?>
                                     <a href="?pagina=<?php echo $paginaActual - 1; ?>">
-                                        <img src="../../../public/img/Administrador/FlechaIzquierda.png" class="Flechas" alt="Anterior">
+                                        <img src="<?= APP_URL ?>public/img/Administrador/FlechaIzquierda.png" class="Flechas" alt="Anterior">
                                     </a>
 
                                     <?php else: ?>
-                                        <img src="../../../public/img/Administrador/FlechaIzquierda.png" class="Flechas" alt="Anterior" style="opacity: 0.5; cursor: default;">
+                                        <img src="<?= APP_URL ?>public/img/Administrador/FlechaIzquierda.png" class="Flechas" alt="Anterior" style="opacity: 0.5; cursor: default;">
                                     <?php endif; ?>
                                     
                                     <?php if ($paginaActual < $totalPaginas): ?>
                                         <a href="?pagina=<?php echo $paginaActual + 1; ?>">
-                                            <img src="../../../public/img/Administrador/FlechaDerecha.png" class="Flechas" alt="Siguiente">
+                                            <img src="<?= APP_URL ?>public/img/Administrador/FlechaDerecha.png" class="Flechas" alt="Siguiente">
                                         </a>
                                     
                                     <?php else: ?>
-                                        <img src="../../../public/img/Administrador/FlechaDerecha.png" class="Flechas" alt="Siguiente" style="opacity: 0.5; cursor: default;">
+                                        <img src="<?= APP_URL ?>public/img/Administrador/FlechaDerecha.png" class="Flechas" alt="Siguiente" style="opacity: 0.5; cursor: default;">
                                     <?php endif; ?>
                             </div>
                 </div>
@@ -155,8 +133,4 @@
     </section>
 
         
-    <?php include '../../view/inc/footer.php' ?>
-
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script> -->
+    <?php include './app/view/inc/footer.php' ?>
