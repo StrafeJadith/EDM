@@ -56,16 +56,16 @@ $conn = $conexion->getConexion();
                                 <a href="<?= APP_URL; ?>indexCreditosInicio/">
                                     <li><strong> Creditos </strong></li>
                                 </a>
-                                <a href="../controller/controladorcerrarsesion.php"><button type="button" class="btn">Cerrar
+                                <a href="<?= APP_URL; ?>log-Out/"><button type="button" class="btn">Cerrar
                                         Sesión</button></a>
 
                                 <a href="Usuario/carrito_compra.php">
-                                    <li><img src="../../public/img/Carrito.png" width="40px" height="40px"
+                                    <li><img src="<?= APP_URL; ?>public/img/Carrito.png" width="40px" height="40px"
                                             style="margin-top: -18px;">
                                     </li>
                                 </a>
                                 <a href="usuario/index_.php">
-                                    <li><img src="../../public/img/home.svg" width="40px" height="40px"
+                                    <li><img src="<?= APP_URL; ?>public/img/home.svg" width="40px" height="40px"
                                             style="margin-top: -18px;">
                                     </li>
                                 </a>

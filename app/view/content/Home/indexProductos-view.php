@@ -56,16 +56,16 @@ $conn = $conexion->getConexion();
                                 <a href="<?= APP_URL; ?>indexCreditosInicio/">
                                     <li><strong> Creditos </strong></li>
                                 </a>
-                                <a href="../controller/controladorcerrarsesion.php"><button type="button" class="btn">Cerrar
+                                <a href="<?= APP_URL; ?>log-Out/"><button type="button" class="btn">Cerrar
                                         Sesión</button></a>
 
                                 <a href="Usuario/carrito_compra.php">
-                                    <li><img src="../../public/img/Carrito.png" width="40px" height="40px"
+                                    <li><img src="<?= APP_URL; ?>public/img/Carrito.png" width="40px" height="40px"
                                             style="margin-top: -18px;">
                                     </li>
                                 </a>
                                 <a href="usuario/index_.php">
-                                    <li><img src="../../public/img/home.svg" width="40px" height="40px"
+                                    <li><img src="<?= APP_URL; ?>public/img/home.svg" width="40px" height="40px"
                                             style="margin-top: -18px;">
                                     </li>
                                 </a>
@@ -94,7 +94,7 @@ $conn = $conexion->getConexion();
                 <br>
                 <div class="productos">
                     <div class="imagenalimentos">
-                        <img src="../../public/img/Producto/alimentos.png.png" alt="">
+                        <img src="<?= APP_URL; ?>public/img/Producto/alimentos.png.png" alt="">
                     </div>
                     <div class="productossubtitulo">
                         <details>
@@ -110,7 +110,7 @@ $conn = $conexion->getConexion();
                 </div>
                 <div class="Aseo">
                     <div class="imagenaseo">
-                        <img src="../../public/img/Producto/aseopersonal.png.png" alt="">
+                        <img src="<?= APP_URL; ?>public/img/Producto/aseopersonal.png.png" alt="">
                     </div>
                     <div class="productossubtitulo">
                         <details>
@@ -126,7 +126,7 @@ $conn = $conexion->getConexion();
                 </div>
                 <div class="Limpieza">
                     <div class="imagenlimpieza">
-                        <img src="../../public/img/Producto/aseohogar.png.png" alt="">
+                        <img src="<?= APP_URL; ?>public/img/Producto/aseohogar.png.png" alt="">
                     </div>
                     <div class="productossubtitulo">
                         <details>
@@ -140,7 +140,7 @@ $conn = $conexion->getConexion();
                 </div>
                 <div class="Otros">
                     <div class="imagenotros">
-                        <img src="../../public/img/Producto/otros.png.png" alt="">
+                        <img src="<?= APP_URL; ?>public/img/Producto/otros.png.png" alt="">
                     </div>
                     <div class="productossubtitulo">
                         <details>
@@ -161,14 +161,14 @@ $conn = $conexion->getConexion();
                     <!-- imagenes de los productos-->
                     <center>
                         <?php
-                        $sql = "SELECT * FROM productos";
-                        $resultado = mysqli_query($conn, $sql);
-                        while ($row = mysqli_fetch_array($resultado)) { ?>
+                        $sql = $insLogin->ejecutarConsulta("SELECT * FROM productos");
+                        $rows = $sql->fetchAll(PDO::FETCH_ASSOC);
+                        foreach($rows as $row) { ?>
 
                             <div id="div1">
                                 <form action="../controller/controllerCarrito.php" method="post">
                                     <div class="imagenpro">
-                                        <img src="<?php echo $row['Img'] ?>" alt="" class="imgpro"><br>
+                                        <img src="<?= APP_URL.$row['Img'] ?>" alt="" class="imgpro"><br>
                                     </div>
                                     <div class="nombrepro">
                                         <input type="hidden" name="Nombre_PRO" value="<?php echo $row['Nombre_PRO'] ?>">

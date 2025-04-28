@@ -7,7 +7,7 @@
         protected function obtenerViewsModel($vista){
 
             $listaBlanca=["indexProductos","indexCreditosInicio","indexHistoria","indexInicio","indexRegistro","indexOlvidoContraseña","adminDashboard","adminTablaClientes","adminReportesUsuarios","adminVendedores","adminReportesVendedores",
-            "adminCategoria","adminProductos","adminReportesProductos","adminCreditos","adminVentas","adminDetalleDeVenta","log-Out"];
+            "adminCategoria","adminProductos","adminReportesProductos","adminCreditos","adminVentas","adminDetalleDeVenta","vendMenu","vendExistencias","vendCreditosUsuario","vendUsuarios","userIndex","log-Out"];
 
             if(in_array($vista,$listaBlanca)){
                 if(is_file("./app/view/content/Home/".$vista."-view.php")){
