@@ -1,9 +1,3 @@
-<?php
-
-include "./app/model/Conexion.php";
-$conexion = new conexion();
-$conn = $conexion->getConexion();
-?>
 
 <?php require_once "./app/view/inc/headInicio.php" ?>
 <link rel="stylesheet" href="<?php echo APP_URL; ?>public/css/Productos/menu.css">
@@ -27,55 +21,7 @@ $conn = $conexion->getConexion();
                     </form>
                 </div>
 
-                <nav id="Nav">
-                    <div id="NavList">
-
-                        <ul id="Listas">
-                            <a href="<?= APP_URL; ?>inicio/">
-                                <li><strong>Inicio</strong></li>
-                            </a>
-                            <a href="<?= APP_URL; ?>indexProductos/">
-                                <li><strong> Productos </strong></li>
-                            </a>
-
-
-                            <?php
-                            
-                            if (empty($_SESSION['correo'])) { ?>
-                                <a href="<?= APP_URL; ?>indexCreditosInicio/">
-
-                                    <li><strong> Creditos </strong></li>
-                                </a>
-                                <a href="<?= APP_URL; ?>indexHistoria/">
-                                    <li><strong> Sobre Nosotros </strong></li>
-                                </a>
-                                <a href="<?= APP_URL; ?>indexInicio/"><button type="button" class="btn">Iniciar
-                                        Sesion</button></a>
-
-                            <?php } else { ?>
-                                <a href="<?= APP_URL; ?>indexCreditosInicio/">
-                                    <li><strong> Creditos </strong></li>
-                                </a>
-                                <a href="<?= APP_URL; ?>log-Out/"><button type="button" class="btn">Cerrar
-                                        Sesión</button></a>
-
-                                <a href="Usuario/carrito_compra.php">
-                                    <li><img src="<?= APP_URL; ?>public/img/Carrito.png" width="40px" height="40px"
-                                            style="margin-top: -18px;">
-                                    </li>
-                                </a>
-                                <a href="usuario/index_.php">
-                                    <li><img src="<?= APP_URL; ?>public/img/home.svg" width="40px" height="40px"
-                                            style="margin-top: -18px;">
-                                    </li>
-                                </a>
-                            <?php } ?>
-
-                        </ul>
-
-                    </div>
-
-                </nav>
+                <?php require_once './app/view/inc/navHome.php' ?>
             </div>
 
         </div>
@@ -193,29 +139,8 @@ $conn = $conexion->getConexion();
 
                         <?php } ?>
                     </center>
-                    <?php
-                    // if (isset($_SESSION["msg"])) {
-                    //     $msg = $_SESSION["msg"];
-
-                    //     if ($msg) {
-                    //         echo ("<script> $msg </script>");
-
-                    //         unset($_SESSION["msg"]);
-                    //     }
-                    // }
-                    ?>
                 </div>
             </div>
         </div>
     </section>
-    <footer class="footerContainer">
-        <div class="contactos">
-            <h1>Contactanos</h1>
-        </div>
-        <div class="socialIcons">
-            <a href><i class="fa-brands fa-facebook"></i></a>
-            <a href><i class="fa-brands fa-whatsapp"></i></a>
-            <a href><i class="fa-brands fa-twitter"></i></a>
-            <a href><i class="fa-brands fa-google"></i></a>
-        </div>
-    </footer>
+    <?php require_once './app/view/inc/footer.php' ?>

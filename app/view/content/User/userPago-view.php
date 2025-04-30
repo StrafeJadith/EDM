@@ -148,12 +148,11 @@ if (empty($_SESSION['correo'])) {
         <div id="contenido-a-actualizar">
             <div class="contenido">
                 <div class="escaneame">
-                   <h2>Seleccione metodo de Pago de Compra</h2>
+                    <h2>Seleccione metodo de Pago de Compra</h2>
                 </div>
                 <a href="#" onclick="actualizarContenido_nequi()"><button type="button" class="nequi" >Nequi</button></a>
                 <br>
                 <a href="#" onclick="actualizarContenido_efectivo()"><button type="button" class="efectivo" >Efectivo</button></a>
-               
             </div>
 
         </div>
@@ -163,7 +162,7 @@ if (empty($_SESSION['correo'])) {
 
     </div>
 
-     <!-- Pie de pagina -->
+    <!-- Pie de pagina -->
     <footer class="footerContainer">
         <div class="contactos">
             <h1>Contactanos</h1>

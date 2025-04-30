@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="<?= APP_URL ?>public/css/inicio&&registro/navHome.css">
 <link rel="stylesheet" href="<?= APP_URL; ?>public/css/inicio&&registro/Inicio.css">
     
 </head>
@@ -54,60 +54,17 @@
 <body>
 
     <header id="headerCreditos">
+
         <div id="barranav">
 
             <div id="ContainerNav">
                 <div id="Logos">
                     <img src="<?= APP_URL; ?>public/img/logo.png" width="350px" height="200px"
                         style="padding-left: 10px; padding-top: 0px">
-
-                    <form class="form-inline">
-                        <div class="form-group">
-
-                        </div>
-                    </form>
                 </div>
 
-                <nav id="Nav">
-                    <div id="NavList">
+                <?php require_once './app/view/inc/navHome.php' ?>
 
-                        <ul class="Listas">
-                            <a href="<?= APP_URL; ?>inicio/">
-                                <li><strong> Inicio </strong></li>
-                            </a>
-                            <a href="<?= APP_URL; ?>indexProductos/">
-                                <li><strong> Productos </strong></li>
-                            </a>
-                            <a href="<?= APP_URL; ?>indexCreditosInicio/">
-                                <li><strong> Creditos </strong></li>
-                            </a>
-                            <a href="<?= APP_URL; ?>indexHistoria/">
-                                <li><strong> Sobre Nosotros </strong></li>
-                            </a>
-                            <?php
-
-                            if (empty($_SESSION['correo'])) { ?>
-                                <a href="<?= APP_URL; ?>indexInicio/"><button type="button" class="btn">Iniciar
-                                        Sesion</button></a>
-
-                            <?php } else { ?>
-                                <a href="<?= APP_URL; ?>log-Out/"><button type="button" class="btn">Cerrar Sesión</button></a>
-
-                                <a href="../productos/carrito_compra.php">
-                                    <li><img src="./imagenes/Carrito.png" width="40px" height="40px" style="margin-top: -18px;">
-                                    </li>
-                                </a>
-                                <a href="../Usuario/index_.php">
-                                    <li><img src="../inicio_productos/img/home.svg" width="40px" height="40px" style="margin-top: -18px;">
-                                    </li>
-                                </a>
-                            <?php } ?>
-
-                        </ul>
-
-                    </div>
-
-                </nav>
             </div>
 
         </div>

@@ -1,11 +1,6 @@
-<?php
-require_once("./app/model/Conexion.php");
 
-$conexion = new conexion();
-$conn = $conexion->getConexion();
-?>
-
-    <link rel="stylesheet" href="<?php echo APP_URL; ?>public/css/inicio&&registro/Inicio.css">
+<link rel="stylesheet" href="<?= APP_URL ?>public/css/inicio&&registro/navHome.css">
+<link rel="stylesheet" href="<?php echo APP_URL; ?>public/css/inicio&&registro/Inicio.css">
     
 </head>
 <style>
@@ -74,42 +69,7 @@ $conn = $conexion->getConexion();
                     </form>
                 </div>
 
-                <nav id="Nav">
-                    <div id="NavList">
-
-                        <ul class="Listas">
-                            <a href="<?= APP_URL; ?>inicio/">
-                                <li><strong> Inicio </strong></li>
-                            </a>
-                            <a href="<?= APP_URL; ?>indexProductos/">
-                                <li><strong> Productos </strong></li>
-                            </a>
-                            <a href="<?= APP_URL; ?>indexCreditosInicio">
-                                <li><strong> Creditos </strong></li>
-                            </a>
-                            <a href="<?= APP_URL; ?>indexHistoria/">
-                                <li><strong> Sobre Nosotros </strong></li>
-                            </a>
-                            <?php
-
-                            if (empty($_SESSION['correo'])) { ?>
-                                <a href="<?= APP_URL; ?>indexInicio/"><button type="button" class="btn">Iniciar
-                                        Sesion</button></a>
-
-                            <?php } else { ?>
-                                <a href="<?= APP_URL; ?>log-Out/"><button type="button" class="btn">Cerrar Sesión</button></a>
-
-                                <a href="../productos/carrito_compra.php">
-                                    <li><img src="./imagenes/Carrito.png" width="40px" height="40px" style="margin-top: -18px;">
-                                    </li>
-                                </a>
-                            <?php } ?>
-
-                        </ul>
-
-                    </div>
-
-                </nav>
+                <?php require_once './app/view/inc/navHome.php' ?>
             </div>
 
         </div>
@@ -151,16 +111,6 @@ $conn = $conexion->getConexion();
         </form>
         
     </section>
-    <?php
-        if (isset($_SESSION["msg"])) {
-            $msg = $_SESSION["msg"];
-            if ($msg) {
-                echo ("<script> $msg </script>");
-
-                unset($_SESSION["msg"]);
-            }
-        }
-        ?>
     <footer class="footerContainer">
         <div class="contactos">
             <h1>Contactanos</h1>
