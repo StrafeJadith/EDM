@@ -1,0 +1,66 @@
+#bodyCreditos {
+    margin: 0;
+}
+
+#headerCreditos {
+    background-color: #d3b386;
+    margin: 0;
+    width: 100%;
+    height: 250px;
+}
+
+#Logos {
+    display: flex;
+    height: 250px;
+}
+
+#Nav {
+    margin-top: -80px;
+    margin-left: 200px;
+    height: 80px;
+    padding-top: 10px;
+}
+
+.form-inline {
+    margin-left: 352px;
+    padding-top: 80px;
+    height: 150px;
+}
+
+#Listas {
+    display: flex;
+    margin-bottom: -50px;
+}
+
+#Listas a{
+
+    text-decoration: none;
+
+}
+
+#Listas li {
+    position: relative;
+    letter-spacing: 0.5px;
+    list-style: none;
+    padding-left: 100px;
+    margin-left: 150px;
+    font-size: 19px;
+    color: #804e23;
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+
+#Listas li:after {
+    content: "";
+    position: absolute;
+    background-color: #804e23;
+    height: 3px;
+    width: 0;
+    left: 0;
+    bottom: -10px;
+    transition: 0.3s;
+}
+
+#Listas li:hover:after {
+    width: 100%;
+}

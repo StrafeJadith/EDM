@@ -1,10 +1,3 @@
-<?php
-
-require_once("./app/model/Conexion.php");
-$conexion = new conexion();
-$conn = $conexion->getConexion();
-
-?>
 
 <?php require_once "./app/view/inc/headInicio.php" ?> 
 <link rel="stylesheet" href="<?php echo APP_URL; ?>public/css/CreditosInicio.css">
@@ -28,55 +21,7 @@ $conn = $conexion->getConexion();
                 </div>
 
 
-                <nav id="Nav">
-                    <div id="NavList">
-
-                        <ul id="Listas">
-                            <a href="<?= APP_URL; ?>inicio/">
-                                <li><strong> Inicio </strong></li>
-                            </a>
-                            <a href="<?= APP_URL; ?>indexProductos/">
-                                <li><strong> Productos </strong></li>
-                            </a>
-
-
-                            <?php
-                            
-                            if (empty($_SESSION['correo'])) { ?>
-                                <a href="<?= APP_URL; ?>indexCreditosInicio/">
-                                    <li><strong> Creditos </strong></li>
-                                </a>
-                                <a href="<?= APP_URL; ?>indexHistoria/">
-                                    <li><strong> Sobre Nosotros </strong></li>
-                                </a>
-                                <a href="<?= APP_URL; ?>indexInicio/"><button type="button" class="btn">Iniciar
-                                        Sesion</button></a>
-
-                            <?php } else { ?>
-                                <a href="<?= APP_URL; ?>indexCreditosInicio/">
-                                    <li><strong> Creditos </strong></li>
-                                </a>
-                                <a href="<?= APP_URL; ?>log-Out/"><button type="button" class="btn">Cerrar
-                                        Sesión</button></a>
-
-                                <a href="Usuario/carrito_compra.php">
-                                    <li><img src="<?= APP_URL; ?>public/img/Carrito.png" width="40px" height="40px"
-                                            style="margin-top: -18px;">
-                                    </li>
-                                </a>
-                                <a href="usuario/index_.php">
-                                    <li><img src="<?= APP_URL; ?>public/img/home.svg" width="40px" height="40px"
-                                            style="margin-top: -18px;">
-                                    </li>
-                                </a>
-                            <?php } ?>
-
-
-                        </ul>
-
-                    </div>
-
-                </nav>
+                <?php require_once './app/view/inc/navHome.php' ?>
             </div>
 
         </div>
@@ -98,15 +43,15 @@ $conn = $conexion->getConexion();
 
         if (!empty($_SESSION['correo'])) {
             $correo = $_SESSION['correo'];
-            $sql = "SELECT * FROM credito WHERE Correo_CR = '$correo'";
-            $resultado = mysqli_query($conn, $sql);
-            if (mysqli_num_rows($resultado) > 0) {
+            $sql = $insLogin->ejecutarConsulta("SELECT * FROM credito WHERE Correo_CR = '$correo'");
+            $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+            if(count($resultado) > 0) {
                 header("location: Usuario/gasto credito.php");
             }
         }
 
         if (!empty($_SESSION['correo'])) { ?>
-            <a href="inicio/credito.php"><button type="button" id="btn1">Solicitalo aqui</button></a>
+            <a href="<?php echo APP_URL; ?>userCredito/"><button type="button" id="btn1">Solicitalo aqui</button></a>
         <?php } else { ?>
             <a href="<?php echo APP_URL; ?>indexInicio/"><button type="button" id="btn1">Solicitalo aqui</button></a>
         <?php } ?>
@@ -117,14 +62,4 @@ $conn = $conexion->getConexion();
 
     <!--FOOTER-->
 
-    <footer class="footerContainer ">
-        <div class="contactos ">
-            <h1>Contactanos</h1>
-        </div>
-        <div class="socialIcons ">
-            <a href><i class="fa-brands fa-facebook "></i></a>
-            <a href><i class="fa-brands fa-whatsapp "></i></a>
-            <a href><i class="fa-brands fa-twitter "></i></a>
-            <a href><i class="fa-brands fa-google "></i></a>
-        </div>
-    </footer>
+    <?php require_once './app/view/inc/footer.php' ?>

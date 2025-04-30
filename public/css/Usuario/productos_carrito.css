@@ -87,19 +87,19 @@ body {
     background-color: #f9f7dc;
 }
 
-.btn1 {
+a .btn{
     background-color: #804e23;
     color: white;
     border-radius: 100px;
     width: 160px;
     height: 45px;
     font-size: 19px;
-    font-weight: 700;
     margin-left: 150px;
     margin-top: -6px;
+
 }
 
-.btn1:hover {
+a .btn:hover {
     background-color: beige;
     color: #804e23;
     border-radius: 100px;

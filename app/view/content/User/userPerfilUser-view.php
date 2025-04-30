@@ -1,33 +1,40 @@
-<?php include '../../view/inc/header.php'; ?>
-<?php include '../../view/inc/nav.php'; ?>
-<?php include '../../model/Usuario/ActualizardatosUsuario.php'; ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar los Datos del Usuario</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../../../public/js/alerts.js"></script>
+
+<link rel="stylesheet" href="<?= APP_URL ?>public/css/Usuario/index_.css">
 </head>
 <body>
+<header id="headerCreditos">
+        <div id="barranav">
+            <div id="ContainerNav">
+                <div id="Logos">
+                    <img src="<?= APP_URL; ?>public/img/logo.png" width="350px" height="200px"
+                        style="padding-left: 10px; padding-top: 0px">
+
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <input type="text" class="form-control"
+                                placeholder="    Buscar...                                                                                                     🔎        "
+                                style="width: 450px; border-radius: 20px; height: 40px;">
+                        </div>
+                    </form>
+                </div>
+
+
+                <?php require_once './app/view/inc/navUser.php' ?>
+            </div>
+
+        </div>
+</header>
 <div class="containerUserPerfil">
     <div class="perfilUserIcon">
-    <img src="../../../public/img/Usuario/user.svg" alt="" class="user">
+    <img src="<?= APP_URL ?>public/img/Usuario/user.svg" alt="" class="user">
             <div class="correo">
                     <?php
 
                         $correo = $_SESSION['correo'];
-                        $sql = "SELECT Nombre_US FROM usuarios WHERE Correo_us = '$correo'";
-                        $resultado = mysqli_query($conn, $sql);
-                        while ($row = mysqli_fetch_array($resultado)) {
-                            $nombre = $row['Nombre_US'];
-                        }
+                        $sql = $insLogin->ejecutarConsulta("SELECT Nombre_US FROM usuarios WHERE Correo_us = '$correo'");
+                        $resultadoSql = $sql->fetch();
+                        $nombre = $resultadoSql['Nombre_US'];
 
                         echo "Bienvenido ".$nombre."<br>";
                         echo $correo;
@@ -37,22 +44,21 @@
                 </div>
                 <br>
             <hr style="color: #f9f7dc;">
-        <a href="index_.php"><button id="btnUser">Volver al inicio</button></a>
+        <a href="<?= APP_URL ?>userIndex/"><button id="btnUser">Volver al inicio</button></a>
     </div>
     <div class="containerForm">
         <h1>DATOS PERSONALES</h1>
         <?php
 
             $correo = $_SESSION['correo'];
-            $Consultar = "SELECT * FROM usuarios WHERE Correo_US = '$correo'";
-            $resultConsultar = mysqli_query($conn,$Consultar);
-            $row = mysqli_fetch_array($resultConsultar,MYSQLI_ASSOC);
+            $Consultar = $insLogin->ejecutarConsulta("SELECT * FROM usuarios WHERE Correo_US = '$correo'");
+            $row = $Consultar->fetch();
             $ID = $row["ID_US"];
             $NOMBRE = $row["Nombre_US"];
             $CORREO = $row["Correo_US"];
-            $DIRECCION = $row["Dirección_US"];
+            $DIRECCION = $row["Direccion_US"];
             $TELEFONO = $row["Telefono_US"];
-            $CONTRASEÑA = $row["Contraseña_US"];
+            $CONTRASEÑA = $row["Contrasena_US"];
         ?>
             <form action="" method="post">
                 <strong>Identificación </strong> <input type="number" name="ID_US_visible" value="<?= $ID ?>" readonly><br>
@@ -67,20 +73,4 @@
     </div>
 </div>
 
-<?php
-
-if (isset($_SESSION["msg"])) {
-    $msg = $_SESSION["msg"];
-
-    if ($msg) {
-        echo ("<script> $msg </script>");
-
-        unset($_SESSION["msg"]);
-    }
-}
-
-
-?>
-<?php include '../inc/footer.php'; ?>
-</body>
-</html>
+<?php include './app/view/inc/footer.php'; ?>

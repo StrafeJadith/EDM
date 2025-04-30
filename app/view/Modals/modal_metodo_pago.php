@@ -1,8 +1,8 @@
 <!-- modal Metodo de pago -->
-<div class="modal" id="metodo_pago" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+<div class="modal" id="metodoPago" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
     <div class="modal-dialog">
         <div class=" m modal-content">
-            <div class=" header modal-header">
+            <div class="header modal-header">
                 <h5 class="modal-title">metodo de pago</h5>
                 <button type="button" class=" x btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>

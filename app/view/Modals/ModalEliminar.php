@@ -15,7 +15,7 @@
             <input type="hidden" name="ID_PRO" value="<?php echo $row['ID_PRO'] ?>">
         </div>
         <div class="modal-footer">
-        <button type="submit" class="btn btn-danger" name="Eliminar">Eliminar</button>
+        <button type="submit" class="btn btn-danger" name="Eliminar">Eliminar</button></div>
         </form>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         
