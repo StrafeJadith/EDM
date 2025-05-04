@@ -44,23 +44,32 @@
                 <thead>
 
                     <?php
-                    $correo = $_SESSION['correo'];
-                    $ConsultaCr = $insLogin->ejecutarConsulta("SELECT * FROM credito WHERE Correo_CR = '$correo'");
-                    $rowCr = $ConsultaCr->fetchAll(PDO::FETCH_ASSOC);
-                    $creditoTotal = 0;
-                    $fechasCr = "Sin credito realizado";
 
-                    if (!empty($rowCr["Valor_Total"])) {
-                        $creditoTotal = $rowCr['Valor_Total'];
-                        $fechasCr = $rowCr['Fecha_CR'];
+                        $correo = $_SESSION['correo'];
+                        $ConsultaCr = $insLogin->ejecutarConsulta("SELECT * FROM credito WHERE Correo_CR = '$correo'");
+                        $rowCr = $ConsultaCr->fetch();
+                        if(!empty($rowCr)){
+
+                            $creditoTotal = $rowCr['Valor_Total'];
+                            $estadoCredito = $rowCr['Estado_CR'];
+                            $valorCredito = $rowCr['Valor_CR'];
+                            
+                        }else{
+
+                            $creditoTotal = 0;
+                            $estadoCredito = "Sin solicitud de credito";
+                            $valorCredito = 0;
+                        }
+
+                        //$fechasCr = $rowCr['Fecha_CR'];
                         //CONSULTAR ID DEL USUARIO
                         $consultarIdAbono = $insLogin->ejecutarConsulta("SELECT ID_US FROM usuarios WHERE Correo_US = '$correo'");
-                        $resultIdAbono = $consultarIdAbono->fetchAll(PDO::FETCH_ASSOC);
+                        $resultIdAbono = $consultarIdAbono->fetch();
                         $IdeUs = $resultIdAbono['ID_US'];
 
                         //TRAER LOS GASTOS DEL USUARIO
                         $ConsultaCr = $insLogin->ejecutarConsulta("SELECT sum(Valor_GC) as gasto FROM gasto_credito WHERE ID_US = $IdeUs");
-                        $resultConCr = $ConsultaCr->fetchAll(PDO::FETCH_ASSOC);
+                        $resultConCr = $ConsultaCr->fetch();
                         $gasto_Credito = $resultConCr["gasto"];
 
                         $sql = $insLogin->ejecutarConsulta("SELECT * FROM credito WHERE Correo_CR = '$correo'");
@@ -69,7 +78,7 @@
                         ?>
                         <tr>
                             <td><strong>Estado Credito</strong></td>
-                            <td><strong><?php echo $rowCr['Estado_CR'] ?></strong></td>
+                            <td><strong><?= $estadoCredito ?></strong></td>
                         </tr>
                         <tr>
 
@@ -82,12 +91,8 @@
                         </tr>
                         <tr>
                             <td><strong>Credito restante</strong></td>
-                            <td><strong><?php echo $rowCr['Valor_CR'] ?></strong></td>
+                            <td><strong><?= $valorCredito ?></strong></td>
                         </tr>
-                    <?php }
-                    ?>
-
-
                 </thead>
             </table>
             <br><br><br>

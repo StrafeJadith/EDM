@@ -24,7 +24,6 @@
 </head>
 <body>
 
-    <?php require_once './app/view/inc/headerAdmin.php' ?>
 
     <section>
         <div class="contenedorprincipal">
@@ -118,4 +117,4 @@
         </div>
     </section>
     
-    <?php require_once './app/view/inc/footer.php' ?>
+    <script src="<?= APP_URL ?>public/js/pagos.js"></script> 

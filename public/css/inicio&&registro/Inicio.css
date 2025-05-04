@@ -2,16 +2,18 @@
     font-family: "Montserrat", sans-serif;
 }
 *:before,
-*:after {
+*:after{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
 body{
-    height: 967px;
+    height: 100vh;
+    background-color: white;
 }
 
+                                                    /* FORMULARIO DE INICIO */
 .Registro h3 a {
     text-decoration: none;
     color: #804e23;
@@ -25,166 +27,108 @@ body{
 }
 
 
-/* Formulario registro */
+.cabecera a{
 
-#verContraseña{
+    margin-left: 60px;
+}
 
-    width: 30px;
-    height: 30px;
+
+.formularioInicio{
+
     position: relative;
-    right: 25px;
-}
-
-
-section {
+    padding-top: 20px;
+    border-radius: 20px;
+    width: 920px;
+    height: 100vh;
     background-color: beige;
-    width: 100%;
-    height: 60vh;
-    text-align: center;
+}
+
+.formularioInicio form{
+
+    width: 500px;
+    position: relative;
+    left: 250px;
+    top: 200px;
+}
+
+.formularioInicio form a{
+
+    text-decoration: none;
     color: #804e23;
-  
 }
 
-.cabecera .Registro {
-    display: flex;
-    justify-content: space-between;
-    padding-left: 640px;
-    padding-right: 690px;
-    color: #804e23;
-    list-style: none;
-   
-}
 
-.Registro form{
-    background-color: beige;
-    height: 444px;
-}
+.formularioInicio form button{
 
-section input {
-    border-radius: 30px;
     border: none;
-}
-
-.sub-one{
-    font-family: monospace;
-    font-weight: bold;
-}
-
-.sub-two{
     width: 300px;
-}
-
-.btn-inc{
-    font-weight: bold;
-    color: white;
-    background-color: #804e23;
-    width: 250px;
     height: 50px;
-}
-
-.otc{
-    text-decoration: none;
-    color: #804e23;
-    font-weight: bold;
-    font-size: 2.0ex;
-
-}
-
-.btn-c {
-    text-decoration: none;
-    color: #804e23;
-    font-weight: bold;
-
-}
-
-
-/* pie de pagina */
-
-footer {
-    background-color: #d3b386;
-    position: relative;
-    top: 29px;
-   
-   
-}
-
-.contactos {
-    display: flex;
-    justify-content: center;
-    color: rgb(0, 0, 0);
-}
-
-.socialIcons {
-    display: flex;
-    justify-content: center;
-}
-
-.socialIcons a {
-    text-decoration: none;
-    padding: 10px;
-    background-color: white;
-    margin: 10px;
-    border-radius: 50%;
-}
-
-.socialIcons a i {
-    font-size: 2em;
-    color: black;
-    opacity: 0.9;
-}
-
-/* Animacion */
-
-.socialIcons a:hover {
-    background-color: #111;
-    transition: 0.5s;
-}
-
-.socialIcons a:hover i {
-    color: white;
-    transition: 0.5s;
-}
-
-.cabecera a:after {
-    content: "";
-    position: absolute;
     background-color: #804e23;
-    height: 3px;
-    width: 0;
-    left: 0;
-    bottom: -10px;
-    transition: 0.3s;
+    color: white;
+    border-radius: 20px;
+
 }
 
-.cabecera a:hover:after {
+.formularioInicio form button:hover{
+
+    transform: scale(1.2);
+    transition: 1s;
+}
+
+.formularioInicio #volverInicio{
+
+    position: relative;
+    top: 400px;
+    left: 700px;
+    text-decoration: none;
+    color: #804e23;
+}
+section img,#Form1 img{
+
+    width: 1000px;
+    position: relative;
+    height: 100vh;
+}
+
+section{
     width: 100%;
+    height: 100vh;
+    color: #804e23;
+    display: flex;
+
 }
 
+#formularioRegistro{
+    height: 100vh;
+    width: 920px;
+    background-color: bisque;
+}
 
 #Form1{
-
+    display: flex;
     height: 400px;
-    width: 1000px;
+    width: 100%;
     border-radius: 20px;
 }
 
 #Form1 form{
 
-    height: 400px;
-    width: 1000px;
+    height: 820px;
+    width: 500px;
     position: relative;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: 20px;
+    left: 200px;
+    top: 100px;
+    color: #804e23;  
     
 }
 
-#Form1 form span{
+#Form1 form span, .formularioInicio form span{
 
     background-color:#d3b386;
     color: #804e23;
     
 }
+
 
 #Form1 form button{
 
@@ -196,6 +140,15 @@ footer {
     border-radius: 20px;
     color: white;    
 
+}
+
+#Form1 #volverInicio{
+
+    position: relative;
+    top: 100px;
+    left: 700px;
+    text-decoration: none;
+    color: #804e23;
 }
 
 

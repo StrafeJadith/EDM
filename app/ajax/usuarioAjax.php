@@ -26,6 +26,16 @@
             echo $insUsuario->actualizarUsuarioControlador();
         }
 
+        if($_POST['modulo_usuario'] == "solicitarCredito"){
+
+            echo $insUsuario->solicitarCreditoControlador();
+        }
+
+        if($_POST['modulo_usuario'] == "actualizarPerfilUser"){
+
+            echo $insUsuario->actualizarPerfilUsuario();
+        }
+
         
 
     }
