@@ -22,17 +22,22 @@
                 </div>
                 <br>
 
-                <div class="Dashboard">
+                <!-- <div class="Dashboard">
                     <div class="imagenusuarios">
                         <img src="<?php echo APP_URL; ?>public/img/Administrador/Dashboard.png" alt="">
                     </div>
                     <div class="usuariossubtitulo">
                         <h4><a href="<?php echo APP_URL; ?>adminDashboard/">Dashboard</a></h4>
                     </div>
+                </div> -->
+
+                <div class="Dashboard">
+                        <img src="<?= APP_URL ?>public/img/Administrador/Dashboard.png" class="lista_img">
+                        <a href="<?= APP_URL; ?>adminDashboard/" class="tittleDashboard"> Dashboard </a>
                 </div>
 
-                
-                <div class="usuarios">
+                <br>
+                <!-- <div class="usuarios">
                     <div class="imagenusuarios">
                         <img src="<?php echo APP_URL; ?>public/img/Administrador/Usuarios.png" alt="">
                     </div>
@@ -46,51 +51,69 @@
                         </details>
                         
                     </div>
+                </div> -->
+
+                <li class="lista_item lista_item--click">
+                    <div class="lista_button lista_button--click">
+                        <img src="<?= APP_URL ?>public/img/Administrador/Usuarios.png" class="lista_img">
+                        <a href="#" class="nav_link"> Tipos de Usuarios </a>
+                        <img src="<?= APP_URL ?>public/img/Usuario/arrow.svg" class="lista_flecha">
+                    </div>
+                    <ul class="lista_show">
+                        <li class="lista_inside">
+                            <a href="<?= APP_URL ?>adminTablaClientes/" class="nav_link nav_link--inside"> Clientes  </a>
+                        </li>
+                        <li class="lista_inside">
+                            <a href="<?= APP_URL ?>adminVendedores/" class="nav_link nav_link--inside"> Vendedores </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <br>
+
+                <li class="lista_item lista_item--click">
+                    <div class="lista_button lista_button--click">
+                        <img src="<?= APP_URL ?>public/img/Administrador/Productos.png" class="lista_img">
+                        <a href="#" class="nav_link"> Productos </a>
+                        <img src="<?= APP_URL ?>public/img/Usuario/arrow.svg" class="lista_flecha">
+                    </div>
+                    <ul class="lista_show">
+                        <li class="lista_inside">
+                            <a href="<?= APP_URL ?>adminCategoria/" class="nav_link nav_link--inside"> Categorias </a>
+                        </li>
+                        <li class="lista_inside">
+                            <a href="<?= APP_URL ?>adminProductos/" class="nav_link nav_link--inside"> Productos </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <br>
+
+                <div class="CreditoLat">
+                        <img src="<?= APP_URL ?>public/img/Administrador/Creditos.png" class="lista_img">
+                        <a href="<?= APP_URL; ?>adminCreditos/" class="tittleCredito"> Creditos </a>
                 </div>
 
-                <div class="productos">
-                    <div class="imagenproductos">
-                        <img src="<?php echo APP_URL; ?>public/img/Administrador/Productos.png" alt="">
-                    </div>
-                    <div class="productossubtitulo">
-                        <details>
-                            <summary>Productos</summary>
-                            
-                            <ul>
-                                <li><a href="<?php echo APP_URL; ?>adminCategoria/">Categorias</a></li>
-                                <li><a href="<?php echo APP_URL; ?>adminProductos/">Productos</a></li>
-                                
-                            </ul>
+                <br>
 
-                        </details>
+                <li class="lista_item lista_item--click">
+                    <div class="lista_button lista_button--click">
+                        <img src="<?= APP_URL ?>public/img/Administrador/Ventas.png" class="lista_img">
+                        <a href="#" class="nav_link"> Ventas </a>
+                        <img src="<?= APP_URL ?>public/img/Usuario/arrow.svg" class="lista_flecha">
                     </div>
-                </div>
-                <div class="creditos">
-                    <div class="imagencreditos">
-                        <img src="<?php echo APP_URL; ?>public/img/Administrador/Creditos.png" alt="">
-                    </div>
-                    <div class="creditossubtitulo">
-                        <h4><a href="<?php echo APP_URL; ?>adminCreditos/">Creditos</a></h4>
-                    </div>
-                </div>
-                <div class="ventas">
-                    <div class="imagenproductos">
-                        <img src="<?php echo APP_URL; ?>public/img/Administrador/Ventas.png" alt="">
-                    </div>
-                    <div class="productossubtitulo">
-                        <details>
-                            <summary>Ventas</summary>
-                            
-                            <ul>
-                                <li><a href="<?php echo APP_URL; ?>adminVentas/">Ventas</a></li>
-                                <li><a href="<?php echo APP_URL; ?>adminDetalleDeVenta/">Detalles_de_Ventas</a></li>
-                            </ul>
+                    <ul class="lista_show">
+                        <li class="lista_inside">
+                            <a href="<?= APP_URL ?>adminVentas/" class="nav_link nav_link--inside"> Ventas </a>
+                        </li>
+                        <li class="lista_inside">
+                            <a href="<?= APP_URL ?>adminDetalleDeVenta/" class="nav_link nav_link--inside"> Detalles de ventas </a>
+                        </li>
+                    </ul>
+                </li>
 
-                        </details>
-                    </div>
-
-                    <a href="<?php echo APP_URL; ?>log-Out/" style="color: white; position: relative; left:40px; text-decoration: none;" id="botonExit">Cerrar Sesión</a>
+                <div class="cerrarSesion">
+                    <a href="<?php echo APP_URL; ?>log-Out/" id="botonExit">Cerrar Sesión</a>  
                 </div>
-                
-                
+
 </div>

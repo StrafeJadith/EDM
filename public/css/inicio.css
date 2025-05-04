@@ -9,33 +9,52 @@
     box-sizing: border-box;
 }
 
+html{
+
+    scroll-behavior: smooth;
+}
+
 #bodyCreditos {
     margin: 0;
 }
 
 #headerCreditos {
-    background-color: #d3b386;
+    background-color: bisque;
+    display: flex;
     margin: 0;
     width: 100%;
-    height: 250px;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 #Logos {
     display: flex;
-    height: 250px;
+    width: 200px;
+    height: 100px;
+    background-color: bisque;
+}
+
+#Logos img{
+
+    width: 60px;
+    height: 50px;
+    position: relative;
+    top: 25px;
+    left: 20px;
 }
 
 #Nav {
-    margin-top: -80px;
-    margin-left: 200px;
-    height: 80px;
-    padding-top: 10px;
-}
+    position: relative;
+    left: 160px;
+    bottom: 100px;
+    height: 100px;
+    padding-top: 37px;
+    width: 1740px;
 
-.form-inline {
-    margin-left: 352px;
-    padding-top: 80px;
-    height: 150px;
+
 }
 
 #Listas {
@@ -48,7 +67,7 @@
     letter-spacing: 0.5px;
     list-style: none;
     padding-left: 100px;
-    margin-left: 150px;
+    margin-left: 10px;
     font-size: 19px;
     color: #804e23;
     margin-bottom: 10px;
@@ -70,23 +89,23 @@
     width: 100%;
 }
 
-.btn {
+.btnIniciar{
     background-color: #804e23;
     color: white;
     border-radius: 100px;
     width: 150px;
     font-size: 19px;
-    margin-left: 150px;
-    margin-top: -20px;
     position: relative;
-    top: 10px;
+    left: 800px;
+    border: none;
+    margin-left: 20px;
+}
+.btnIniciar:hover{
+
+    transform: scale(1.2);
+    transition: 1s;
 }
 
-.btn:hover {
-    background-color: beige;
-    color: #804e23;
-    border-radius: 100px;
-}
 
 h1 {
     font-size: 70px;
@@ -132,49 +151,233 @@ a {
 }
 
 .containerInicio{
+    width: 100%;
+    height: 1083px;
+}
+
+.containerInicio h1{
+    text-align: center;
+}
+
+.containerProductos{
+
+    width: 100%;
+    height: 1220px;
+}
+
+.containerProductos h1{
+
+    text-align: center;
+    color: #804e23;
+    font-size: 50px;
+    position: relative;
+    top: 100px;
+}
+
+.containerProductos p{
+
+    color: #804e23;
+    text-align: center;
+    font-size: 30px;
+    position: relative;
+    top: 100px;
+}
+
+.productosCatalogo{
 
     display: flex;
-    width: 100%;
-    height: 509px;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
 }
+.productosCatalogo #Producto1{
+
+    position: relative;
+    top: 100px;
+    border-radius: 20px;
+    background-color: #804e23;
+    width: 500px;
+    height: 450px;
+
+}
+
+#Producto1 p{
+
+    color: white;
+    text-align: center;
+    position: relative;
+    top: 20px;
+}
+
+#Producto1 button{
+
+    border: none;
+    background-color: #d3b386;
+    width: 200px;
+    position: relative;
+    left: 150px;
+    height: 50px;
+    border-radius: 20px;
+    color: #804e23;
+
+}
+
+#Producto1 button:hover{
+
+    background-color: bisque;
+    border-radius: 20px;
+    transform: scale(1.2);
+    transition: 1s;
+    
+
+}
+.productosCatalogo img{
+
+    position: relative;
+    width: 200px;
+    left: 150px;
+    top: 20px;
+    border-radius: 20px;
+
+}
+
 
 .containerInicio .parrafoInicio{
 
     position: relative;
-    left: 50px;
-    top: 30px;
-    height: 450px;
+    left: 600px;
+    width: 660px;
+    bottom: 900px;
+    height: 100px;
+    /* border: 1px solid red; */
+    text-align: justify;
+    
+
 }
+
+.parrafoInicio h1{
+
+    color: white;
+}
+
 
 #carouselExampleSlidesOnly{
 
-    position: relative;
-    left: 500px;
-    width: 800px;
-    height: 507px;
+    width: 100%;
 
 }
 
 #divCarousel img{
-
-    width: 700px;
-    height: 400px;
-    position: relative;
-    top: 50px;
-    left: 20px;
-
+    width: 1920px;
+    height: 1080px;
+    filter: brightness(0.2);
 
 }
+
+.containerCreditos{
+
+    width: 100%;
+    height: 1080px;
+}
+
+.containerCreditos #content{
+
+    position: relative;
+    top: 200px;
+    left: 600px;
+    color: #804e23;
+    width: 800px;
+}
+
+#content img{
+
+    position: relative;
+    bottom: 500px;
+    left: 750px;
+    width: 800px;
+    height: 900px;
+
+}
+
+#content button{
+
+    border: none;
+    width: 200px;
+    height: 50px;
+    background-color: #804e23;
+    position: relative;
+    left: 300px;
+    border-radius: 20px;
+    color: white;
+}
+
+#content button:hover{
+
+    transform: scale(1.2);
+    transition: 1s;
+}
+
+.containerSobreNosotros{
+
+    height: 1080px;
+}
+
+.containerSobreNosotros .container-custom{
+
+    position: relative;
+    top: 100px;
+}
+
+.container-custom #img-1{
+
+    position: relative;
+    left: 300px;
+}
+
+.container-custom #img-2{
+
+    position: relative;
+    top: 450px;
+    right: 285px;
+    width: 580px;
+}
+
+.container-custom .historia{
+
+
+    position: relative;
+    left: 900px;
+    bottom: 380px;
+    width: 800px;
+    color: #804e23;
+    text-align: justify;
+}
+
+.container-custom .mision h3, .vision h3{
+    text-align: center;
+}
+.container-custom .mision, .vision{
+
+    position: relative;
+    left: 900px;
+    bottom: 380px;
+    width: 800px;
+    color: #804e23;
+    text-align: justify;
+}
+
 
 footer{
 
-background-color: #d3b386;
-height: 200px;
+    background-color: #d3b386;
+    height: 150px;
+    position: relative;
+    top: 67px;
 }
 
 .contactos h1{
-    justify-content: center;
-    color: rgb(0, 0, 0);
+    text-align: center;
+    color: #804e23;
     font-size: 40px;
     font-family: "Montserrat", sans-serif;
 }
@@ -182,7 +385,7 @@ height: 200px;
 .socialIcons {
     display: flex;
     justify-content: center;
-  
+
 }
 
 .socialIcons a {

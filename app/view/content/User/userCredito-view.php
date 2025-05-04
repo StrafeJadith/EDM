@@ -81,7 +81,9 @@
     <section class="Registro">
         <br>
         <br>
-        <form action="../../controller/controllerInicio.php" method="post">
+        <form class="FormularioAjax" action="<?= APP_URL?>app/ajax/usuarioAjax.php" method="post">
+        
+            <input type="hidden" name="modulo_usuario" value="solicitarCredito">
             <?php
             //include("../controlador/controladorcredito.php");
 
@@ -98,23 +100,23 @@
             ?>
             <br>
             <h2 class="sub1 sub-one">Nombre</h2>
-            <input type="text" name="nombre" class="input1" value="<?php echo $nombre ?>" disabled>
+            <input type="text" name="nombreUsuarioCr" class="input1" value="<?php echo $nombre ?>" readonly>
             <br>
             <br>
             <h2 class="sub3 sub-one">Telefono</h2>
-            <input type="text" name="telefono" class="input1" value="<?php echo $telefono ?>" disabled>
+            <input type="text" name="telefonoUsuarioCr" class="input1" value="<?php echo $telefono ?>" readonly>
             <br>
             <br>
             <h2 class="sub4 sub-one">Dirección</h2>
-            <input type="text" name="direccion" class="input1" value="<?php echo $direccion ?>" disabled>
+            <input type="text" name="direccionUsuarioCr" class="input1" value="<?php echo $direccion ?>" readonly>
             <br>
             <br>
             <h2 class="sub5 sub-one">Nùmero de identificaciòn</h2>
-            <input type="text" name="cedula" class="input1" value="<?php echo $cedula ?>" disabled>
+            <input type="text" name="cedulaUsuarioCr" class="input1" value="<?php echo $cedula ?>" readonly>
             <br>
             <br>
             <h2 class="sub6 sub-one">Monto</h2>
-            <input type="number" name="monto" class="input1">
+            <input type="number" name="montoCredito" class="input1" pattern="[0-9]{1,20}" maxlength="20" required>
             <button class="btnregistro" type="submit" name="solicitarCredito">Solicitar</button>
         </form>
     </section>

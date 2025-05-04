@@ -2,10 +2,10 @@
                     <div id="NavList">
 
                         <ul id="Listas">
-                            <a href="<?= APP_URL; ?>inicio/">
+                            <a href="#seccion1">
                                 <li><strong> Inicio </strong></li>
                             </a>
-                            <a href="<?= APP_URL; ?>indexProductos/">
+                            <a href="#seccion2">
                                 <li><strong> Productos </strong></li>
                             </a>
 
@@ -13,18 +13,19 @@
 
                             if (empty($_SESSION['correo'])) { ?>
 
-                                <a href="<?= APP_URL; ?>indexCreditosInicio/">
+                                <a href="#seccion3">
 
                                     <li><strong> Creditos </strong></li>
                                 </a>
-                                <a href="<?= APP_URL; ?>indexHistoria/">
+                                <a href="#seccion4">
                                     <li><strong> Sobre Nosotros </strong></li>
                                 </a>
-                                <a href="<?= APP_URL; ?>indexInicio/"><button type="button" class="btn">Iniciar
+                                <a href="<?= APP_URL; ?>indexInicio/"><button type="button" class="btnIniciar">Iniciar
                                         Sesion</button></a>
+                                <a href="<?= APP_URL; ?>indexRegistro/"><button type="button" class="btnIniciar">Registrarse</button></a>
 
                             <?php } else { ?>
-                                <a href="<?= APP_URL; ?>indexCreditosInicio/">
+                                <a href="<?= APP_URL; ?>userCredito/">
                                     <li><strong> Creditos </strong></li>
                                 </a>
                                 <a href="<?= APP_URL; ?>log-Out/"><button type="button" class="btn">Cerrar Sesión</button></a>

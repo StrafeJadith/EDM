@@ -60,14 +60,16 @@
             $TELEFONO = $row["Telefono_US"];
             $CONTRASEÑA = $row["Contrasena_US"];
         ?>
-            <form action="" method="post">
-                <strong>Identificación </strong> <input type="number" name="ID_US_visible" value="<?= $ID ?>" readonly><br>
+            <form class="FormularioAjax" action="<?= APP_URL ?>app/ajax/usuarioAjax.php" method="post">
+                <input type="hidden" name="modulo_usuario" value="actualizarPerfilUser">
+                <strong>Identificación </strong> <input type="number" name="ID_US_visible" value="<?= $ID ?>" readonly>
                 <input type="hidden" name="ID_US" value="<?= $ID ?>">
-                <strong>Nombre </strong><input type="text" name="NOMBRE_US" value="<?= $NOMBRE ?>"><br>
-                <strong>Correo </strong><input type="text" name="CORREO_US" value="<?= $CORREO ?>"><br>
-                <strong>Dirección </strong><input type="text" name="DIRECCION_US" value="<?= $DIRECCION ?>"><br>
-                <strong>Teléfono </strong><input type="number" name="TELEFONO_US" value="<?= $TELEFONO ?>"><br>
-                <strong>Contraseña </strong><input type="password" name="CONTRASEÑA_US"><br>
+                <strong>Nombre </strong><input type="text" name="Nombre_US" pattern="^[A-Za-z]+( [A-Za-z]+)*$" maxlength="20" value="<?= $NOMBRE ?>">
+                <strong>Correo </strong><input type="text" name="Correo_US" value="<?= $CORREO ?>" required>
+                <strong>Dirección </strong><input type="text" name="Direccion_US" value="<?= $DIRECCION ?>">
+                <strong>Teléfono </strong><input type="number" name="Telefono_US" pattern="[0-9]{3,20}" maxlength="20" value="<?= $TELEFONO ?>">
+                <strong>Contraseña </strong><input type="password" name="Contrasena_US" pattern="[a-zA-Z0-9]{5,100}"  maxlength="100" required>
+                <strong>Repetir contraseña </strong><input type="password" name="Contrasena_US2" pattern="[a-zA-Z0-9]{5,100}"  maxlength="100" required>
                 <button type="submit" value="Actualizar Datos" name="ActualizarDatosUs" id="btnActUs">Actualizar Datos</button>
             </form>
     </div>

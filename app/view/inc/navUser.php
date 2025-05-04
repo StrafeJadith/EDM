@@ -8,7 +8,7 @@
                             <a href="<?= APP_URL ?>indexProductos/">
                                 <li><strong> Productos </strong></li>
                             </a>
-                            <a href="<?= APP_URL ?>indexCreditosInicio/">
+                            <a href="<?= APP_URL ?>userCredito/">
                                 <li><strong> Creditos </strong></li>
                             </a>
                             <?php

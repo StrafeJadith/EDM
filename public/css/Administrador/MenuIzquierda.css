@@ -20,8 +20,9 @@ section {
     background-color: #804e23;
     color: white;
     width: 430px;
-    height: 900px;
-   
+    /* height: 130vh; */
+    min-height: 100vh;
+    height: auto;
 }
 
 .correo {
@@ -42,113 +43,116 @@ section {
     width: 80px;
 }
 
-.usuariossubtitulo, .reportessubtitulo {
-    position: relative;
-    left: 100px;
-    bottom: 50px;
-    
-    
-}
+.Dashboard, .CreditoLat{
 
-.usuariossubtitulo summary{
-    
-    width: 300px;
-    font-size: 25px;
-}
-
-.usuariossubtitulo a, .usuariossubtitulo a, .creditossubtitulo a, .reportessubtitulo a{
-    text-decoration: none;
-    color: white;
-}
-
-.imagenproductos img {
-    width: 80px;
-}
-
-.productossubtitulo {
-    position: relative;
-    left: 100px;
-    bottom: 50px;
-    
-}
-
-.productossubtitulo summary{
-    width: 160px;
-    font-size: 25px;
-  
-}
-
-.productossubtitulo ul,.usuariossubtitulo ul{
-    position: relative;
-    left: 35px;
-    width: 160px;
     list-style: none;
-    border-left: 1px solid beige;
-}
-
-.productossubtitulo a{
+    width: 100%;
+    justify-content: center;
+    text-align: center;
     text-decoration: none;
-    color: white;
 }
 
-.imagencreditos img {
-    width: 80px;
-}
-.creditossubtitulo {
+.Dashboard img{
+
     position: relative;
-    left: 100px;
-    bottom: 50px;
+    right: 48px;
 }
+.Dashboard a{
 
-.imagenventas img {
-    width: 90px;
-}
-
-.ventassubtitulo {
+    color: #f9f7dc;
+    text-decoration: none;
     position: relative;
-    left: 100px;
-    bottom: 50px;
+    top: 10px;
+    right: 30px;
+
+}
+.CreditoLat img{
+
+    position: relative;
+    right: 60px;
+}
+.CreditoLat a{
+
+    color: #f9f7dc;
+    text-decoration: none;
+    position: relative;
+    top: 10px;
+    right: 40px;
+
+}
+.nav_link {
+    color: #f9f7dc;
+    display: block;
+    padding: 20px 0;
+    text-decoration: none;
 }
 
-.Flechas img {
-    position: relative;
-    left: 250px;
-    bottom: 415px;
-    width: 60px;
-}
-.Flechas1 img {
-    position: relative;
-    left: 250px;
-    bottom: 360px;
-    width: 60px;
+.nav_link--inside:hover {
+    background: #906a48;
 }
 
-.Flechas2 img {
-    position: relative;
-    left: 250px;
-    bottom: 296px;
-    width: 60px;
+.nav_link--inside {
+    border-radius: 6px;
+    padding-left: 15px;
+    font-size: 12px;
 }
 
-.Flechas3 img {
-    position: relative;
-    left: 250px;
-    bottom: 239px;
-    width: 60px;
+.lista_item {
+    list-style: none;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    text-decoration: none;
 }
 
-.subtitulocredito{
-    position: relative;
-    left: 250px;
-    top: 30px;
-    color: #804e23;
+.lista_item--click {
+    cursor: pointer;
 }
 
-/*--------------------FLECHAS JADITH------------------*/
+.lista_button {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.lista_flecha {
+    margin-left: auto;
+    transition: transform 0.3s;
+}
+
+.flecha .lista_flecha {
+    transform: rotate(90deg);
+}
+
+.lista_show {
+    width: 80%;
+    list-style: none;
+    margin-left: auto;
+    border-left: 2px solid #906a48;
+    transition: height 0.4s;
+    height: 0;
+}
 
 .lista_img{
     width: 80px;
     position: relative;
-    bottom: 60px;
 }
 
+.cerrarSesion{
+
+
+    width: 200px;
+
+}
+
+.cerrarSesion a{
+
+    color: white; 
+    position: relative; 
+    left:40px; 
+    width: 200px;
+    text-decoration: none;
+}

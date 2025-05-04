@@ -1,7 +1,7 @@
 
 <footer class="footerContainer ">
         <div class="contactos ">
-            <h1>Contactanos</h1>
+            <h1><strong>Contactanos</strong></h1>
         </div>
         <div class="socialIcons ">
             <a href><i class="fa-brands fa-facebook "></i></a>
