@@ -10,7 +10,7 @@
         public function registrarUsuarioControlador(){
 
             # Almacenando datos #
-            $cedula=$this->limpiarCadena($_POST['usuario_cedula']);
+            $cedula=$this->limpiarCadena($_POST['usuario_cedula']);//La funcion limpiar cadena se utiliza para evitar inyeccion SQL.
             $nombre=$this->limpiarCadena($_POST['usuario_nombre']);
             $correo=$this->limpiarCadena($_POST['usuario_email']);
             $telefono=$this->limpiarCadena($_POST['usuario_telefono']);
@@ -30,14 +30,14 @@
                     "icono"=>"error"
                 ];
 
-                return json_encode($alerta);
+                return json_encode($alerta); //json_encode se utiliza para devolver la variable $alerta en este caso, en formato json.
                 exit();
             }
 
 
             # Verificacion de formato #
 
-            if($this->verificarDatos("[0-9]{3,15}",$cedula)){
+            if($this->verificarDatos("[0-9]{3,15}",$cedula)){ //Se utiliza la funcion o metodo verificarDatos para evaluar expreciones regulares
 
                 $alerta=[
                     "tipo"=>"simple",
@@ -135,7 +135,7 @@
 
             }else{
 
-                $contraseñaEncriptada = password_hash($contraseña,PASSWORD_BCRYPT,["cost"=>10]);
+                $contraseñaEncriptada = password_hash($contraseña,PASSWORD_BCRYPT,["cost"=>10]); // password_hash se utiliza para encriptar la contraseña
 
             }
 
