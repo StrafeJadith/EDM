@@ -1,3 +1,6 @@
+*{
+    font-family: "Montserrat", sans-serif;
+}
 *:before,
 *:after {
     padding: 0;
@@ -54,13 +57,15 @@ section {
 
 .contenedorprincipal {
     display: flex;
+    background-color: beige;
 }
 
 .menu {
     background-color: #804e23;
     color: white;
     width: 400px;
-    height: 900px;
+    min-height: 100vh;
+    height: auto;
 }
 
 .correo {
@@ -261,4 +266,121 @@ footer {
 .socialIcons a:hover i {
     color: white;
     transition: 0.5s;
+}
+
+.nav_link {
+    color: #f9f7dc;
+    display: block;
+    padding: 20px 0;
+    text-decoration: none;
+}
+
+.nav_link--inside:hover {
+    background: #906a48;
+}
+
+.nav_link--inside {
+    border-radius: 6px;
+    padding-left: 15px;
+    font-size: 12px;
+}
+
+.lista_item {
+    list-style: none;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.lista_item--click {
+    cursor: pointer;
+}
+
+.lista_button {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.lista_flecha {
+    margin-left: auto;
+    transition: transform 0.3s;
+}
+
+.flecha .lista_flecha {
+    transform: rotate(90deg);
+}
+
+.lista_show {
+    width: 80%;
+    list-style: none;
+    margin-left: auto;
+    border-left: 2px solid #906a48;
+    transition: height 0.4s;
+    height: 0;
+}
+
+.lista_img{
+    width: 80px;
+    position: relative;
+}
+
+
+/* ABONOS DE USUARIOS */
+
+.abonoUsuarios{
+    width: 100%;
+}
+
+.containerForm{
+    width: 800px;
+    height: 900px;
+    position: relative;
+    left: 400px;
+    top: 20px;
+
+    border-radius: 20px;
+    padding: 50px;
+}
+
+.containerForm h1{
+
+    color: #804e23;
+}
+
+
+.containerForm span, .containerForm form span{
+
+        background-color:#d3b386;
+        color: #804e23;
+        
+}
+.containerForm form button{
+
+    background-color: #804e23;
+    border: none;
+    width: 200px;
+    height: 50px;
+    position: relative;
+    border-radius: 20px;
+    color: white;    
+
+}
+
+
+.containerForm form #btnForm1{
+
+    background-color: #804e23;
+    border: none;
+    width: 200px;
+    height: 50px;
+    position: relative;
+    left: 800px;
+    bottom: 90px;
+    border-radius: 20px;
+    color: white; 
 }

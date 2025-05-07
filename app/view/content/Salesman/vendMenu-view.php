@@ -13,23 +13,7 @@
 </head>
 
 <body>
-    <header id="headerCreditos">
-        <div id="barranav">
-            <div id="ContainerNav">
-                <div id="Logos">
-                    <a href="<?= APP_URL; ?>vendMenu/"><img src="<?= APP_URL; ?>public/img/logo.png" width="350px" height="200px"
-                            style="padding-left: 10px; padding-top: 0px"></a>
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <input type="text" class="form-control"
-                                placeholder="Buscar...                                                                               🔎        "
-                                style="width: 450px;">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </header>
+    
     <section>
         <div class="contenedorprincipal">
             <?php require_once './app/view/inc/menuLateralSales.php'?>
@@ -127,4 +111,3 @@
         </div>
     </section>
     
-    <?php require_once './app/view/inc/footer.php' ?>

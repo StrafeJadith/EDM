@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <header id="headerCreditos">
+    <!-- <header id="headerCreditos">
         <div id="barranav">
             <div id="ContainerNav">
                 <div id="Logos">
@@ -30,7 +30,7 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header> -->
     <section>
         <div class="contenedorprincipal">
             <?php require_once './app/view/inc/menuLateralSales.php'  ?>
@@ -82,4 +82,4 @@
             </div>
         </div>
     </section>
-    <?php require_once './app/view/inc/footer.php' ?>
+    <script src="<?= APP_URL ?>public/js/pagos.js"></script>

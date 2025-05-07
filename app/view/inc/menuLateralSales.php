@@ -37,25 +37,24 @@
                         <img src="<?= APP_URL; ?>public/img/Usuario/Productos.png" alt="">
                     </div>
                     <div class="productossubtitulo">
-                        <details>
-                            <summary>Productos</summary>
-                            <br>
-                            <ul>
-                                <li><a href="<?= APP_URL; ?>vendExistencias/">Existencias</a></li>
-                            </ul>
-                        </details>
+                                <a href="<?= APP_URL; ?>vendExistencias/"><h4>Existencias</h4></a>
                     </div>
                 </div>
-                <div class="creditos">
-                    <div class="imagencreditos">
-                        <img src="<?= APP_URL; ?>public/img/Usuario/Creditos.png" alt="">
+                <li class="lista_item lista_item--click">
+                    <div class="lista_button lista_button--click">
+                        <img src="<?= APP_URL ?>public/img/Administrador/Creditos.png" class="lista_img">
+                        <a href="#" class="nav_link"> Creditos </a>
+                        <img src="<?= APP_URL ?>public/img/Usuario/arrow.svg" class="lista_flecha">
                     </div>
-                    <div class="creditossubtitulo">
-                        <a href="<?= APP_URL; ?>vendCreditosUsuario/">
-                            <h4>Creditos</h4>
-                        </a>
-                    </div>
-                </div>
+                    <ul class="lista_show">
+                        <li class="lista_inside">
+                            <a href="<?= APP_URL ?>vendCreditosUsuario/" class="nav_link nav_link--inside"> Creditos activos  </a>
+                        </li>
+                        <li class="lista_inside">
+                            <a href="<?= APP_URL ?>vendAbonoCreditos/" class="nav_link nav_link--inside"> Abonos de creditos </a>
+                        </li>
+                    </ul>
+                </li>
                 <div class="ventas">
                     <div class="ventassubtitulo">
                         <br>
