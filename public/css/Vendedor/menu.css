@@ -1,3 +1,6 @@
+*{
+    font-family: "Montserrat", sans-serif;
+}
 *:before,
 *:after {
     padding: 0;
@@ -27,6 +30,7 @@
     height: 80px;
     padding-top: 10px;
 }
+
 
 .form-inline {
     margin-left: 352px;
@@ -60,7 +64,8 @@ section {
     background-color: #804e23;
     color: white;
     width: 400px;
-    height: 900px;
+    min-height: 100vh;
+    height: auto;
 }
 
 .correo {

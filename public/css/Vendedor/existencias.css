@@ -1,3 +1,6 @@
+*{
+    font-family: "Montserrat", sans-serif;
+}
 *:before,
 *:after {
     padding: 0;
@@ -26,6 +29,60 @@
     margin-left: 200px;
     height: 80px;
     padding-top: 10px;
+}
+
+
+#tablaProductos{
+    position: relative;
+    left: 100px;
+    top: 100px;
+    width: 1300px;
+    height: 516px;
+    background-color: #804e23;
+    border-radius: 20px;
+   
+
+}
+
+#tablaProd{
+    width: 1200px;
+    background-color: #804e23;
+    position: relative;
+    top: 50px;
+    left: 50px;
+    border-radius: 20px;
+}
+
+#tablaProd td{
+   
+    text-align: center;
+    color: #f7f7f7;
+    padding: 10px;
+    border: 2px solid #f7f7f7;
+}
+
+#tablaProd img{
+
+    width: 50px;
+    height: 50px;
+}
+
+#tablaProd img{
+    width: 50px;
+}
+
+.paginacion {
+    position: absolute;
+    right: 400px;
+    bottom: -150px;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.Flechas {
+    width: 120px;
 }
 
 .form-inline {
@@ -60,7 +117,8 @@ section {
     background-color: #804e23;
     color: white;
     width: 400px;
-    height: 900px;
+    min-height: 100vh;
+    height: auto;
 }
 
 .correo {

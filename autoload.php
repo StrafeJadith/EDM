@@ -1,6 +1,6 @@
 <?php
 
-    // echo __DIR__;
+    //echo __DIR__;
     //Obtiene el nombre de las clases que estamos utilizando en el sistema.
     spl_autoload_register(function($clase){//El valor del parametro pasado en la funcion se lo da directamente Php, esto lo hace automaticamente cuando detecta que se quiere cargar una clase automaticamente.
 

@@ -2,6 +2,7 @@
 
     namespace app\controller;
     use app\model\mainModel;
+use PDO;
 
     class sellerController extends mainModel{
 
@@ -148,7 +149,7 @@
         
                         return json_encode($alerta);
                         exit();
-                    }
+            }
 
             $usuario_datos_registros = [
                 [
@@ -410,5 +411,175 @@
             }
 
             return json_encode($alerta);
+        }
+
+        public function consultarUsuarioVendedorControlador(){
+
+            $cedula1 = $this->limpiarCadena($_POST['usuario_cedula']);
+
+
+            if($cedula1 == ""){
+
+                $alerta=[
+                    "tipo"=>"simple",
+                    "titulo"=>"Ocurrio un error",
+                    "texto"=>"Digita una cedula para buscar un usuario",
+                    "icono"=>"error"
+                ];
+
+                
+                return json_encode($alerta);
+                exit();
+            }
+
+            
+
+            if($this->verificarDatos("[0-9]{3,15}",$cedula1)){
+
+                $alerta=[
+                    "tipo"=>"simple",
+                    "titulo"=>"Ocurrio un error inesperado",
+                    "texto"=>"La cedula no coincide con el formato solicitado",
+                    "icono"=>"error"
+                ];
+
+                return json_encode($alerta);
+                exit();
+            }
+
+
+            // $usuario = $this->seleccionarDatos("Unico","usuarios","ID_US",$cedula1);
+            $usuario = $this->ejecutarConsulta("SELECT * FROM usuarios WHERE ID_US = $cedula1");
+            $datos = $usuario->fetch(PDO::FETCH_ASSOC);
+
+            $usuario = $this->ejecutarConsulta("SELECT c.Valor_Total, c.ID_US, c.Valor_CR  FROM credito c WHERE c.ID_US = $cedula1");
+            $datosCr = $usuario->fetch(PDO::FETCH_ASSOC);
+
+            $usuario1 = $this->ejecutarConsulta("SELECT sum(ac.Monto_AC) as MontoSuma FROM abono_credito ac
+                                    JOIN credito c ON c.ID_CR = ac.ID_CR
+                                    WHERE ac.ID_US = $cedula1
+                                    AND c.Estado_ACT = 1");
+            $datosAb = $usuario1->fetch(PDO::FETCH_ASSOC);
+
+            
+            if ($datos && $datosCr && $datosAb) {
+                $respuesta = [
+                    'usuario' => $datos,
+                    'credito' => $datosCr,
+                    'abono' => $datosAb
+                ];
+                return json_encode($respuesta);
+            }
+            else{
+
+                $alerta=[
+                    "tipo"=>"simple",
+                    "titulo"=>"Ocurrio un error inesperado",
+                    "texto"=>"La cedula no coincide con el formato solicitado",
+                    "icono"=>"error"
+                ];
+
+                return json_encode($alerta);
+                exit();
+            }
+
+            
+
+
+
+
+
+        }
+
+        public function abonarDineroVendedorControlador(){
+
+            $cedula=$this->limpiarCadena($_POST['usuario_cedula']);
+            $montoAbono=$this->limpiarCadena($_POST['montoAbono']);
+            $correo= $this->limpiarCadena($_POST['usuario_email']);
+
+            # Verificar datos obligatorios #
+
+            if($cedula == "" || $montoAbono == ""){
+
+                $alerta=[
+                    "tipo"=>"simple",
+                    "titulo"=>"Ocurrio un error",
+                    "texto"=>"No has llenado todos los campos que son obligatorios",
+                    "icono"=>"error"
+                ];
+
+                
+                return json_encode($alerta);
+                exit();
+            }
+
+            if($this->verificarDatos("[0-9]{3,15}",$cedula)){
+
+                $alerta=[
+                    "tipo"=>"simple",
+                    "titulo"=>"Ocurrio un error inesperado",
+                    "texto"=>"La cedula no coincide con el formato solicitado",
+                    "icono"=>"error"
+                ];
+
+                return json_encode($alerta);
+                exit();
+            }
+
+            $consultaIdCredito = $this->ejecutarConsulta("SELECT us.ID_US, c.ID_CR , c.Estado_ACT, us.Nombre_US FROM usuarios us 
+                JOIN credito c ON c.ID_US = us.ID_US 
+                WHERE Correo_US = '$correo'
+                AND c.Estado_ACT = 1");
+            
+            $traerIdCredito = $consultaIdCredito->fetch();
+            $ID_CR = $traerIdCredito['ID_CR'];
+            $nombreUs = $traerIdCredito['Nombre_US'];
+
+            $usuario_abono_credito = [
+
+                [
+                    "campo_nombre"=>"Monto_AC",
+                    "campo_marcador"=>":abonoMonto",
+                    "campo_valor"=>$montoAbono
+                ],
+                [
+                    "campo_nombre"=>"ID_US",
+                    "campo_marcador"=>":Cedula",
+                    "campo_valor"=>$cedula
+                ],
+                [
+                    "campo_nombre"=>"ID_CR",
+                    "campo_marcador"=>":idCredito",
+                    "campo_valor"=>$ID_CR
+                ],
+                
+            ];
+
+            $registrar_abono_credito = $this->guardarDatos("abono_credito",$usuario_abono_credito);
+
+            if($registrar_abono_credito->rowCount()==1){
+
+                $alerta=[
+                    "tipo"=>"limpiar",
+                    "titulo"=>"Usuario Registrado!",
+                    "texto"=>"El abono a nombre de ".$nombreUs." fue registrado satisfactoriamente.",
+                    "icono"=>"success"
+                ];
+
+                
+            }else{
+
+                $alerta=[
+                    "tipo"=>"simple",
+                    "titulo"=>"Ocurrio un error inesperado",
+                    "texto"=>"No se pudo registrar el abono.",
+                    "icono"=>"error"
+                ];
+
+                
+            }
+            
+            return json_encode($alerta);
+
         }
     }
