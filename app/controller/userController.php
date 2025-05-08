@@ -373,6 +373,30 @@
 
             }
 
+            // Lista de tablas relacionadas con el ID del usuario
+            $tablasRelacionadas = [
+                'abono_credito',
+                'credito',
+                'detalle_de_venta',
+                'gasto_credito',
+                'ventas'
+            ];
+
+            // Verificar si hay registros relacionados
+            foreach ($tablasRelacionadas as $tabla) {
+                $verificar = $this->ejecutarConsulta("SELECT 1 FROM $tabla WHERE ID_US = $ID LIMIT 1");
+                if($verificar->rowCount() > 0){
+                    $alerta = [
+                        "tipo" => "simple",
+                        "titulo" => "Relaciones encontradas",
+                        "texto" => "No puedes eliminar este usuario porque tiene registros relacionados en la tabla $tabla.",
+                        "icono" => "warning"
+                    ];
+                    return json_encode($alerta);
+                    exit();
+                }
+            }
+
             $eliminarUsuario = $this->eliminarRegistro("usuarios","ID_US",$ID);
 
             if($eliminarUsuario->rowCount()==1){

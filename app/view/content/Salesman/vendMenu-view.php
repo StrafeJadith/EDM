@@ -110,4 +110,4 @@
             </div>
         </div>
     </section>
-    
+    <script src="<?= APP_URL ?>public/js/pagos.js"></script>

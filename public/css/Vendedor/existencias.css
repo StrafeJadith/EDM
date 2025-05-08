@@ -232,6 +232,66 @@ td {
     padding: 15px;
 }
 
+.nav_link {
+    color: #f9f7dc;
+    display: block;
+    padding: 20px 0;
+    text-decoration: none;
+}
+
+.nav_link--inside:hover {
+    background: #906a48;
+}
+
+.nav_link--inside {
+    border-radius: 6px;
+    padding-left: 15px;
+    font-size: 12px;
+}
+
+.lista_item {
+    list-style: none;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.lista_item--click {
+    cursor: pointer;
+}
+
+.lista_button {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.lista_flecha {
+    margin-left: auto;
+    transition: transform 0.3s;
+}
+
+.flecha .lista_flecha {
+    transform: rotate(90deg);
+}
+
+.lista_show {
+    width: 80%;
+    list-style: none;
+    margin-left: auto;
+    border-left: 2px solid #906a48;
+    transition: height 0.4s;
+    height: 0;
+}
+
+.lista_img{
+    width: 80px;
+    position: relative;
+}
 /* pie de página  */
 
 footer {

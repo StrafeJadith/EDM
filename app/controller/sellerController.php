@@ -138,12 +138,12 @@ use PDO;
 
             #Verificando Usuario#
 
-            $check_usuario = $this->ejecutarConsulta("SELECT Nombre_US FROM usuarios WHERE Nombre_US = '$nombre'");
+            $check_usuario = $this->ejecutarConsulta("SELECT ID_US FROM usuarios WHERE ID_US = $cedula");
                     if($check_usuario->rowCount()>0){
                         $alerta=[
                             "tipo"=>"simple",
                             "titulo"=>"Ocurrio un error inesperado",
-                            "texto"=>"El usuario ingresado ya existe",
+                            "texto"=>"No se puede agregar un usuario con una identificacion existente.",
                             "icono"=>"error"
                         ];
         
@@ -461,10 +461,10 @@ use PDO;
                                     AND c.Estado_ACT = 1");
             $datosAb = $usuario1->fetch(PDO::FETCH_ASSOC);
 
-            
-            if ($datos && $datosCr && $datosAb) {
+            if (!empty($datos) && !empty($datosCr) && !empty($datosAb)){
                 $respuesta = [
-                    'usuario' => $datos,
+
+                    'usuarios' => $datos,
                     'credito' => $datosCr,
                     'abono' => $datosAb
                 ];
@@ -475,7 +475,7 @@ use PDO;
                 $alerta=[
                     "tipo"=>"simple",
                     "titulo"=>"Ocurrio un error inesperado",
-                    "texto"=>"La cedula no coincide con el formato solicitado",
+                    "texto"=>"El usuario no tiene un credito activo",
                     "icono"=>"error"
                 ];
 
