@@ -46,6 +46,7 @@
                         <thead>
                             <tr>
                                 <br>
+                                <th>ID CREDITO</th>
                                 <th>NOMBRE</th>
                                 <th>APELLIDO</th>
                                 <th>TELEFONO</th>
@@ -66,6 +67,7 @@
                         
                             foreach($rows as $row) { ?>
                                 <tr>
+                                    <td><?php echo $row['ID_CR'] ?></td>
                                     <td><?php echo $row['Nombre_CR'] ?></td>
                                     <td><?php echo $row['Correo_CR'] ?></td>
                                     <td><?php echo $row['Telefono_CR'] ?></td>

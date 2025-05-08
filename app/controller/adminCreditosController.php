@@ -102,6 +102,20 @@
 
             }
 
+            $check_creditos = $this->ejecutarConsulta("SELECT 1 FROM abono_credito WHERE ID_CR = $idCredito LIMIT 1");
+            if($check_creditos->rowCount()>0){
+                
+                $alerta=[
+                    "tipo"=>"simple",
+                    "titulo"=>"Ocurrio un error inesperado",
+                    "texto"=>"No se puede eliminar el credito porque tiene relaciones con la tabla de Abono Credito.",
+                    "icono"=>"error"
+                ];
+
+                return json_encode($alerta);
+                exit();
+            }
+
             $eliminarCredito = $this->eliminarRegistro("credito","ID_CR",$idCredito);
 
             if($eliminarCredito->rowCount()==1){

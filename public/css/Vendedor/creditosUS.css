@@ -58,12 +58,13 @@ section {
 .contenedorprincipal {
     display: flex;
     background-color: beige;
+    width: 100%;
 }
 
 .menu {
     background-color: #804e23;
     color: white;
-    width: 400px;
+    width: 20%;
     min-height: 100vh;
     height: auto;
 }
@@ -333,7 +334,7 @@ footer {
 /* ABONOS DE USUARIOS */
 
 .abonoUsuarios{
-    width: 100%;
+    width: 1000px;
 }
 
 .containerForm{

@@ -41,28 +41,33 @@ formularios_ajax.forEach(formularios => {
                     .then(respuesta => respuesta.json())
                     .then(respuesta => {
 
-                        if (respuesta.error) {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error',
-                                text: respuesta.error
-                            });
-                            $('#usuario_nombre').val(''); // Limpia los campos en caso de error (ajusta los IDs)
-                            $('#otroInput').val('');  // Limpia otros campos (ajusta los IDs)
-                            // ... limpia otros campos ...
-                        } else {
+                        // if (respuesta.error) {
+                        //     Swal.fire({
+                        //         icon: 'error',
+                        //         title: 'Error',
+                        //         text: respuesta.error
+                        //     });
+                        //     $('#usuario_nombre').val(''); // Limpia los campos en caso de error
+                        //     $('#otroInput').val('');  // Limpia otros campos
+                        //     // ... limpia otros campos ...
+                        if(respuesta.usuarios){
                             // Asigna los valores del JSON a los inputs por sus IDs
-                            document.getElementById('Nombre_US').value = respuesta.usuario.Nombre_US;
-                            document.getElementById('Correo_US').value = respuesta.usuario.Correo_US;
-                            document.getElementById('Telefono_US').value = respuesta.usuario.Telefono_US;
-                            document.getElementById('Direccion_US').value = respuesta.usuario.Direccion_US;
+                            document.getElementById('ID_US').value = respuesta.usuarios.ID_US;
+                            document.getElementById('Nombre_US').value = respuesta.usuarios.Nombre_US;
+                            document.getElementById('Correo_US').value = respuesta.usuarios.Correo_US;
+                            document.getElementById('Telefono_US').value = respuesta.usuarios.Telefono_US;
+                            document.getElementById('Direccion_US').value = respuesta.usuarios.Direccion_US;
                             document.getElementById('Valor_Total').value = respuesta.credito.Valor_Total;
                             document.getElementById('Valor_CR').value = respuesta.credito.Valor_CR;
                             document.getElementById('MontoSuma').value = respuesta.abono.MontoSuma;
-                            // ... asigna los demás campos usando sus IDs y las claves del JSON ...
+                        }
+                        else{
+
+                            return alertas_ajax(respuesta);
+                            
                         }
 
-                        return alertas_ajax(respuesta);
+                        
                     });
                 }
         });

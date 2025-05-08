@@ -12,29 +12,6 @@
 </head>
 
 <body>
-    <!-- <header id="headerCreditos">
-        <div id="barranav">
-            <div id="ContainerNav">
-                <div id="Logos">
-                    <img src="<?= APP_URL ?>public/img/Usuario/logo.png" width="350px" height="200px"
-                        style="padding-left: 10px; padding-top: 0px">
-
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <input type="text" class="form-control"
-                                placeholder="Buscar...                                                                               🔎        "
-                                style="width: 450px;">
-                        </div>
-                    </form>
-                </div>
-
-
-                <?php require_once './app/view/inc/navUser.php' ?>
-
-            </div>
-
-        </div>
-    </header> -->
 
     <div class="contenedorprincipal">
         
@@ -61,7 +38,8 @@
                 <form class="FormularioAjax" action="<?= APP_URL; ?>app/ajax/sellerAjax.php" method="POST" autocomplete="off">
                         <input type="hidden" name="modulo_vendedor" value="abonarDinero">
 
-                        <input type="hidden" class="form-control" name="usuario_cedula" placeholder="ingrese su cedula" aria-label="ingrese su cedula" aria-describedby="basic-addon1" pattern="[0-9]{1,15}" maxlength="15"><br>
+                        <input type="hidden" class="form-control" name="usuario_cedula" placeholder="ingrese su cedula" aria-label="ingrese su cedula" aria-describedby="basic-addon1" pattern="[0-9]{1,15}" maxlength="15" id="ID_US" value=""><br>
+
                     <div class="">
                         <span class="input-group-text" id="basic-addon1"><strong>Nombre de usuario</strong></span>
                         <input type="text" class="form-control" id="Nombre_US" name="usuario_nombre" aria-label="ingrese su nombre de usuario" aria-describedby="basic-addon1" readonly><br>
