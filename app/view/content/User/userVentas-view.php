@@ -20,14 +20,6 @@
                 <div id="Logos">
                     <img src="<?= APP_URL; ?>public/img/logo.png" width="350px" height="200px"
                         style="padding-left: 10px; padding-top: 0px">
-
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <input type="text" class="form-control"
-                                placeholder="    Buscar...                                                                                                     🔎        "
-                                style="width: 450px; border-radius: 20px; height: 40px;">
-                        </div>
-                    </form>
                 </div>
 
 
