@@ -10,6 +10,7 @@
 
 
     <link rel="stylesheet" href="<?= APP_URL ?>public/css/Usuario/index_.css">
+    <link rel="stylesheet" href="<?= APP_URL?>public/css/Usuario/sidevar.css">
     
 </head>
 
@@ -67,7 +68,39 @@
             </div>
         </div>
     </div>
-    <!-- Pie de pagina -->
+
+
+    <!-- Botón para abrir el carrito -->
+    <button id="openCart" class="esconderCarrito" ><img src="<?= APP_URL ?>public/img/Usuario/Carrito.png" width="40px" height="40px" style="margin-top: -18px;"></button>
+
+    <!-- Sidebar del carrito -->
+    <div id="cartSidebar" class="sidebar">
+        <button id="closeCart">✖</button>
+        <h2 style="color: #804e23;">Tu Carrito</h2>
+        <div id="cartItems">
+            
+                <?php
+            $sql = $insLogin->ejecutarConsulta("SELECT * FROM productos");
+            $rows = $sql->fetchAll(PDO::FETCH_ASSOC);
+            foreach($rows as $row) { ?>
+
+                <div id="Producto1">
+                    
+                    <img src="<?= APP_URL.$row['Img'] ?>" alt="" class="imgpro" width="100px">
+
+                    <p class="descripcion"><strong><?php echo $row['Descripcion_PRO'] ?></strong></p>
+
+                    <p><strong><?php echo $row['Valor_Unitario'] ?></strong></p><br>
+
+                    <button><strong>Agregar al carrito</strong></button>
+
+                </div>
+
+            <?php } ?>
+            
+        </div>
+    </div>
 
     <script src="<?= APP_URL ?>public/js/pagos.js"></script>
+    <script src="<?= APP_URL ?>public/js/sidevar.js"></script>
     <?php require_once './app/view/inc/footer.php' ?>
