@@ -21,13 +21,6 @@
                 <img src="<?= APP_URL ?>public/img/logo.png" width="350px" height="200px"
                     style="padding-left: 10px; padding-top: 0px">
 
-                <form class="form-inline">
-                    <div class="form-group">
-                        <input type="text" class="form-control"
-                            placeholder="Buscar...                                                                               🔎        "
-                            style="width: 450px;">
-                    </div>
-                </form>
             </div>
 
 
@@ -48,17 +41,16 @@
                         $correo = $_SESSION['correo'];
                         $ConsultaCr = $insLogin->ejecutarConsulta("SELECT * FROM credito WHERE Correo_CR = '$correo'");
                         $rowCr = $ConsultaCr->fetch();
+                        $creditoTotal = 0;
+                        $estadoCredito = "Sin solicitud de credito";
+                        $valorCredito = 0;
+                        $gasto_Credito = 0;
                         if(!empty($rowCr)){
 
                             $creditoTotal = $rowCr['Valor_Total'];
                             $estadoCredito = $rowCr['Estado_CR'];
                             $valorCredito = $rowCr['Valor_CR'];
                             
-                        }else{
-
-                            $creditoTotal = 0;
-                            $estadoCredito = "Sin solicitud de credito";
-                            $valorCredito = 0;
                         }
 
                         //$fechasCr = $rowCr['Fecha_CR'];

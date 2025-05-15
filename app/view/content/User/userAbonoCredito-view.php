@@ -18,14 +18,6 @@
                 <div id="Logos">
                     <img src="<?= APP_URL ?>public/img/Usuario/logo.png" width="350px" height="200px"
                         style="padding-left: 10px; padding-top: 0px">
-
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <input type="text" class="form-control"
-                                placeholder="Buscar...                                                                               🔎        "
-                                style="width: 450px;">
-                        </div>
-                    </form>
                 </div>
 
 
@@ -93,7 +85,6 @@
                 </tr>
 
             </table>
-            <a href="<?= APP_URL ?>userMetodoAbono/"><button class="btn_abono">Abonar</button></a>
         </div>
     </div>
     

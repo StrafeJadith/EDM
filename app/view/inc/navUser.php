@@ -2,9 +2,7 @@
                     <div id="NavList">
 
                         <ul id="Listas">
-                            <a href="<?= APP_URL ?>inicio/">
-                                <li><strong> Inicio </strong></li>
-                            </a>
+                            
                             <a href="<?= APP_URL ?>indexProductos/">
                                 <li><strong> Productos </strong></li>
                             </a>
