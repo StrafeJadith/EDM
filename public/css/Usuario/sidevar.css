@@ -1,0 +1,40 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: auto;
+  background-color:bisque;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+  transition: right 0.3s ease;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+#openCart {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 20px;
+  z-index: 1100;
+  background-color: #d3b386;
+  border: none;
+}
+
+
+#closeCart {
+  background: none;
+  border: none;
+  font-size: 24px;
+  float: right;
+  cursor: pointer;
+}
+
+#cartItems{
+
+    height: auto;
+}
