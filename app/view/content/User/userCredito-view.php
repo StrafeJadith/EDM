@@ -12,7 +12,7 @@
 ?>
 
     <link rel="stylesheet" href="<?= APP_URL ?>public/css/inicio&&registro/navHome.css">
-    <link rel="stylesheet" href="<?= APP_URL; ?>public/css/inicio&&registro/Estilos.css">
+    <link rel="stylesheet" href="<?= APP_URL; ?>public/css/Usuario/CreditosInicio.css">
 </head>
 <style>
     .btn {
