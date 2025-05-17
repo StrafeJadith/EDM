@@ -1,6 +1,6 @@
 
 <?php require_once "./app/view/inc/headInicio.php" ?>
-<link rel="stylesheet" href="<?php echo APP_URL; ?>public/css/Productos/menu.css">
+<link rel="stylesheet" href="<?=APP_URL; ?>public/css/Productos/menu.css">
     
 </head>
 
@@ -47,7 +47,7 @@
                             <summary>Alimentos</summary>
                             <br>
                             <ul>
-                                <li><a href="Productos/proteinas.php">Proteinas</a></li>
+                                <li><a href="<?= APP_URL;?>indexProteinas/">Proteinas</a></li>
                                 <li><a href="Productos/verduras.php">Verduras y Frutas</a></li>
                                 <li><a href="Productos/granos.php">Granos</a></li>
                             </ul>

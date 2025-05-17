@@ -1,7 +1,7 @@
 
 
 <?php require_once "./app/view/inc/headInicio.php" ?>
-<link rel="stylesheet" href="<?php echo APP_URL ?>public/css/Productos/menu.css">
+<link rel="stylesheet" href="<?=APP_URL ?>public/css/Productos/menu.css">
 
 </head>
 
@@ -10,7 +10,7 @@
         <div id="barranav">
             <div id="ContainerNav">
                 <div id="Logos">
-                    <img src="<?php echo APP_URL?> public/img/logo.png" width="350px" height="200px" style="padding-left: 10px; padding-top: 0px">
+                    <img src="<?= APP_URL; ?>public/img/Producto/logo.png" width="350px" height="200px">
 
                     <form class="form-inline">
                         <div class="form-group">
@@ -39,14 +39,14 @@
                 <br>
                 <div class="productos">
                     <div class="imagenalimentos">
-                        <img src="../../../public/img/Producto/alimentos.png.png" alt="">
+                        <img src="<?= APP_URL; ?>public/img/Producto/alimentos.png.png" alt="">
                     </div>
                     <div class="productossubtitulo">
                         <details>
                             <summary>Alimentos</summary>
                             <br>
                             <ul>
-                                <li><a href="proteinas.php">Proteinas</a></li>
+                                <li><a href="index_proteinas.php">Proteinas</a></li>
                                 <li><a href="verduras.php">Verduras y Frutas</a></li>
                                 <li><a href="granos.php">Granos</a></li>
                             </ul>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="Aseo">
                     <div class="imagenaseo">
-                        <img src="../../../public/img/Producto/aseopersonal.png.png" alt="">
+                        <img src="<?=APP_URL;?>public/img/Producto/aseopersonal.png.png" alt="">
                     </div>
                     <div class="productossubtitulo">
                         <details>
@@ -71,7 +71,7 @@
                 </div>
                 <div class="Limpieza">
                     <div class="imagenlimpieza">
-                        <img src="../../../public/img/Producto/aseohogar.png.png" alt="">
+                        <img src="<?=APP_URL;?>public/img/Producto/aseohogar.png.png" alt="">
                     </div>
                     <div class="productossubtitulo">
                         <details>
@@ -85,7 +85,7 @@
                 </div>
                 <div class="Otros">
                     <div class="imagenotros">
-                        <img src="../../../public/img/Producto/otros.png.png" alt="">
+                        <img src="<?=APP_URL;?>public/img/Producto/otros.png.png" alt="">
                     </div>
                     <div class="productossubtitulo">
                         <details>
@@ -111,7 +111,8 @@
                         foreach($rowsProteina as $row){?>
 
                             <div id="div1">
-                                <form action="../PhpJadith/Cruds/Carrito_Guardar_Procutos.php" method="post">
+                                <form class="FormularioAjax" action="<?=APP_URL?>app/ajax/comprasUsuariosAjax.php" method="post">
+                                    <input type="hidden" name="modulo_usuario" value="CompraUsuarios">
                                     <div class="imagenpro">
                                         <img src="<?php echo $row['Img'] ?>" alt="" class="imgpro"><br>
                                     </div>
