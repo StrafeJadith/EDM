@@ -7,7 +7,14 @@
         protected function obtenerViewsModel($vista){
 
             //La variable $listaBlanca es un array que tiene como valor TODAS LAS VISTAS CORRECTAS, si alguna lista que se le pase por el parametro no esta aqui, posiblemente termine en Not Found.
-            $listaBlanca=["indexProductos","indexCreditosInicio","indexHistoria","indexInicio","indexRegistro","indexOlvidoContraseña","adminDashboard","adminTablaClientes","adminReportesUsuarios","adminVendedores","adminReportesVendedores","adminCategoria","adminProductos","adminReportesProductos","adminCreditos","adminVentas","adminDetalleDeVenta","vendMenu","vendExistencias","vendCreditosUsuario","vendAbonoCreditos","vendUsuarios","userIndex","userAbonoCredito","userCarritoCompra","userCredito","userGastoCredito","userMetodoAbono","userNuevoCredito","userPago","userPerfilUser","userVentas","log-Out"];
+            $listaBlanca=["indexProductos","indexCreditosInicio","indexHistoria","indexInicio",
+            "indexRegistro","indexOlvidoContraseña","adminDashboard","adminTablaClientes",
+            "adminReportesUsuarios","adminVendedores","adminReportesVendedores","adminCategoria",
+            "adminProductos","adminReportesProductos","adminCreditos","adminVentas","adminDetalleDeVenta",
+            "vendMenu","vendExistencias","vendCreditosUsuario","vendAbonoCreditos","vendUsuarios",
+            "userIndex","userAbonoCredito","userCarritoCompra","userCredito","userGastoCredito",
+            "userMetodoAbono","userNuevoCredito","userPago","userPerfilUser","userVentas","log-Out",
+            "indexProteinas"];
 
             if(in_array($vista,$listaBlanca)){ //Se verifica si en el array $listaBlanca hay una valor de vista que coincida con la el valor de la vista pasada por el parametro.
                 if(is_file("./app/view/content/Home/".$vista."-view.php")){ //Si es un archivo la direccion pasada entra a la condicion.

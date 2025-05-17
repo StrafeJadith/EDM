@@ -35,39 +35,33 @@
         <div class="padre">
             <table>
                 <thead>
+                <?php
 
-                    <?php
-
-                        $correo = $_SESSION['correo'];
-                        $ConsultaCr = $insLogin->ejecutarConsulta("SELECT * FROM credito WHERE Correo_CR = '$correo'");
-                        $rowCr = $ConsultaCr->fetch();
-                        $creditoTotal = 0;
-                        $estadoCredito = "Sin solicitud de credito";
-                        $valorCredito = 0;
-                        $gasto_Credito = 0;
-                        if(!empty($rowCr)){
-
-                            $creditoTotal = $rowCr['Valor_Total'];
-                            $estadoCredito = $rowCr['Estado_CR'];
-                            $valorCredito = $rowCr['Valor_CR'];
+                    $correo = $_SESSION['correo'];
+                    $ConsultaCr = $insLogin->ejecutarConsulta("SELECT * FROM credito WHERE Correo_CR = '$correo'AND Estado_ACT = 1");
+                    $rowCr = $ConsultaCr->fetch();
+                    $creditoTotal = 0;
+                    $estadoCredito = "Sin solicitud de credito";
+                    $valorCredito = 0;
+                    $gasto_Credito = 0;
+                    if(!empty($rowCr)){
+                        $creditoTotal = $rowCr['Valor_Total'];
+                        $estadoCredito = $rowCr['Estado_CR'];
+                        $valorCredito = $rowCr['Valor_CR'];
                             
-                        }
+                    }
 
-                        //$fechasCr = $rowCr['Fecha_CR'];
-                        //CONSULTAR ID DEL USUARIO
-                        $consultarIdAbono = $insLogin->ejecutarConsulta("SELECT ID_US FROM usuarios WHERE Correo_US = '$correo'");
-                        $resultIdAbono = $consultarIdAbono->fetch();
-                        $IdeUs = $resultIdAbono['ID_US'];
+                    //!CONSULTAR ID DEL USUARIO
+                    $consultarIdAbono = $insLogin->ejecutarConsulta("SELECT ID_US FROM usuarios WHERE Correo_US = '$correo'");
+                    $resultIdAbono = $consultarIdAbono->fetch();
+                    $IdeUs = $resultIdAbono['ID_US'];
 
-                        //TRAER LOS GASTOS DEL USUARIO
-                        $ConsultaCr = $insLogin->ejecutarConsulta("SELECT sum(Valor_GC) as gasto FROM gasto_credito WHERE ID_US = $IdeUs");
-                        $resultConCr = $ConsultaCr->fetch();
-                        $gasto_Credito = $resultConCr["gasto"];
+                    //!TRAER LOS GASTOS DEL USUARIO
+                    $ConsultaCr = $insLogin->ejecutarConsulta("SELECT sum(Valor_GC) as gasto FROM gasto_credito WHERE ID_US = $IdeUs");
+                    $resultConCr = $ConsultaCr->fetch();
+                    $gasto_Credito = $resultConCr["gasto"];
 
-                        $sql = $insLogin->ejecutarConsulta("SELECT * FROM credito WHERE Correo_CR = '$correo'");
-                        
-
-                        ?>
+                    ?>
                         <tr>
                             <td><strong>Estado Credito</strong></td>
                             <td><strong><?= $estadoCredito ?></strong></td>

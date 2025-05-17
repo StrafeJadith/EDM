@@ -2,9 +2,6 @@
                     <div id="NavList">
 
                         <ul id="Listas">
-                            <a href="#seccion1">
-                                <li><strong> Inicio </strong></li>
-                            </a>
                             <a href="#seccion2">
                                 <li><strong> Productos </strong></li>
                             </a>
