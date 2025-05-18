@@ -19,11 +19,11 @@
 
                                 <a href="<?= APP_URL ?>log-Out/"><button type="button" class="btn">Cerrar Sesión</button></a>
 
-                                <a href="<?= APP_URL ?>userCarritoCompra/">
+                                <!-- <a href="<?= APP_URL ?>userCarritoCompra/">
                                     <li><img src="<?= APP_URL ?>public/img/Usuario/Carrito.png" width="40px" height="40px"
                                             style="margin-top: -18px;">
                                     </li>
-                                </a>
+                                </a> -->
                                 <a href="<?= APP_URL ?>userIndex/">
                                     <li><img src="<?= APP_URL ?>public/img/Usuario/home.svg" width="40px" height="40px"
                                             style="margin-top: -18px;">

@@ -57,7 +57,7 @@
         <div class="productosCatalogo">
 
             <?php
-            $sql = $insLogin->ejecutarConsulta("SELECT * FROM productos");
+            $sql = $insLogin->ejecutarConsulta("SELECT * FROM productos LIMIT 6");
             $rows = $sql->fetchAll(PDO::FETCH_ASSOC);
             foreach($rows as $row) { ?>
 

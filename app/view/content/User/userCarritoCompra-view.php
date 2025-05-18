@@ -39,7 +39,7 @@
             <div class="productosima">
                 <table>
                     <tr>
-                        <td><strong>ID VENTA</strong></td>
+                        <!-- <td><strong>ID VENTA</strong></td> -->
                         <td><strong>PRODUCTO</strong></td>
                         <td><strong>PRECIO UNITARIO</strong></td>
                         <td><strong>CANTIDAD</strong></td>
@@ -61,7 +61,7 @@
                         foreach($resultado as $row) { ?>
                             <tr>
 
-                                <td><?php echo $row['ID_VENT'] ?></td>
+                                <!-- <td><?php //echo $row['ID_VENT'] ?></td> -->
                                 <td><?php echo $row['Nombre_VENT'] ?></td>
                                 <td><?php echo $row['Precio_VENT'] ?></td>
                                 <td><?php echo $row['Cantidad_VENT'] ?></td>
@@ -69,7 +69,7 @@
                                 <td>
 
                                     <a href="../../controller/controllerCarrito.php?IDCancelar=<?php echo $row['ID_VENT'] ?>">
-                                        <button type="submit" class="editarProd" name="Cancelar"><img
+                                        <button type="submit" class="deleteProd" name="Cancelar"><img
                                                 src="<?= APP_URL ?>public/img/Administrador/Eliminar.png" alt="Eliminar"
                                                 class="img"></button></a>
                                 </td>
@@ -86,10 +86,26 @@
 
 
 
-                <div style="width: 70px;">
-                    <button data-bs-toggle="modal" data-bs-target="#metodoPago" type="submit" class="editarProd" name="Comprar">
-                        <img src="<?= APP_URL ?>public/img/Administrador/AceptarCreditos.png" alt="" class="btnedit" style="width: 70px">
-                    </button>
+                <div class="confirmarCompra">
+
+                <?php
+
+                $traerId = $insLogin->ejecutarConsulta("SELECT ID_US FROM usuarios WHERE Correo_US = '$correo'");
+                $resultId = $traerId->fetch();
+                $ID_US = $resultId['ID_US'];
+
+                $sql = $insLogin->ejecutarConsulta("SELECT SUM(Valor_Total) AS valorTotal FROM ventas WHERE ID_US = $ID_US");
+                $result = $sql->fetch();
+                $valorTotal = $result['valorTotal'];
+                
+                
+                ?>
+
+                    <h3><strong>Resumen de compra</strong></h3>
+                    <hr>
+                    <h3><strong>Valor Total</strong></h3><br>
+                    <h3><strong>$<?= $valorTotal ?></strong></h3><br>
+                    <button data-bs-toggle="modal" data-bs-target="#metodoPago" type="submit" class="continuarCompra" name="Comprar"><strong>Continuar con la compra</strong></button>
                 </div>
             </div>
         </div>

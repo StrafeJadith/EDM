@@ -1,10 +1,10 @@
 <?php
 
 
-    //const APP_URL = "http://localhost/Jadith/EasyDataManagement/";
+    const APP_URL = "http://localhost/Jadith/EasyDataManagement/";
 
-    //!En casa de Ali
-    const APP_URL = "http://localhost/Ali/EDM%20NEW%20PORT/EDM/";
+    //En casa de Ali
+    // const APP_URL = "http://localhost/Ali/EDM%20NEW%20PORT/EDM/";
     //En el sena
     //const APP_URL = "http://localhost/Easy%20Data%20Management/";
     const APP_NAME = "Tienda la Mano de Dios";
