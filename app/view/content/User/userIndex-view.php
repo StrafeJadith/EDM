@@ -79,27 +79,30 @@
         <h2 style="color: #804e23;">Tu Carrito</h2>
         <div id="cartItems">
             
-                <?php
-            $sql = $insLogin->ejecutarConsulta("SELECT * FROM productos");
-            $rows = $sql->fetchAll(PDO::FETCH_ASSOC);
-            foreach($rows as $row) { ?>
+            <?php
 
-                <div id="Producto1">
+                $sql = $insLogin->ejecutarConsulta("SELECT * FROM productos");
+                $rows = $sql->fetchAll(PDO::FETCH_ASSOC);
+                foreach($rows as $row) { ?>
+
+                    <div id="Productos">
+                        
+                        <img src="<?= APP_URL.$row['Img'] ?>" class="imgpro" width="70px" height="50px" style="position: relative; left: 20px; top:20px;">
+                        <p class="descripcion"><strong><?php echo $row['Descripcion_PRO'] ?></strong></p>
+                        <p class="valorUnitario"><strong>$<?php echo $row['Valor_Unitario'] ?></strong></p>
+                    </div>
                     
-                    <img src="<?= APP_URL.$row['Img'] ?>" alt="" class="imgpro" width="100px">
-
-                    <p class="descripcion"><strong><?php echo $row['Descripcion_PRO'] ?></strong></p>
-
-                    <p><strong><?php echo $row['Valor_Unitario'] ?></strong></p><br>
-
-                    <button><strong>Agregar al carrito</strong></button>
-
-                </div>
 
             <?php } ?>
             
         </div>
+        <div id="cartPagos" class="pagoTotal">
+            <h5 style="color: #804e23;"><strong>Subtotal</strong></h5>
+            <h5 class="subTotal"><strong>$9000</strong></h5>
+            <a href="<?= APP_URL ?>userCarritoCompra/"><button class="irACarrito"><strong>Comprar</strong></button></a>
+        </div>
     </div>
+    
 
     <script src="<?= APP_URL ?>public/js/pagos.js"></script>
     <script src="<?= APP_URL ?>public/js/sidevar.js"></script>

@@ -1,14 +1,15 @@
 .sidebar {
   position: fixed;
   top: 0;
-  right: -300px;
-  width: 300px;
-  height: auto;
+  right: -400px;
+  width: 400px;
   background-color:bisque;
   box-shadow: -2px 0 5px rgba(0,0,0,0.3);
   transition: right 0.3s ease;
   padding: 20px;
   z-index: 1000;
+  height: 100vh;
+
 }
 
 .sidebar.open {
@@ -23,6 +24,7 @@
   z-index: 1100;
   background-color: #d3b386;
   border: none;
+  
 }
 
 
@@ -36,5 +38,70 @@
 
 #cartItems{
 
-    height: auto;
+    overflow-y: scroll;
+    height: 80vh;
+    width: 370px;
+
+}
+
+#Productos{
+  margin-top: 50px;
+  height: 100px;
+  width: 350px;
+  border-bottom: 1px solid #804e23;
+}
+
+#Productos .descripcion{
+
+  color: #804e23;
+  position: relative;
+  bottom: 30px;
+  left: 100px;
+  width: 200px;
+  height: 50px;
+
+}
+
+#Productos .valorUnitario{
+
+  color: #804e23;
+  position: relative;
+  bottom: 40px;
+  left: 100px;
+  width: 200px;
+  height: 20px;
+
+}
+
+#cartPagos{
+  position: relative;
+  top: 40px;
+
+}
+#cartPagos .subTotal{
+
+  position: relative;
+  bottom: 30px;
+  text-align: right;
+  color: #804e23;
+  
+}
+
+.pagoTotal a .irACarrito{
+
+  border: none;
+  position: relative;
+  bottom: 30px;
+  left: 150px;
+  width: 100px;
+  height: 30px;
+  background-color: #804e23;
+  color: white;
+  border-radius: 20px;
+}
+
+.pagoTotal a .irACarrito:hover{
+
+  transform: scale(1.2);
+  transition: 0.8s;
 }

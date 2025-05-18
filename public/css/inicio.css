@@ -89,14 +89,22 @@ html{
     width: 100%;
 }
 
+#Listas #linkIniciar{
+
+    width: 150px;
+    position: relative;
+    left: 800px;
+    margin-left: 20px;
+}
 .btnIniciar{
     background-color: #804e23;
     color: white;
     border-radius: 100px;
     width: 150px;
+
     font-size: 19px;
-    position: relative;
-    left: 800px;
+    /* position: relative;
+    left: 800px; */
     border: none;
     margin-left: 20px;
 }
@@ -235,6 +243,7 @@ a {
 
     position: relative;
     width: 200px;
+    height: 110px;
     left: 150px;
     top: 20px;
     border-radius: 20px;

@@ -2,6 +2,10 @@
                     <div id="NavList">
 
                         <ul id="Listas">
+                            <a href="#seccion1">
+                                <li><strong> Inicio </strong></li>
+                            </a>
+
                             <a href="#seccion2">
                                 <li><strong> Productos </strong></li>
                             </a>
@@ -17,9 +21,9 @@
                                 <a href="#seccion4">
                                     <li><strong> Sobre Nosotros </strong></li>
                                 </a>
-                                <a href="<?= APP_URL; ?>indexInicio/"><button type="button" class="btnIniciar">Iniciar
+                                <a href="<?= APP_URL; ?>indexInicio/" id="linkIniciar"><button type="button" class="btnIniciar">Iniciar
                                         Sesion</button></a>
-                                <a href="<?= APP_URL; ?>indexRegistro/"><button type="button" class="btnIniciar">Registrarse</button></a>
+                                <a href="<?= APP_URL; ?>indexRegistro/" id="linkIniciar"><button type="button" class="btnIniciar">Registrarse</button></a>
 
                             <?php } else { ?>
                                 <a href="<?= APP_URL; ?>userCredito/">
