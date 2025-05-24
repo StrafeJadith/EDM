@@ -2,7 +2,7 @@
 
     namespace app\controller;
     use app\model\mainModel;
-use PDO;
+    use PDO;
 
     class sellerController extends mainModel{
 
@@ -483,12 +483,6 @@ use PDO;
                 exit();
             }
 
-            
-
-
-
-
-
         }
 
         public function abonarDineroVendedorControlador(){
@@ -526,6 +520,71 @@ use PDO;
                 exit();
             }
 
+            #Consultar la tabla de creditos para realizar consultas de verificacion #
+
+            $consultaCredito = $this->ejecutarConsulta("SELECT c.* from credito c where c.estado_ACT = 1 and c.Correo_CR = '$correo'; ");
+            $resultConsultaCredito = $consultaCredito->fetch();
+            $ID_US = $resultConsultaCredito['ID_US'];
+            $creditoTotal = $resultConsultaCredito['Valor_Total'];
+
+            #Consultar el monto de abono credito para posteriormente realizar una suma de toda la columna #
+            $consultaMontoSuma = $this->ejecutarConsulta("SELECT sum(ac.Monto_AC) as MontoSuma FROM abono_credito ac
+                        JOIN credito c ON c.ID_CR = ac.ID_CR
+                        WHERE ac.ID_US = $ID_US
+                        AND Estado_ACT = 1;");
+
+            $resultMontoSuma = $consultaMontoSuma->fetch();
+            $montoSuma = $resultMontoSuma['MontoSuma'];
+            
+
+            # Verificacion de monto apto #
+            $resp = ($montoAbono % 100 == 0);
+            $valorLimite = $montoAbono + $montoSuma;
+
+            # Resultado si el monto no es multiplo de 100 #
+            if(!$resp){
+
+                $alerta=[
+                        "tipo"=>"simple",
+                        "titulo"=>"Ocurrio un error inesperado",
+                        "texto"=>"Solo se aceptan multiplos de 100",
+                        "icono"=>"error"
+                    ];
+
+                    return json_encode($alerta);
+                    exit();
+            }
+
+            #Verificar el valor limite del abono, es importante ya que asi no se pagan abonos superiores a los abonos pedidos #
+            if ($valorLimite > $creditoTotal) {
+            
+                $alerta=[
+                        "tipo"=>"simple",
+                        "titulo"=>"Ocurrio un error inesperado",
+                        "texto"=>"El monto limite a pagar es: ".$creditoTotal,
+                        "icono"=>"error"
+                    ];
+
+                    return json_encode($alerta);
+                    exit();
+
+            }
+
+            # Verificar estado de la cuenta #
+            $estadoCr = "";
+            if ($estadoCr == "En espera") {
+
+                $alerta=[
+                        "tipo"=>"simple",
+                        "titulo"=>"Ocurrio un error inesperado",
+                        "texto"=>"Su credito sigue en proceso de admision",
+                        "icono"=>"error"
+                    ];
+
+                    return json_encode($alerta);
+                    exit();
+            }
+
             $consultaIdCredito = $this->ejecutarConsulta("SELECT us.ID_US, c.ID_CR , c.Estado_ACT, us.Nombre_US FROM usuarios us 
                 JOIN credito c ON c.ID_US = us.ID_US 
                 WHERE Correo_US = '$correo'
@@ -557,7 +616,22 @@ use PDO;
 
             $registrar_abono_credito = $this->guardarDatos("abono_credito",$usuario_abono_credito);
 
-            if($registrar_abono_credito->rowCount()==1){
+
+            if($montoAbono + $montoSuma == $creditoTotal){
+
+                $actualizarAValoresDeFabrica = $this->ejecutarConsulta("UPDATE credito SET Estado_ACT = 0 WHERE Correo_Cr = '$correo'");
+
+                if($actualizarAValoresDeFabrica){
+
+                    $alerta=[
+                        "tipo"=>"simple",
+                        "titulo"=>"Pagado!",
+                        "texto"=>"Haz pagado por completo tu credito",
+                        "icono"=>"success"
+                    ];
+
+                }
+            }else if($registrar_abono_credito->rowCount()==1){
 
                 $alerta=[
                     "tipo"=>"limpiar",
@@ -576,7 +650,6 @@ use PDO;
                     "icono"=>"error"
                 ];
 
-                
             }
             
             return json_encode($alerta);
