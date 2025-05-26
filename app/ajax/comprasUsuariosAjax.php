@@ -6,13 +6,13 @@
 
     use app\controller\userSalesController;
 
-    if($_POST['modulo_compras']){
+    if(isset($_POST['modulo_compras'])){
 
         $insCompras = new userSalesController();
 
         if($_POST['modulo_compras'] == "comprasUsuarios"){
 
-            
+            echo $insCompras->guardarProducto();
 
         }
     }
