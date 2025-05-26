@@ -1,18 +1,17 @@
 <?php
 
-
     namespace app\controller;
     use app\model\mainModel;
 
     class userSalesController extends mainModel{
         
 
-
         public function guardarProducto(){
             $idProd =$this->limpiarCadena($_POST["ID_PRO"]);
             $nombreProd = $this->limpiarCadena($_POST["Nombre_PRO"]);
             $precioProd = $this->limpiarCadena($_POST["Precio_PRO"]);
             $cantidadProd =$this->limpiarCadena($_POST["Cantidad_PRO"]);
+            $correo = $_SESSION["correo"];
 
             if(empty($cantidadProd)){
                 $alerta=[
@@ -61,7 +60,38 @@
                 return json_encode($alerta);
                 exit();
             }
+
+            //?Se obtiene la fecha
+            $fecha= date("Y-m-d");
+            $totalPrice = (int)($precioProd*$cantidadProd);
+
+            $check_user = $this->ejecutarConsulta("SELECT ID_US FROM usuarios Where Correo_US = '$correo'");
+            $row = $check_user->fetch();
+            $idUser = $row["ID_US"];
+
+            $insert_Vent= $this->ejecutarConsulta("INSERT INTO ventas( Fecha_VENT, Nombre_VENT, Precio_VENT, Cantidad_VENT,	Valor_total, Estado_VENT, ID_US) VALUES ('$fecha','$nombreProd', $precioProd, $cantidadProd, $totalPrice, 'Proceso', $idUser)");
+
+            if($insert_Vent->rowCount()<1){
+                $alerta=[
+                    "tipo"=>"simple",
+                    "titulo"=>"Uops",
+                    "texto"=>"Hubo un error en la insercion de datos, vuelva a intentarlo",
+                    "icono"=>"error"                   
+                ];                
+                return json_encode($alerta);
+                exit();
+            }
+            $newCant = $cantExist - $cantidadProd;
+            $update_cant = $this->ejecutarConsulta("UPDATE productos SET cantidad_existente = $newCant WHERE ID_PRO = $idProd");
+
+            $alerta=[
+                    "tipo"=>"simple",
+                    "titulo"=>"¡Guardado! ",
+                    "texto"=>"¡Producto guardado exitosamente!",
+                    "icono"=>"success"                   
+                ];                
+                return json_encode($alerta);
+                exit();
         }
-        
         
     }
