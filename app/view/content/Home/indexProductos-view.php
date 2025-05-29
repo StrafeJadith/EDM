@@ -112,8 +112,8 @@
                         foreach($rows as $row) { ?>
 
                             <div id="div1">
-                                <form class="FormularioAjax" action="<?= APP_URL ?>app/ajax/comprasUsuariosAjax.php" method="post">
-                                    <input type="hidden" name="modulo_compras" value="comprasUsuarios">
+                                <form class="FormularioAjax" action="<?= APP_URL ?>app/ajax/carritoUserAjax.php" method="post">
+                                    <input type="hidden" name="modulo_carrito" value="agregarProd">
                                     <div class="imagenpro">
                                         <img src="<?= APP_URL.$row['Img'] ?>" alt="" class="imgpro"><br>
                                     </div>
