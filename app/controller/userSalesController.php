@@ -7,6 +7,7 @@
         
 
         public function guardarProducto(){
+
             $idProd =$this->limpiarCadena($_POST["ID_PRO"]);
             $nombreProd = $this->limpiarCadena($_POST["Nombre_PRO"]);
             $precioProd = $this->limpiarCadena($_POST["Precio_PRO"]);
@@ -94,4 +95,43 @@
                 exit();
         }
         
+
+        public function eliminarProducto(){
+
+            $idVent = $this->limpiarCadena($_POST["ID_VENT"]);
+            $nameVent = $this->limpiarCadena($_POST["Nombre_VENT"]);
+            $cantVent = $this->limpiarCadena($_POST["Cantidad_VENT"]);
+            $correo = $_SESSION["correo"];
+
+            $deleteVent = $this->ejecutarConsulta("DELETE FROM ventas WHERE ID_VENT = $idVent");
+
+            if(!$deleteVent){
+                $alerta=[
+                    "tipo"=>"simple",
+                    "titulo"=>"Error en el proceso",
+                    "texto"=>"¡Vuelvalo a intentar o espere unos minutos!",
+                    "icono"=>"error"                   
+                ];                
+                return json_encode($alerta);
+                exit();                
+            }
+
+            $checkProd = $this->ejecutarConsulta("SELECT Cantidad_Existente FROM productos Where Nombre_PRO = '$nameVent'");
+
+            $row = $checkProd->fetch();
+            $newCant = (int) $row["Cantidad_Existente"];
+
+            $updateProd = $this->ejecutarConsulta("UPDATE productos set Cantidad_Existente = ($cantVent + $newCant) Where Nombre_PRO = '$nameVent'");
+
+            $alerta=[
+                    "tipo"=>"recargar",
+                    "titulo"=>"¡Eliminado!",
+                    "texto"=>"¡El producto ha sido eliminado de su carrito!",
+                    "icono"=>"success"                   
+                ];                
+                return json_encode($alerta);
+                exit();            
+            
+
+        }
     }

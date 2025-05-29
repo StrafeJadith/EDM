@@ -59,19 +59,30 @@
                         $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
 
                         foreach($resultado as $row) { ?>
-                            <tr>
 
-                                <!-- <td><?php //echo $row['ID_VENT'] ?></td> -->
-                                <td><?php echo $row['Nombre_VENT'] ?></td>
-                                <td><?php echo $row['Precio_VENT'] ?></td>
-                                <td><?php echo $row['Cantidad_VENT'] ?></td>
-                                <td><?php echo $row['Valor_total'] ?></td>
-                                <td>
+                                    <form class="FormularioAjax" action="<?= APP_URL ?>app/ajax/comprasUsuariosAjax.php" method="post">
+                                        <tr>
 
+                                        <input type="hidden" name="ID_VENT" value="<?php echo $row['ID_VENT']?>">
+                                        <td><?php echo $row['Nombre_VENT'] ?></td>
+                                        <input type="hidden" name ="Nombre_VENT" value="<?php echo $row['Nombre_VENT']?>">
+                                        <td><?php echo $row['Precio_VENT'] ?></td>
+                                        <td><?php echo $row['Cantidad_VENT'] ?></td>
+                                        <input type="hidden" name ="Cantidad_VENT" value="<?php echo $row['Cantidad_VENT']?>">
+                                        <td><?php echo $row['Valor_total'] ?></td>
+                                        <td>
+
+                                        <input type="hidden" name="modulo_compras" value="eliminarProd">
+                                        <button type="submit" class="deleteProd"><img src="<?= APP_URL ?>public/img/Administrador/Eliminar.png" 
+                                        alt="Eliminar" class="img">
+                                        </button>
+                                    </form>
+                                    <!--
                                     <a href="../../controller/controllerCarrito.php?IDCancelar=<?php echo $row['ID_VENT'] ?>">
                                         <button type="submit" class="deleteProd" name="Cancelar"><img
                                                 src="<?= APP_URL ?>public/img/Administrador/Eliminar.png" alt="Eliminar"
                                                 class="img"></button></a>
+                        --->
                                 </td>
 
                             </tr>
