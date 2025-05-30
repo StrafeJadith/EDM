@@ -15,7 +15,8 @@
             echo $insCompras->guardarProducto();
 
         }
-        if($_POST["modulo_compras"] == "eliminarProd"){
+
+        if($_POST['modulo_carrito'] == "eliminarProd"){
 
             echo $insCompras->eliminarProducto();
 
