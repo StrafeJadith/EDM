@@ -60,7 +60,7 @@
 
                         foreach($resultado as $row) { ?>
 
-                                    <form class="FormularioAjax" action="<?= APP_URL ?>app/ajax/comprasUsuariosAjax.php" method="post">
+                                    <form class="FormularioAjax" action="<?= APP_URL ?>app/ajax/carritoUserAjax.php" method="post">
                                         <tr>
 
                                         <input type="hidden" name="ID_VENT" value="<?php echo $row['ID_VENT']?>">
@@ -72,7 +72,8 @@
                                         <td><?php echo $row['Valor_total'] ?></td>
                                         <td>
 
-                                        <input type="hidden" name="modulo_compras" value="eliminarProd">
+                                        <input type="hidden" name="modulo_carrito" value="eliminarProd">
+
                                         <button type="submit" class="deleteProd"><img src="<?= APP_URL ?>public/img/Administrador/Eliminar.png" 
                                         alt="Eliminar" class="img">
                                         </button>
