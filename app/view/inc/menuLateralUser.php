@@ -25,7 +25,7 @@
                 </li>
                 <li class="lista_item lista_item--click">
                     <div class="lista_button lista_button--click">
-                        <img src="<?= APP_URL ?>public/img/Usuario/creditos.png" class="lista_img">
+                        <img src="<?= APP_URL ?>public/img/Usuario/Creditos.png" class="lista_img">
                         <a href="#" class="nav_link"> CREDITOS </a>
                         <img src="<?= APP_URL ?>public/img/Usuario/arrow.svg" class="lista_flecha">
                     </div>
@@ -41,7 +41,7 @@
 
                 <li class="lista_item lista_item--click">
                     <div class="lista_button lista_button--click">
-                        <img src="<?= APP_URL ?>public/img/Usuario/ventas.png" class="lista_img">
+                        <img src="<?= APP_URL ?>public/img/Usuario/Ventas.png" class="lista_img">
                         <a href="#" class="nav_link"> VENTAS </a>
                         <img src="<?= APP_URL ?>public/img/Usuario/arrow.svg" class="lista_flecha">
                     </div>
