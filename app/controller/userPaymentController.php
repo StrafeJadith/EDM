@@ -3,13 +3,15 @@
     namespace app\controller;
     use app\model\mainModel;
 
-    class userController extends mainModel{
+    class userPaymentController extends mainModel{
 
-        public function pagoCredito(){
+        public function pagoCreditoController(){
+
+
 
         }
 
-        public function pagoEfectivo(){
+        public function pagoEfectivoController(){
 
         }
 

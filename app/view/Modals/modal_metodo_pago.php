@@ -7,15 +7,16 @@
                 <button type="button" class=" x btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class=" body modal-body">
-                <form action="../../controller/controllerCarrito.php" method="POST">
+                <form action="<?= APP_URL ?> app/ajax/paymentMethodsAjax.php" class= "FormularioAjax" method="POST">
 
                     <h3>Escoja el metodo de pago por el cual quiera realizar la compra</h3>
                     <br><br>
 
 
                     <button type="submit" class="btn btn-primary" name="mcredito">Credito</button>
+                    <input type="hidden" name= "modulo_pago" value= "pago_credito">
                     <button type="submit" class="btn btn-success" name="mefectivo">Efectivo</button>
-
+                    <input type="hidden" name= "modulo_pago" value= "pago_efectivo">
                 </form>
             </div>
             <div class=" footer modal-footer">
