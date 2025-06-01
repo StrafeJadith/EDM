@@ -70,7 +70,38 @@
             $row = $check_user->fetch();
             $idUser = $row["ID_US"];
 
-            $insert_Vent= $this->ejecutarConsulta("INSERT INTO ventas( Fecha_VENT, Nombre_VENT, Precio_VENT, Cantidad_VENT,	Valor_total, Estado_VENT, ID_US) VALUES ('$fecha','$nombreProd', $precioProd, $cantidadProd, $totalPrice, 'Proceso', $idUser)");
+            $dataVent = [
+                ["campo_nombre" => "Fecha_VENT",
+                "campo_marcador" => ":Fecha",
+                "campo_valor" => $fecha
+                ],
+                
+                ["campo_nombre" => "Nombre_VENT",
+                "campo_marcador" => ":Nombre",
+                "campo_valor" =>$nombreProd],
+
+                ["campo_nombre" => "Precio_VENT",
+                "campo_marcador" => ":Precio",
+                "campo_valor" => $precioProd],
+                
+                ["campo_nombre" => "Cantidad_VENT",
+                "campo_marcador" => ":Cantidad",
+                "campo_valor" =>$cantidadProd],
+
+                ["campo_nombre" => "Valor_Total",
+                "campo_marcador" => ":Valor",
+                "campo_valor" => $totalPrice],
+                
+                ["campo_nombre" => "Estado_VENT",
+                "campo_marcador" => ":Estado",
+                "campo_valor" =>"Proceso"],
+                
+                ["campo_nombre" => "ID_US",
+                "campo_marcador" => ":Id_usuario",
+                "campo_valor" => $idUser]
+            ];
+
+            $insert_Vent = $this->guardarDatos("ventas", $dataVent);
 
             if($insert_Vent->rowCount()<1){
                 $alerta=[
@@ -83,7 +114,20 @@
                 exit();
             }
             $newCant = $cantExist - $cantidadProd;
-            $update_cant = $this->ejecutarConsulta("UPDATE productos SET cantidad_existente = $newCant WHERE ID_PRO = $idProd");
+
+            $dataProdUpdate = [
+                ["campo_nombre" => "Cantidad_Existente",
+                "campo_marcador" => ":Cantidad",
+                "campo_valor" => $newCant]
+            ];
+
+            $condicion =[
+                "condicion_campo" => "ID_PRO",
+                "condicion_marcador" => ":ID_Producto",
+                "condicion_valor" => $idProd
+            ];
+
+            $update_cant = $this->actualizarDatos("productos", $dataProdUpdate,$condicion);
 
             $alerta=[
                     "tipo"=>"simple",
@@ -103,7 +147,7 @@
             $cantVent = $this->limpiarCadena($_POST["Cantidad_VENT"]);
             $correo = $_SESSION["correo"];
 
-            $deleteVent = $this->ejecutarConsulta("DELETE FROM ventas WHERE ID_VENT = $idVent");
+            $deleteVent = $this->eliminarRegistro("ventas", "ID_VENT" ,$idVent);
 
             if(!$deleteVent){
                 $alerta=[
@@ -121,8 +165,21 @@
             $row = $checkProd->fetch();
             $newCant = (int) $row["Cantidad_Existente"];
 
-            $updateProd = $this->ejecutarConsulta("UPDATE productos set Cantidad_Existente = ($cantVent + $newCant) Where Nombre_PRO = '$nameVent'");
 
+            $DataProdUpdate = [
+                ["campo_nombre" => "Cantidad_Existente",
+                "campo_marcador" => ":Cantidad",
+                "campo_valor" => $cantVent+$newCant]
+            ];
+
+            $condicion =[
+                "condicion_campo" => "Nombre_PRO",
+                "condicion_marcador" => ":Nombre",
+                "condicion_valor" => $nameVent
+            ];
+
+            $updateProd = $this->actualizarDatos("productos",$DataProdUpdate,$condicion);
+            
             $alerta=[
                     "tipo"=>"recargar",
                     "titulo"=>"¡Eliminado!",
