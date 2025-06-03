@@ -1,8 +1,3 @@
-
-<?php require_once "./app/view/inc/headInicio.php" ?>
-<link rel="stylesheet" href="<?=APP_URL; ?>public/css/Productos/menu.css">
-    
-</head>
 <?php
 if(!isset($_SESSION['correo'])){
 
@@ -11,23 +6,25 @@ if(!isset($_SESSION['correo'])){
         
     }
 ?>
+
+<?php require_once "./app/view/inc/headInicio.php" ?>
+<link rel="stylesheet" href="<?=APP_URL; ?>public/css/Productos/menu.css">
+    
+</head>
+
 <body>
     <header id="headerCreditos">
         <div id="barranav">
             <div id="ContainerNav">
                 <div id="Logos">
-                    <img src="<?= APP_URL; ?>public/img/Producto/logo.png" width="350px" height="200px"
-                        style="padding-left: 10px; padding-top: 0px">
+                    <img src="<?= APP_URL; ?>public/img/Producto/logo.png" width="350px" height="200px" style="padding-left: 10px; padding-top: 0px">
 
                     <form class="form-inline">
                         <div class="form-group">
-                            <input type="text" class="form-control"
-                                placeholder="Buscar...                                                                               🔎        "
-                                style="width: 450px; border-radius: 20px;">
+                            <input type="text" class="form-control" placeholder="Buscar...                                                                               🔎        " style="width: 450px; border-radius: 20px;">
                         </div>
                     </form>
                 </div>
-
                 <?php require_once './app/view/inc/navHome.php' ?>
             </div>
 
@@ -39,7 +36,7 @@ if(!isset($_SESSION['correo'])){
                 <br>
                 <br>
                 <div class="subtitulomenu">
-                    <a href="<?= APP_URL; ?>indexProductos/">
+                    <a href="<?= APP_URL ;?>indexProductos/">
                         <h3>Productos</h3>
                     </a>
                 </div>
@@ -54,9 +51,9 @@ if(!isset($_SESSION['correo'])){
                             <summary>Alimentos</summary>
                             <br>
                             <ul>
-                                <li><a href="<?= APP_URL;?>indexProteinas/">Proteinas</a></li>
-                                <li><a href="<?= APP_URL; ?>indexVerduras/">Verduras y Frutas</a></li>
-                                <li><a href="<?= APP_URL;?>indexGranos/">Granos</a></li>
+                                <li><a href="<?= APP_URL; ?>indexProteinas/">Proteinas</a></li>
+                                <li><a href="verduras.php">Verduras y Frutas</a></li>
+                                <li><a href="<?= APP_URL; ?>indexGranos/">Granos</a></li>
                             </ul>
                         </details>
                     </div>
@@ -70,9 +67,9 @@ if(!isset($_SESSION['correo'])){
                             <summary>Aseo personal</summary>
                             <br>
                             <ul>
-                                <li><a href="Productos/higienefacial.php">Higiene facial</a></li>
-                                <li><a href="Productos/higienecorporal.php">Higiene corporal</a></li>
-                                <li><a href="Productos/higienebucal.php">Higiene bucal</a></li>
+                                <li><a href="higienefacial.php">Higiene facial</a></li>
+                                <li><a href="higienecorporal.php">Higiene corporal</a></li>
+                                <li><a href="higienebucal.php">Higiene bucal</a></li>
                             </ul>
                         </details>
                     </div>
@@ -83,10 +80,10 @@ if(!isset($_SESSION['correo'])){
                     </div>
                     <div class="productossubtitulo">
                         <details>
-                            <summary>Limpieza</summary>
+                            <summary>Limpieza del hogar</summary>
                             <br>
                             <ul>
-                                <li><a href="Productos/limpieza.php">Productos de limpieza</a></li>
+                                <li><a href="limpieza.php">Productos de limpieza</a></li>
                             </ul>
                         </details>
                     </div>
@@ -100,31 +97,31 @@ if(!isset($_SESSION['correo'])){
                             <summary>otros</summary>
                             <br>
                             <ul>
-                                <li><a href="Productos/otros.php">1</a></li>
+                                <li><a href="otros.php">1</a></li>
                             </ul>
                         </details>
                     </div>
                 </div>
             </div>
-            <div class="productospopulares">
+            <div class="proteina">
                 <div class="subtitulo">
-                    <h2>Productos populares</h2>
+                    <h2>Granos</h2>
                 </div>
                 <div class="productoscatalogo">
                     <!-- imagenes de los productos-->
                     <center>
                         <?php
-                        $sql = $insLogin->ejecutarConsulta("SELECT * FROM productos");
-                        $rows = $sql->fetchAll(PDO::FETCH_ASSOC);
-                        foreach($rows as $row) { ?>
+                        $sql = $insLogin->ejecutarConsulta("SELECT * FROM productos p WHERE p.Categoria_PRO = 'Granos'");
+                        $rowGranos = $sql->fetchAll(PDO::FETCH_ASSOC);
+                        foreach($rowGranos as $row){ ?>
 
                             <div id="div1">
-                                <form class="FormularioAjax" action="<?= APP_URL ?>app/ajax/carritoUserAjax.php" method="post">
-                                    <input type="hidden" name="modulo_carrito" value="agregarProd">
+                                <form class="FormularioAjax" action="<?= APP_URL;?>app/ajax/carritoUserAjax.php" method="post">
                                     <div class="imagenpro">
                                         <img src="<?= APP_URL.$row['Img'] ?>" alt="" class="imgpro"><br>
                                     </div>
                                     <div class="nombrepro">
+                                        <input type="hidden" name="modulo_carrito" value="agregarProd">
                                         <input type="hidden" name="Nombre_PRO" value="<?php echo $row['Nombre_PRO'] ?>">
                                         <input type="hidden" name="ID_PRO" value="<?php echo $row['ID_PRO'] ?>">
                                         <strong><?php echo $row['Nombre_PRO'] ?></strong><br>
@@ -151,4 +148,17 @@ if(!isset($_SESSION['correo'])){
             </div>
         </div>
     </section>
-    <?php require_once './app/view/inc/footer.php' ?>
+    <footer class="footerContainer">
+        <div class="contactos">
+            <h1>Contactanos</h1>
+        </div>
+        <div class="socialIcons">
+            <a href><i class="fa-brands fa-facebook"></i></a>
+            <a href><i class="fa-brands fa-whatsapp"></i></a>
+            <a href><i class="fa-brands fa-twitter"></i></a>
+            <a href><i class="fa-brands fa-google"></i></a>
+        </div>
+    </footer>
+</body>
+
+</html>

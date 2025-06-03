@@ -2,7 +2,14 @@
 
 <?php require_once "./app/view/inc/headInicio.php" ?>
 <link rel="stylesheet" href="<?=APP_URL ?>public/css/Productos/menu.css">
+<?php 
+if(!isset($_SESSION['correo'])){
 
+        $insLogin->cerrarSesionControlador();
+        exit();
+        
+    }
+    ?>
 </head>
 
 <body>
@@ -31,7 +38,7 @@
                 <br>
                 <br>
                 <div class="subtitulomenu">
-                    <a href="../productos.php">
+                    <a href="<?= APP_URL; ?>indexProductos/">
                         <h3>Productos</h3>
                     </a>
                 </div>
@@ -46,9 +53,9 @@
                             <summary>Alimentos</summary>
                             <br>
                             <ul>
-                                <li><a href="index_proteinas.php">Proteinas</a></li>
+                                <li><a href="<?= APP_URL;?>indexProteinas/">Proteinas</a></li>
                                 <li><a href="verduras.php">Verduras y Frutas</a></li>
-                                <li><a href="granos.php">Granos</a></li>
+                                <li><a href="<?= APP_URL;?>indexGranos/">Granos</a></li>
                             </ul>
                         </details>
                     </div>

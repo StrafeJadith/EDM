@@ -14,7 +14,8 @@
             "vendMenu","vendExistencias","vendCreditosUsuario","vendAbonoCreditos","vendUsuarios",
             "userIndex","userAbonoCredito","userCarritoCompra","userCredito","userGastoCredito",
             "userMetodoAbono","userNuevoCredito","userPago","userPerfilUser","userVentas","log-Out",
-            "indexProteinas"];
+            "indexProteinas","indexGranos","indexHigieneBucal","indexHigieneCorporal",
+            "indexHigieneFacial","indexLimpieza","indexOtros","indexVerduras"];
 
             if(in_array($vista,$listaBlanca)){ //Se verifica si en el array $listaBlanca hay una valor de vista que coincida con la el valor de la vista pasada por el parametro.
                 if(is_file("./app/view/content/Home/".$vista."-view.php")){ //Si es un archivo la direccion pasada entra a la condicion.
