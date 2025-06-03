@@ -1,3 +1,11 @@
+<?php
+if(!isset($_SESSION['correo'])){
+
+        $insLogin->cerrarSesionControlador();
+        exit();
+        
+    }
+?>
 
 <?php require_once "./app/view/inc/headInicio.php" ?> 
 <link rel="stylesheet" href="<?php echo APP_URL; ?>public/css/CreditosInicio.css">

@@ -1,4 +1,11 @@
+<?php
+if(!isset($_SESSION['correo'])){
 
+        $insLogin->cerrarSesionControlador();
+        exit();
+        
+    }
+?>
 
 <link rel="stylesheet" href="<?= APP_URL ?>public/css/Usuario/index_.css">
 </head>
