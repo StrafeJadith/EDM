@@ -1,5 +1,5 @@
 
-<footer class="footerContainer ">
+<footer class="footerContainer">
         <div class="contactos ">
             <h1><strong>Contactanos</strong></h1>
         </div>
