@@ -98,7 +98,12 @@
                 
                 ["campo_nombre" => "ID_US",
                 "campo_marcador" => ":Id_usuario",
-                "campo_valor" => $idUser]
+                "campo_valor" => $idUser],
+
+                ["campo_nombre" => "ID_PRO",
+                "campo_marcador" => ":Id_producto",
+                "campo_valor" => $idProd],
+
             ];
 
             $insert_Vent = $this->guardarDatos("ventas", $dataVent);
