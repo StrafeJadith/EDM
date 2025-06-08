@@ -458,7 +458,8 @@
             $usuario1 = $this->ejecutarConsulta("SELECT sum(ac.Monto_AC) as MontoSuma FROM abono_credito ac
                                     JOIN credito c ON c.ID_CR = ac.ID_CR
                                     WHERE ac.ID_US = $cedula1
-                                    AND c.Estado_ACT = 1");
+                                    AND c.Estado_ACT = 1
+                                    OR c.Estado_ACT = 0");
             $datosAb = $usuario1->fetch(PDO::FETCH_ASSOC);
 
             if (!empty($datos) && !empty($datosCr) && !empty($datosAb)){
@@ -524,8 +525,28 @@
 
             $consultaCredito = $this->ejecutarConsulta("SELECT c.* from credito c where c.estado_ACT = 1 and c.Correo_CR = '$correo'; ");
             $resultConsultaCredito = $consultaCredito->fetch();
-            $ID_US = $resultConsultaCredito['ID_US'];
-            $creditoTotal = $resultConsultaCredito['Valor_Total'];
+
+            if(empty($resultConsultaCredito)){
+
+                    $alerta=[
+                        "tipo"=>"simple",
+                        "titulo"=>"Haz saldado tu deuda.",
+                        "texto"=>"Haz pagado por completo tu credito",
+                        "icono"=>"error"
+                    ];
+
+                    return json_encode($alerta);
+                    exit();
+
+            }
+            else{
+
+                $ID_US = $resultConsultaCredito['ID_US'];
+                $creditoTotal = $resultConsultaCredito['Valor_Total'];
+            }
+            
+
+            
 
             #Consultar el monto de abono credito para posteriormente realizar una suma de toda la columna #
             $consultaMontoSuma = $this->ejecutarConsulta("SELECT sum(ac.Monto_AC) as MontoSuma FROM abono_credito ac
@@ -655,4 +676,48 @@
             return json_encode($alerta);
 
         }
-    }
+
+        public function consultarCreditosUsuariosVendedorControlador(){
+            
+            $idCredito = $this->limpiarCadena($_POST['id_credito_usuario']);
+
+            if($idCredito == ""){
+
+                $alerta=[
+                    "tipo"=>"simple",
+                    "titulo"=>"Ocurrio un error",
+                    "texto"=>"Digita la identificacion del para buscar un usuario",
+                    "icono"=>"error"
+                ];
+
+                
+                return json_encode($alerta);
+                exit();
+                
+            }
+            
+
+            $sql = $this->ejecutarConsulta("SELECT * FROM credito WHERE ID_CR = $idCredito");
+            $datos = $sql->fetch(); 
+
+            if($datos){
+                $respuesta = [
+                    "creditos" => [
+                        "ID_CR" => $datos['ID_CR'],
+                        "Nombre_CR" => $datos['Nombre_CR'],
+                        "Correo_CR" => $datos['Correo_CR'],
+                        "Telefono_CR" => $datos['Telefono_CR'],
+                        "Direccion_CR" => $datos['Direccion_CR'],
+                        "Estado_CR" => $datos['Estado_CR'],
+                        "Fecha_CR" => $datos['Fecha_CR'],
+                        "Valor_CR" => $datos['Valor_CR']
+                        ]
+                    ];
+
+                return json_encode($respuesta);
+                exit();
+            }
+    
+        }
+
+}

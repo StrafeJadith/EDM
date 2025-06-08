@@ -230,6 +230,10 @@ a {
 
 }
 
+#Producto1 a{
+    color: #804e23;
+}
+
 #Producto1 button:hover{
 
     background-color: bisque;

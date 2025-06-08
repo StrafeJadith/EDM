@@ -1,6 +1,5 @@
 
 
-
 const formularios_ajax = document.querySelectorAll(".FormularioAjax");
 
 formularios_ajax.forEach(formularios => {
@@ -60,6 +59,31 @@ formularios_ajax.forEach(formularios => {
                             document.getElementById('Valor_Total').value = respuesta.credito.Valor_Total;
                             document.getElementById('Valor_CR').value = respuesta.credito.Valor_CR;
                             document.getElementById('MontoSuma').value = respuesta.abono.MontoSuma;
+                        }
+                        else if(respuesta.creditos){
+
+
+                            const tabla = document.getElementById("tablaCreditos").querySelector("tbody");
+
+                            // Limpia la tabla si ya tenía datos
+                            tabla.innerHTML = "";
+
+                            // Crea una fila con los datos
+                            const fila = `
+                                <tr>
+                                    <td>${respuesta.creditos.ID_CR}</td>
+                                    <td>${respuesta.creditos.Nombre_CR}</td>
+                                    <td>${respuesta.creditos.Correo_CR}</td>
+                                    <td>${respuesta.creditos.Telefono_CR}</td>
+                                    <td>${respuesta.creditos.Direccion_CR}</td>
+                                    <td>${respuesta.creditos.Estado_CR}</td>
+                                    <td>${respuesta.creditos.Fecha_CR}</td>
+                                    <td>${respuesta.creditos.Valor_CR}</td>
+                                </tr>
+                            `;
+
+                            // Inserta la fila
+                            tabla.innerHTML = fila;
                         }
                         else{
 
