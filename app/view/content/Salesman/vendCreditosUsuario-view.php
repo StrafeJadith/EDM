@@ -14,41 +14,37 @@
 </head>
 
 <body>
-    <!-- <header id="headerCreditos">
-        <div id="barranav">
-            <div id="ContainerNav">
-                <div id="Logos">
-                    <img src="<?= APP_URL ?>public/img/logo.png" width="350px" height="200px"
-                        style="padding-left: 10px; padding-top: 0px">
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <input type="text" class="form-control"
-                                placeholder="Buscar...                                                                               🔎        "
-                                style="width: 450px;">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </header> -->
     <section>
         <div class="contenedorprincipal">
             <?php require_once './app/view/inc/menuLateralSales.php'  ?>
             <div class="apartados">
                 <div class="barra_busqueda">
-                    <form action="./CreditosUsuario.php" method="post">
-                        <input type="number" name="Id" placeholder="Id del cliente"><button type="submit" name="BuscarCliente">Buscar</button><button type="submit" name="Reiniciar">Reiniciar</button>
+                    <form class="FormularioAjax" action="<?= APP_URL; ?>app/ajax/sellerAjax.php" method="POST" autocomplete="off">
+
+                        <input type="hidden" name="modulo_vendedor" value="ConsultarCreditos">
+
+                        <div class="">
+
+                                    <span class="input-group-text" id="basic-addon1"><strong>Identificacion del credito</strong></span>
+                                    <input type="number" class="form-control" name="id_credito_usuario" placeholder="Id de credito" aria-label="ingrese su cedula" aria-describedby="basic-addon1" maxlength="15"><br>
+                        </div>
+
+                        <button type="submit" id="btnForm1" data-accion="Consultar"><strong>Consultar</strong></button>
+
                     </form>
+                    <!-- <form action="./CreditosUsuario.php" method="post">
+                        <input type="number" name="Id" placeholder="Id del cliente"><button type="submit" name="BuscarCliente">Buscar</button><button type="submit" name="Reiniciar">Reiniciar</button>
+                    </form> -->
                 </div>
                 <h3 class="titulotabla">Créditos Usuarios</h3>
                 <div class="contenedorusuarios">
-                    <table class="tablausuarios">
+                    <table class="tablausuarios" id="tablaCreditos">
                         <thead>
                             <tr>
                                 <br>
                                 <th>ID CREDITO</th>
                                 <th>NOMBRE</th>
-                                <th>APELLIDO</th>
+                                <th>CORREO</th>
                                 <th>TELEFONO</th>
                                 <th>DIRECCION</th>
                                 <th>ESTADO</th>
