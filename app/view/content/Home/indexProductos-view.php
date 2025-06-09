@@ -70,7 +70,7 @@ if(!isset($_SESSION['correo'])){
                             <summary>Aseo personal</summary>
                             <br>
                             <ul>
-                                <li><a href="Productos/higienefacial.php">Higiene facial</a></li>
+                                <li><a href="<?= APP_URL;?>indexHigieneFacial/">Higiene facial</a></li>
                                 <li><a href="Productos/higienecorporal.php">Higiene corporal</a></li>
                                 <li><a href="Productos/higienebucal.php">Higiene bucal</a></li>
                             </ul>
