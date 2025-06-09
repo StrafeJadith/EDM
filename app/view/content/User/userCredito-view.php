@@ -117,7 +117,9 @@
             <br>
             <h2 class="sub6 sub-one">Monto</h2>
             <input type="number" name="montoCredito" class="input1" pattern="[0-9]{1,20}" maxlength="20" required>
+            <br><br><br>
             <button class="btnregistro" type="submit" name="solicitarCredito">Solicitar</button>
+            <br><br>
         </form>
     </section>
 
