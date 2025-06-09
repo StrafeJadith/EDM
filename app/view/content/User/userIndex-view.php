@@ -81,7 +81,16 @@
             
             <?php
 
-                $sql = $insLogin->ejecutarConsulta("SELECT * FROM productos");
+                
+
+                $correo = $_SESSION['correo'];
+
+                // $sqlTraerId = $insLogin->ejecutarConsulta("SELECT ID_US FROM usuarios WHERE Correo_US = $correo");
+                // $rowId = $sqlTraerId->fetch();
+                // $ID_US = $rowId['ID_US'];
+
+
+                $sql = $insLogin->ejecutarConsulta("SELECT p.Descripcion_PRO, p.Valor_Unitario, p.Img, v.* FROM productos p, ventas v, usuarios u Where p.ID_PRO = v.ID_PRO AND v.ID_US = u.ID_US AND v.Estado_VENT = 'Proceso' AND u.Correo_US = '$correo'");
                 $rows = $sql->fetchAll(PDO::FETCH_ASSOC);
                 foreach($rows as $row) { ?>
 
@@ -99,7 +108,7 @@
         <div id="cartPagos" class="pagoTotal">
             <h5 style="color: #804e23;"><strong>Subtotal</strong></h5>
             <h5 class="subTotal"><strong>$9000</strong></h5>
-            <a href="<?= APP_URL ?>userCarritoCompra/"><button class="irACarrito"><strong>Comprar</strong></button></a>
+            <a href="<?= APP_URL ?>userCarritoCompra/"><button class="irACarrito"><strong>Ir al carrito</strong></button></a>
         </div>
     </div>
     

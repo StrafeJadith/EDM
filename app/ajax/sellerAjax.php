@@ -47,4 +47,11 @@
             
         }
 
+        if($_POST['modulo_vendedor'] == "ConsultarCreditos"){
+
+            echo $insVendedor->consultarCreditosUsuariosVendedorControlador();
+        }
+
+        
+
     }

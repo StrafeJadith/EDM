@@ -69,7 +69,7 @@
 
                     <p><strong><?php echo $row['Valor_Unitario'] ?></strong></p><br>
 
-                    <button><strong>Agregar al carrito</strong></button>
+                    <button ><a href="<?= APP_URL ?>indexInicio/" class="botonCarritoAlert"><strong>Agregar al carrito</strong></a></button>
 
                 </div>
 
@@ -158,3 +158,5 @@
 
     
     <?php require_once './app/view/inc/footer.php' ?>
+    <script src="<?= APP_URL ?>public/js/alertaBotonCarrito.js"> </script>
+    

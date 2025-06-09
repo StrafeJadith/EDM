@@ -230,6 +230,10 @@ a {
 
 }
 
+#Producto1 a{
+    color: #804e23;
+}
+
 #Producto1 button:hover{
 
     background-color: bisque;
@@ -506,4 +510,82 @@ footer{
     position: relative;
     height: 340px;
     bottom: 40px;
+}
+
+
+/* OLVIDAR CONTRASEÑA */
+
+
+.olvidarContraseña{
+
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    position: relative;
+    top: 200px;
+}
+
+.olvidarContraseña h3{
+
+    text-align: center;
+    color: #804e23;
+}
+
+
+.olvidarContraseña form span, .modal-body span{
+    background-color: #d3b386;
+    color: #804e23;
+}
+
+.olvidarContraseña form a{
+    position: relative;
+    left: 140px;
+    color: #804e23;
+}
+
+.olvidarContraseña form #btn1{
+
+    border: none;
+    width: 200px;
+    height: 50px;
+    background-color: #804e23;
+    border-radius: 15px;
+    color: white;
+    position: relative;
+    left: 50px;
+    top: 40px;
+}
+.olvidarContraseña form #btn2{
+
+    border: none;
+    width: 200px;
+    height: 50px;
+    background-color: #804e23;
+    border-radius: 15px;
+    color: white;
+    position: relative;
+    left: 80px;
+    top: 50px;
+}
+.olvidarContraseña form button:hover{
+
+    transform: scale(1.2);
+    transition: 0.7s;
+}
+
+.modal-footer button{
+
+    border: none;
+    width: 150px;
+    height: 50px;
+    background-color: #804e23;
+    border-radius: 15px;
+    margin-left: 10px;
+    color: white;
+
+}
+
+.modal-footer button:hover{
+    transform: scale(1.1);
+    transition: 0.6s;
 }
