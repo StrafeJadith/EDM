@@ -1,7 +1,7 @@
 <?php
 
 
-const APP_URL = "http://localhost/Jadith/EasyDataManagement/";
+// const APP_URL = "http://localhost/Jadith/EasyDataManagement/";
 
 //En casa de Ali
 //const APP_URL = "http://localhost/EDM/EDM/";
