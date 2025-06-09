@@ -114,38 +114,57 @@ if(!isset($_SESSION['correo'])){
                     <!-- imagenes de los productos-->
                     <center>
                         <?php
+                        // 1. Ejecutar consulta
                         $sql = $insLogin->ejecutarConsulta("SELECT * FROM productos");
+
+                        // 2. Obtener todos los productos en un array
                         $rows = $sql->fetchAll(PDO::FETCH_ASSOC);
-                        foreach($rows as $row) { ?>
+
+                        // 3. recorrer $rows para mostrar los productos
+                        foreach ($rows as $row) {
+                            $idProducto = $row['ID_PRO'];
+                            $cantidadExistente = $row['Cantidad_Existente'];
+                            // $cantidadExistente = $cantidades[$idProducto]; // o simplemente $row['Cantidad_Existente']
+                        ?>
 
                             <div id="div1">
                                 <form class="FormularioAjax" action="<?= APP_URL ?>app/ajax/carritoUserAjax.php" method="post">
                                     <input type="hidden" name="modulo_carrito" value="agregarProd">
+
                                     <div class="imagenpro">
-                                        <img src="<?= APP_URL.$row['Img'] ?>" alt="" class="imgpro"><br>
+                                        <img src="<?= APP_URL . $row['Img'] ?>" alt="" class="imgpro"><br>
                                     </div>
+
                                     <div class="nombrepro">
-                                        <input type="hidden" name="Nombre_PRO" value="<?php echo $row['Nombre_PRO'] ?>">
-                                        <input type="hidden" name="ID_PRO" value="<?php echo $row['ID_PRO'] ?>">
-                                        <strong><?php echo $row['Nombre_PRO'] ?></strong><br>
+                                        <input type="hidden" name="Nombre_PRO" value="<?= $row['Nombre_PRO'] ?>">
+                                        <input type="hidden" name="ID_PRO" value="<?= $idProducto ?>">
+                                        <strong><?= $row['Nombre_PRO'] ?></strong><br>
+                                        <strong>Disponible: <?= $cantidadExistente ?></strong><br>
                                     </div>
-                                    <br>
+
                                     <div class="descripcionpro">
-                                        <p class="descripcion"><?php echo $row['Descripcion_PRO'] ?></p>
+                                        <p class="descripcion"><?= $row['Descripcion_PRO'] ?></p>
                                     </div>
+
                                     <div class="preciopro">
-                                        <input type="hidden" name="Precio_PRO" value="<?php echo $row['Valor_Unitario'] ?>">
-                                        <strong><?php echo $row['Valor_Unitario'] ?></strong><br>
-                                        <input type="number" placeholder="Cantidad" size="10" name="Cantidad_PRO">
+                                        <input type="hidden" name="Precio_PRO" value="<?= $row['Valor_Unitario'] ?>">
+                                        <strong>$<?= $row['Valor_Unitario'] ?></strong><br>
+                                        <input type="number" placeholder="Cantidad" size="10" name="Cantidad_PRO" min="1" max="<?= $cantidadExistente ?>" <?= ($cantidadExistente <= 0 ? 'disabled' : '') ?>>
                                     </div>
+
                                     <div class="agregarcarrito">
-                                        <br>
-                                        <button type="submit" name="Guardar" value="">Agregar al carrito</button>
+                                        <?php if ($cantidadExistente <= 0): ?>
+                                            <button type="submit" disabled>Producto agotado</button>
+                                        <?php else: ?>
+                                            <button type="submit" name="Guardar">Agregar al carrito</button>
+                                        <?php endif; ?>
                                     </div>
+
                                 </form>
                             </div>
 
                         <?php } ?>
+
                     </center>
                 </div>
             </div>
