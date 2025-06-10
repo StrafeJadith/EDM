@@ -9,19 +9,19 @@
             <div class=" body modal-body">
                 <form action="<?= APP_URL ?> app/ajax/paymentMethodsAjax.php" class= "FormularioAjax" method="POST">
 
-                    <h3>Escoja el metodo de pago por el cual quiera realizar la compra</h3>
+                    <h3>Pague sus productos escogidos aqui
                     <br><br>
 
 
                     <button type="submit" class="btn btn-primary" name="mcredito">Credito</button>
                     <input type="hidden" name= "modulo_pago" value= "pago_credito">
-                    <button type="submit" class="btn btn-success" name="mefectivo">Efectivo</button>
-                    <input type="hidden" name= "modulo_pago" value= "pago_efectivo">
+
+                    <div class=" footer modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </form>
             </div>
-            <div class=" footer modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-            </div>
+            
         </div>
     </div>
 </div>
