@@ -73,6 +73,16 @@
 
 }
 
+#Productos .cantidad{
+
+  color: #804e23;
+  position: relative;
+  bottom: 77px;
+  left: 250px;
+  width: 80px;
+  height: 20px;
+}
+
 #cartPagos{
   position: relative;
   top: 40px;

@@ -69,7 +69,7 @@
 
                     <p><strong><?php echo $row['Valor_Unitario'] ?></strong></p><br>
 
-                    <button ><a href="<?= APP_URL ?>indexInicio/" class="botonCarritoAlert"><strong>Agregar al carrito</strong></a></button>
+                    <button class="botonCarritoAlert"><a href="<?= APP_URL ?>indexInicio/" ><strong>Agregar al carrito</strong></a></button>
 
                 </div>
 
