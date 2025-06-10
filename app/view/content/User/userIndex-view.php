@@ -99,6 +99,7 @@
                         <img src="<?= APP_URL.$row['Img'] ?>" class="imgpro" width="70px" height="50px" style="position: relative; left: 20px; top:20px;">
                         <p class="descripcion"><strong><?php echo $row['Descripcion_PRO'] ?></strong></p>
                         <p class="valorUnitario"><strong>$<?php echo $row['Valor_Unitario'] ?></strong></p>
+                        <p class="cantidad"><strong>Cant: <?php echo $row['Cantidad_VENT'] ?></strong></p>
                     </div>
                     
 
@@ -106,8 +107,21 @@
             
         </div>
         <div id="cartPagos" class="pagoTotal">
+
+            <?php
+
+                $traerId = $insLogin->ejecutarConsulta("SELECT ID_US FROM usuarios WHERE Correo_US = '$correo'");
+                $resultId = $traerId->fetch();
+                $ID_US = $resultId['ID_US'];
+
+                $sql = $insLogin->ejecutarConsulta("SELECT SUM(Valor_Total) AS valorTotal FROM ventas WHERE ID_US = $ID_US");
+                $result = $sql->fetch();
+                $valorTotal = $result['valorTotal'];
+                
+                
+            ?>
             <h5 style="color: #804e23;"><strong>Subtotal</strong></h5>
-            <h5 class="subTotal"><strong>$9000</strong></h5>
+            <h5 class="subTotal"><strong>$<?= $valorTotal ?></strong></h5>
             <a href="<?= APP_URL ?>userCarritoCompra/"><button class="irACarrito"><strong>Ir al carrito</strong></button></a>
         </div>
     </div>
