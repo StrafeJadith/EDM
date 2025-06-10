@@ -14,13 +14,6 @@
 
             $insPaymentMethod = $this->pagoCreditoController();
         }
-        
-        if($_POST["modulo_pago"] == "pago_efectivo"){
-            
-            $insPaymentMethod = $this->pagoEfectivoController();
-
-        }
-
 
     }
 
