@@ -2,6 +2,9 @@
 
     namespace app\controller;
     use app\model\mainModel;
+    require_once __DIR__ . '/../../vendor/autoload.php';
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
 
     class userPaymentController extends mainModel{
 
@@ -21,7 +24,7 @@
             $sumSale = $dataSale['sumvent'];
             $nameSale = $dataSale['Nombre_VENT'];
             $cantSale = $dataSale['Cantidad_VENT'];
-            $stateSale = $dataSale['Estado_VENT'];   
+            $saleState = $dataSale['Estado_VENT'];   
 
             $checkCredit = $this->ejecutarConsulta("SELECT * FROM credito WHERE Correo_CR = '$correo' AND Estado_ACT = 1");
             $creditData = $checkCredit->fetch();
@@ -49,7 +52,7 @@
                 exit();
             }
 
-            $spentCredit = -$sumSale-$creditValue;
+            $spentCredit = $sumSale-$creditValue;
             $dateTime = date("Y-m-d");
 
             $creditSale = [
@@ -96,11 +99,102 @@
                 exit();
                 }
 
-                $dataProd = $checkProd->fetch();
+                /*$checkSum = $this->ejecutarConsulta("SELECT sum(Valor_total) as totalVen from ventas WHERE Estado_VENT = '$saleState' AND ID_US = $idUser");
+
+                if(!$checkSum){
+                    $alerta=[
+                    "tipo"=>"simple",
+                    "titulo"=>"Producto no disponible",
+                    "texto"=>"El producto no se encuentra disponible",
+                    "icono"=>"error"                   
+                ];
+                return json_encode($alerta);
+                exit();
+                }
+                */
+                $mail = new PHPMailer(true);
+
+                try {
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'tiendalamanodedios08@gmail.com';
+                    $mail->Password = 'cikmzzyygmgprsbn';
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                    $mail->Port = 587;
+
+                    $mail->setFrom('tiendalamanodedios08@gmail.com', 'EDM');
+                    $mail->addAddress($correo);
+
+                    $mail->isHTML(true);
+                    $mail->Subject = 'Compra realizada';
+                    $mail->Body = 'Hola, ' . $nombre . '<br> Gracias por tu compra en la tienda, aqui tienes un detalle de tu compra:  <br> Fecha compra: ' . $fecha . '<br> Nombre del producto: ' . $nombre_producto . '<br> Cantidad comprada: ' . $cantidad . '<br> Metodo de pago: ' . $nombre_pago . '<br> Total Compra: ' . $totalsum22 . '<br> Se notificara a su numero de telefono para la recoger el producto';
+
+                    $mail->send();
+                    } catch (Exception $e) {
+                        echo "Error al enviar el correo: {$mail->ErrorInfo}";
+                    }
+
+                    $dataCredit =[
+                        [
+                            "campo_nombre" => ":Valor_CR",
+                            "campo_marcador" => ":ValorCredito",
+                            "campo_valor" => $spentCredit
+                        ]
+
+
+                        ];
+                    $condition = [
+                        [
+                            "campo_nombre" => ":Correo_CR",
+                            "campo_marcador" => ":correo_Credito",
+                            "campo_valor" => $correo
+                        ]
+                        ];
+
+                $updateCredit = $this->actualizarDatos("credito",$dataCredit,$condition);
+
+
+                $dataInfoCredit = [
+                    [
+                        "campo_nombre" => ":FECHA_DV",
+                        "campo_marcador" => ":Fecha",
+                        "campo_valor" => $dateTime
+                    ],
+                    [
+                        "campo_nombre" => ":TOTAL_DV",
+                        "campo_marcador" => ":TotalVenta",
+                        "campo_valor" => $sumSale
+                    ],
+                    [
+                        "campo_nombre" => ":ID_US",
+                        "campo_marcador" => ":IdUsuario",
+                        "campo_valor" => $idUser
+                    ],
+                    [
+                        "campo_nombre" => ":ID:MTP",
+                        "campo_marcador" => ":MetodoPago",
+                        "campo_valor" => $pago
+                    ]
+                ];
+                
+                $insertInfoCredit = $this->guardarDatos("detalle_de_venta",$dataInfoCredit);
+
+                $getProdId = $this->ejecutarConsulta("SELECT ID_PRO FROM productos WHERE Nombre_PRO = '$nameSale'");
+
+                if($getProdId->rowCount()<1){
+                    $alerta=[
+                    "tipo"=>"simple",
+                    "titulo"=>"Producto no disponible",
+                    "texto"=>"El producto no se encuentra disponible",
+                    "icono"=>"error"                   
+                ];
+                return json_encode($alerta);
+                exit();
+                }
+
+                $dataProd = $getProdId->fetch();
                 $idProd = $dataProd["ID_PRO"];
-
-
-
         }
 
 
