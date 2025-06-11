@@ -1,6 +1,7 @@
 
 <?php require_once "./app/view/inc/headInicio.php" ?>
 <link rel="stylesheet" href="<?=APP_URL; ?>public/css/Productos/menu.css">
+<link rel="stylesheet" href="<?= APP_URL?>public/css/Usuario/sidevar.css">
     
 </head>
 <?php
@@ -169,5 +170,9 @@ if(!isset($_SESSION['correo'])){
                 </div>
             </div>
         </div>
+        
     </section>
+    <?php require_once 'app/view/inc/sidevarCarrito.php'?>
+    <script src="<?= APP_URL ?>public/js/sidevar.js"></script>
     <?php require_once './app/view/inc/footer.php' ?>
+    

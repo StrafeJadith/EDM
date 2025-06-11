@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="<?= APP_URL ?>public/css/inicio&&registro/navHome.css">
     <link rel="stylesheet" href="<?= APP_URL; ?>public/css/Usuario/CreditosInicio.css">
+    <link rel="stylesheet" href="<?= APP_URL?>public/css/Usuario/sidevar.css">
 </head>
 <style>
     .btn {
@@ -121,6 +122,10 @@
             <button class="btnregistro" type="submit" name="solicitarCredito">Solicitar</button>
             <br><br>
         </form>
+        
     </section>
-
+    
+    <?php require_once 'app/view/inc/sidevarCarrito.php'?>
+    <script src="<?= APP_URL ?>public/js/sidevar.js"></script>
     <?php require_once './app/view/inc/footer.php' ?>
+    
