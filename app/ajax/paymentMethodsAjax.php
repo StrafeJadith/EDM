@@ -1,21 +1,21 @@
 <?php
 
-    require_once "../../config/app.php";
-    require_once "../view/inc/session_start.php";
-    require_once "../../autoload.php";
+require_once "../../config/app.php";
+require_once "../view/inc/session_start.php";
+require_once "../../autoload.php";
 
-    use app\controller\userPaymentController;
+use app\controller\userPaymentController;
 
-    if(isset($POST["modulo_pago"])){
-        
-        $insPaymentMethod = new userPaymentController();
+if (isset($POST["modulo_pago"])) {
 
-        if($_POST["modulo_pago"] == "pago_credito"){
+    $insPaymentMethod = new userPaymentController();
 
-            $insPaymentMethod = $this->pagoCreditoController();
-        }
+    if ($_POST["modulo_pago"] == "pago_credito") {
 
+        echo $insPaymentMethod = $this->pagoCreditoController();
     }
+
+}
 
 
 
