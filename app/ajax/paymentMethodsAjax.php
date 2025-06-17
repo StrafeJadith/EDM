@@ -12,7 +12,7 @@ if (isset($POST["modulo_pago"])) {
 
     if ($_POST["modulo_pago"] == "pago_credito") {
 
-        echo $insPaymentMethod = $this->pagoCreditoController();
+        echo $insPaymentMethod->pagoCreditoController();
     }
 
 }

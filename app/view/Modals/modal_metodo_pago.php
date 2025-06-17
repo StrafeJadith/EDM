@@ -7,7 +7,7 @@
                 <button type="button" class=" x btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class=" body modal-body">
-                <form action="<?= APP_URL ?> app/ajax/paymentMethodsAjax.php" class= "FormularioAjax" method="POST">
+                <form action="<?= APP_URL ?>app/ajax/paymentMethodsAjax.php" class= "FormularioAjax" method="POST">
 
                     <h3>Pague sus productos escogidos aqui
                     <br><br>
