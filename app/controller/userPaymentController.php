@@ -14,13 +14,25 @@ class userPaymentController extends mainModel
         $correo = $this->limpiarCadena($_SESSION["correo"]);
         $pago = 002;
 
-        $checkUser = $this->ejecutarConsulta($queryval = "SELECT * FROM usuarios WHERE Correo_US = '$correo'");
+        $checkUser = $this->ejecutarConsulta("SELECT * FROM usuarios WHERE Correo_US = '$correo'");
         $dataUser = $checkUser->fetch();
 
         $idUser = $dataUser["ID_US"];
         $nameUser = $dataUser["Nombre_US"];
 
         $checkSale = $this->ejecutarConsulta("SELECT sum(Valor_total) as sumvent, Cantidad_VENT, Nombre_VENT, Estado_VENT FROM ventas WHERE ID_US = $idUser AND Estado_VENT = 'Proceso'");
+
+        if ($checkSale->rowCount()<1) {
+            $alerta = [
+                "tipo" => "simple",
+                "titulo" => "¡Sin ventas!",
+                "texto" => "No tienes ventas aun.",
+                "icono" => "error"
+            ];
+            return json_encode($alerta);
+            exit();
+        }
+
         $dataSale = $checkSale->fetch();
 
         $sumSale = $dataSale['sumvent'];
@@ -29,9 +41,8 @@ class userPaymentController extends mainModel
         $saleState = $dataSale['Estado_VENT'];
 
         $checkCredit = $this->ejecutarConsulta("SELECT * FROM credito WHERE Correo_CR = '$correo' AND Estado_ACT = 1");
-        $creditData = $checkCredit->fetch();
 
-        if (!$creditData) {
+        if ($checkCredit->rowCount()<1) {
             $alerta = [
                 "tipo" => "simple",
                 "titulo" => "Credito inactivo",
@@ -41,6 +52,8 @@ class userPaymentController extends mainModel
             return json_encode($alerta);
             exit();
         }
+
+        $creditData = $checkCredit->fetch();
         $creditValue = $creditData["Valor_CR"];
 
         if ($sumSale > $creditValue) {
