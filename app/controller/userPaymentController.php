@@ -6,12 +6,11 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-class userPaymentController extends mainModel
-{
+class userPaymentController extends mainModel{
 
-    public function pagoCreditoController()
-    {
-        $correo = $this->limpiarCadena($_SESSION["correo"]);
+    public function pagoCreditoController(){
+
+        $correo = $_SESSION["correo"];
         $pago = 002;
 
         $checkUser = $this->ejecutarConsulta("SELECT * FROM usuarios WHERE Correo_US = '$correo'");
@@ -42,13 +41,15 @@ class userPaymentController extends mainModel
 
         $checkCredit = $this->ejecutarConsulta("SELECT * FROM credito WHERE Correo_CR = '$correo' AND Estado_ACT = 1");
 
-        if ($checkCredit->rowCount()<1) {
-            $alerta = [
-                "tipo" => "simple",
-                "titulo" => "Credito inactivo",
-                "texto" => "No puede pagar con creditos porque no tiene uno activo en la tienda",
-                "icono" => "error"
+        if($checkCredit->rowCount() < 0){
+
+            $alerta=[
+                "tipo"=>"simple",
+                "titulo"=>"Credito inactivo",
+                "texto"=>"No puede pagar con creditos porque no tiene uno activo en la tienda",
+                "icono"=>"error"
             ];
+
             return json_encode($alerta);
             exit();
         }
@@ -72,19 +73,19 @@ class userPaymentController extends mainModel
 
         $creditSale = [
             [
-                "campo_nombre" => ":Valor_GC",
+                "campo_nombre" => "Valor_GC",
                 "campo_marcador" => ":valor_Gasto",
                 "campo_valor" => $sumSale
             ],
 
             [
-                "campo_nombre" => ":Fecha_GC",
+                "campo_nombre" => "Fecha_GC",
                 "campo_marcador" => ":Gasto_Fecha",
                 "campo_valor" => $dateTime
             ],
 
             [
-                "campo_nombre" => ":ID_US",
+                "campo_nombre" => "ID_US",
                 "campo_marcador" => ":idUser",
                 "campo_valor" => $idUser
             ]
@@ -267,9 +268,6 @@ class userPaymentController extends mainModel
 
 
     }
-
-
-
 }
 
 
