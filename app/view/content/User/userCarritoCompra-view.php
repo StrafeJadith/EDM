@@ -113,7 +113,7 @@ if(!isset($_SESSION['correo'])){
                 $resultId = $traerId->fetch();
                 $ID_US = $resultId['ID_US'];
 
-                $sql = $insLogin->ejecutarConsulta("SELECT SUM(Valor_Total) AS valorTotal FROM ventas WHERE ID_US = $ID_US");
+                $sql = $insLogin->ejecutarConsulta("SELECT SUM(Valor_Total) AS valorTotal FROM ventas WHERE ID_US = $ID_US AND Estado_VENT = 'Proceso'");
                 $result = $sql->fetch();
                 $valorTotal = $result['valorTotal'];
                 
