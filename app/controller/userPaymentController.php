@@ -107,61 +107,39 @@ class userPaymentController extends mainModel{
             exit();
         }
 
-        $checkProd = $this->ejecutarConsulta("SELECT * FROM productos WHERE Nombre_PRO = '$nameSale'");
+        // $checkProd = $this->ejecutarConsulta("SELECT * FROM productos WHERE Nombre_PRO = '$nameSale'");
 
-        if ($checkProd->rowCount() < 1) {
-            $alerta = [
-                "tipo" => "simple",
-                "titulo" => "Producto no disponible",
-                "texto" => "El producto no se encuentra disponible",
-                "icono" => "error"
-            ];
-            return json_encode($alerta);
-            exit();
-        }
+        // if ($checkProd->rowCount() < 1) {
+        //     $alerta = [
+        //         "tipo" => "simple",
+        //         "titulo" => "Producto no disponible",
+        //         "texto" => "El producto no se encuentra disponible",
+        //         "icono" => "error"
+        //     ];
+        //     return json_encode($alerta);
+        //     exit();
+        // }
 
 
-        $mail = new PHPMailer(true);
-
-        try {
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'tiendalamanodedios08@gmail.com';
-            $mail->Password = 'cikmzzyygmgprsbn';
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
-
-            $mail->setFrom('tiendalamanodedios08@gmail.com', 'EDM');
-            $mail->addAddress($correo);
-
-            $mail->isHTML(true);
-            $mail->Subject = 'Compra realizada';
-            $mail->Body = 'Hola, ' . $nameUser . '<br> Gracias por tu compra en la tienda, aqui tienes un detalle de tu compra:  <br> Fecha compra: ' . $dateTime . '<br> Nombre del producto: ' . $nameSale . '<br> Cantidad comprada: ' . $cantSale . '<br> Metodo de pago: ' . "Credito" . '<br> Total Compra: ' . $totalSale . '<br> Se notificara a su numero de telefono para la recoger el producto';
-
-            $mail->send();
-        } catch (Exception $e) {
-            echo "Error al enviar el correo: {$mail->ErrorInfo}";
-        }
+        
 
         $dataCredit = [
             [
-                "campo_nombre" => "Valor_CR",
-                "campo_marcador" => ":ValorCredito",
-                "campo_valor" => $spentCredit
-            ]
-
-
-        ];
-        $condition = [
-            [
-                "campo_nombre" => "Correo_CR",
-                "campo_marcador" => ":correo_Credito",
-                "campo_valor" => $correo
+                "campo_nombre"=>"Valor_CR",
+                "campo_marcador"=>":Valor",
+                "campo_valor"=>$spentCredit
             ]
         ];
 
-        $updateCredit = $this->actualizarDatos("credito", $dataCredit, $condition);
+        $condicion = [
+            
+                "condicion_campo"=>"ID_US",
+                "condicion_marcador"=>":IdUsuario",
+                "condicion_valor"=>$idUser
+            
+        ];
+
+        $updateCredit = $this->actualizarDatos("credito", $dataCredit, $condicion);
 
 
         $dataInfoCredit = [
@@ -198,11 +176,11 @@ class userPaymentController extends mainModel{
         ];
 
         $conditionSaleState = [
-            [
-                "campo_nombre" => "ID_US",
-                "campo_marcador" => ":IdUsuario",
-                "campo_valor" => $idUser
-            ]
+            
+                "condicion_campo" => "ID_US",
+                "condicion_marcador" => ":IdUsuario",
+                "condicion_valor" => $idUser
+            
         ];
 
         $executeUpdate = $this->actualizarDatos("ventas", $updateSaleState, $conditionSaleState);
@@ -251,25 +229,71 @@ class userPaymentController extends mainModel{
         ];
 
         $conditionProdUpdate = [
-            [
-                "campo_nombre" => "ID_PRO",
-                "campo_marcador" => ":IdProducto",
-                "campo_valor" => $idProd
-            ]
+            
+                "condicion_campo" => "ID_PRO",
+                "condicion_marcador" => ":IdProducto",
+                "condicion_valor" => $idProd
+            
         ];
 
         $executeProdData = $this->actualizarDatos("productos", $dataProdUpdate, $conditionProdUpdate);
 
-        $alerta = [
-            "tipo" => "recargar",
-            "titulo" => "¡Compra exitosa!",
-            "texto" => "Compra realizada con exito",
-            "icono" => "success"
-        ];
-        return json_encode($alerta);
-        exit();
+        
+        $correoEnviado = $this->enviarCorreoCompraExitosa($correo,$nameUser,$dateTime,$nameSale,$cantSale,$totalSale);
+        if($executeProdData && $correoEnviado){
 
+            $alerta = [
+                "tipo" => "recargar",
+                "titulo" => "¡Compra exitosa!",
+                "texto" => "Compra realizada con exito",
+                "icono" => "success"
+            ];
+            return json_encode($alerta);
+            exit();
+            
+        }
 
+        else{
+
+            $alerta = [
+                "tipo" => "recargar",
+                "titulo" => "Ocurrio un error inesperado",
+                "texto" => "No se pudo realizar la compra o no se pudo enviar el correo correctamente",
+                "icono" => "error"
+            ];
+            return json_encode($alerta);
+            exit();
+        }
+
+        
+
+        
+    }
+
+    public function enviarCorreoCompraExitosa($correo,$nameUser,$dateTime,$nameSale,$cantSale,$totalSale){
+
+            try {
+                    $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'jmolinaresnavarro@gmail.com';
+                    $mail->Password = 'lgbp qnrr beou qrpq';
+                    $mail->SMTPSecure = 'tls';
+                    $mail->Port = 587;
+
+                    $mail->setFrom('jmolinaresnavarro@gmail.com', 'TIENDA LA MANO DE DIOS');
+                    $mail->addAddress($correo);
+
+                    $mail->isHTML(true);
+                    $mail->Subject = 'Compra realizada';
+                    $mail->Body = 'Hola, ' . $nameUser . '<br> Gracias por tu compra en la tienda, aqui tienes un detalle de tu compra:  <br> Fecha compra: ' . $dateTime . '<br> Nombre del producto: ' . $nameSale . '<br> Cantidad comprada: ' . $cantSale . '<br> Metodo de pago: ' . "Credito" . '<br> Total Compra: ' . $totalSale . '<br> Se notificara a su numero de telefono para la recoger el producto';
+
+                    $mail->send();
+                    return true;
+            } catch (\PHPMailer\PHPMailer\Exception $e) {
+                    return $mail->ErrorInfo;
+            }
     }
 }
 
