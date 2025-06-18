@@ -1,5 +1,6 @@
 <?php require_once "./app/view/inc/headInicio.php" ?>
 <link rel="stylesheet" href="<?= APP_URL ?>public/css/Productos/menu.css">
+<link rel="stylesheet" href="<?= APP_URL?>public/css/Usuario/sidevar.css">
 <?php
 if (!isset($_SESSION['correo'])) {
 
@@ -97,10 +98,10 @@ if (!isset($_SESSION['correo'])) {
                     </div>
                     <div class="productossubtitulo">
                         <details>
-                            <summary>otros</summary>
+                            <summary>Otros</summary>
                             <br>
                             <ul>
-                                <li><a href="indexOtros/">ver mas</a></li>
+                                <li><a href="<?=APP_URL?>indexOtros/">Ver mas</a></li>
                             </ul>
                         </details>
                     </div>
@@ -118,24 +119,30 @@ if (!isset($_SESSION['correo'])) {
                         $rows = $sql->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($rows as $row) { ?>
                             <div id="div1">
-                                <div class="imagenpro">
-                                    <img src="<?= APP_URL . $row['Img'] ?>" alt="" class="imgpro"><br>
-                                </div>
-                                <div class="nombrepro">
-                                    <strong><?php echo $row['Nombre_PRO'] ?></strong><br>
-                                </div>
-                                <br>
-                                <div class="descripcionpro">
-                                    <p class="descripcion"><?php echo $row['Descripcion_PRO'] ?></p>
-                                </div>
-                                <br>
-                                <div class="preciopro">
-                                    <strong><?php echo $row['Valor_Unitario'] ?></strong>
-                                </div>
-                                <div class="agregarcarrito">
+                                <form class="FormularioAjax" action="<?= APP_URL ?>app/ajax/carritoUserAjax.php" method="post">
+                                    <input type="hidden" name="modulo_carrito" value="agregarProd">
+                                    <div class="imagenpro">
+                                        <img src="<?= APP_URL.$row['Img'] ?>" alt="" class="imgpro"><br>
+                                    </div>
+                                    <div class="nombrepro">
+                                        <input type="hidden" name="Nombre_PRO" value="<?php echo $row['Nombre_PRO'] ?>">
+                                        <input type="hidden" name="ID_PRO" value="<?php echo $row['ID_PRO'] ?>">
+                                        <strong><?php echo $row['Nombre_PRO'] ?></strong><br>
+                                    </div>
                                     <br>
-                                    <button type="submit" name="carrito">Agregar al carrito</button>
-                                </div>
+                                    <div class="descripcionpro">
+                                        <p class="descripcion"><?php echo $row['Descripcion_PRO'] ?></p>
+                                    </div>
+                                    <div class="preciopro">
+                                        <input type="hidden" name="Precio_PRO" value="<?php echo $row['Valor_Unitario'] ?>">
+                                        <strong><?php echo $row['Valor_Unitario'] ?></strong><br>
+                                        <input type="number" placeholder="Cantidad" size="10" name="Cantidad_PRO">
+                                    </div>
+                                    <div class="agregarcarrito">
+                                        <br>
+                                        <button type="submit" name="Guardar" value="">Agregar al carrito</button>
+                                    </div>
+                                </form>
                             </div>
                             <?php $id = $row['ID_PRO'];
                         } ?>
@@ -144,7 +151,6 @@ if (!isset($_SESSION['correo'])) {
             </div>
         </div>
     </section>
+    <?php require_once 'app/view/inc/sidevarCarrito.php'?>
+    <script src="<?= APP_URL ?>public/js/sidevar.js"></script>
     <?php require_once './app/view/inc/footer.php' ?>
-</body>
-
-</html>
