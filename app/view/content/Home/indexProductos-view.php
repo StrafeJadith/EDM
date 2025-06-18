@@ -72,8 +72,8 @@ if(!isset($_SESSION['correo'])){
                             <br>
                             <ul>
                                 <li><a href="<?= APP_URL;?>indexHigieneFacial/">Higiene facial</a></li>
-                                <li><a href="Productos/higienecorporal.php">Higiene corporal</a></li>
-                                <li><a href="Productos/higienebucal.php">Higiene bucal</a></li>
+                                <li><a href="<?=APP_URL?>indexHigieneCorporal/">Higiene corporal</a></li>
+                                <li><a href="<?=APP_URL?>indexHigieneBucal/">Higiene bucal</a></li>
                             </ul>
                         </details>
                     </div>
@@ -87,7 +87,7 @@ if(!isset($_SESSION['correo'])){
                             <summary>Limpieza</summary>
                             <br>
                             <ul>
-                                <li><a href="Productos/limpieza.php">Productos de limpieza</a></li>
+                                <li><a href="<?=APP_URL?>indexLimpieza/">Productos de limpieza</a></li>
                             </ul>
                         </details>
                     </div>
@@ -98,10 +98,10 @@ if(!isset($_SESSION['correo'])){
                     </div>
                     <div class="productossubtitulo">
                         <details>
-                            <summary>otros</summary>
+                            <summary>Otros</summary>
                             <br>
                             <ul>
-                                <li><a href="Productos/otros.php">1</a></li>
+                                <li><a href="<?=APP_URL?>indexOtros/">Ver mas</a></li>
                             </ul>
                         </details>
                     </div>
@@ -133,7 +133,7 @@ if(!isset($_SESSION['correo'])){
                                     <input type="hidden" name="modulo_carrito" value="agregarProd">
 
                                     <div class="imagenpro">
-                                        <img src="<?= APP_URL . $row['Img'] ?>" alt="" class="imgpro"><br>
+                                        <img src="<?= APP_URL.$row['Img'] ?>" alt="" class="imgpro"><br>
                                     </div>
 
                                     <div class="nombrepro">

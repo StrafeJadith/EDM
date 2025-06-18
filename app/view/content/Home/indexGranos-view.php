@@ -9,6 +9,7 @@ if (!isset($_SESSION['correo'])) {
 
 <?php require_once "./app/view/inc/headInicio.php" ?>
 <link rel="stylesheet" href="<?= APP_URL; ?>public/css/Productos/menu.css">
+<link rel="stylesheet" href="<?= APP_URL?>public/css/Usuario/sidevar.css">
 
 </head>
 
@@ -70,9 +71,9 @@ if (!isset($_SESSION['correo'])) {
                             <summary>Aseo personal</summary>
                             <br>
                             <ul>
-                                <li><a href="higienefacial.php">Higiene facial</a></li>
-                                <li><a href="higienecorporal.php">Higiene corporal</a></li>
-                                <li><a href="higienebucal.php">Higiene bucal</a></li>
+                                <li><a href="<?=APP_URL?>indexHigieneFacial/">Higiene facial</a></li>
+                                <li><a href="<?=APP_URL?>indexHigieneCorporal/">Higiene corporal</a></li>
+                                <li><a href="<?=APP_URL?>indexHigieneBucal/">Higiene bucal</a></li>
                             </ul>
                         </details>
                     </div>
@@ -86,7 +87,7 @@ if (!isset($_SESSION['correo'])) {
                             <summary>Limpieza del hogar</summary>
                             <br>
                             <ul>
-                                <li><a href="limpieza.php">Productos de limpieza</a></li>
+                                <li><a href="<?=APP_URL?>indexLimpieza/">Productos de limpieza</a></li>
                             </ul>
                         </details>
                     </div>
@@ -97,10 +98,10 @@ if (!isset($_SESSION['correo'])) {
                     </div>
                     <div class="productossubtitulo">
                         <details>
-                            <summary>otros</summary>
+                            <summary>Otros</summary>
                             <br>
                             <ul>
-                                <li><a href="otros.php">1</a></li>
+                                <li><a href="<?=APP_URL?>indexOtros/">Ver mas</a></li>
                             </ul>
                         </details>
                     </div>
@@ -122,7 +123,7 @@ if (!isset($_SESSION['correo'])) {
                                 <form class="FormularioAjax" action="<?= APP_URL; ?>app/ajax/carritoUserAjax.php"
                                     method="post">
                                     <div class="imagenpro">
-                                        <img src="<?= APP_URL . $row['Img'] ?>" alt="" class="imgpro"><br>
+                                        <img src="<?= APP_URL.$row['Img'] ?>" alt="" class="imgpro"><br>
                                     </div>
                                     <div class="nombrepro">
                                         <input type="hidden" name="modulo_carrito" value="agregarProd">
@@ -152,7 +153,6 @@ if (!isset($_SESSION['correo'])) {
             </div>
         </div>
     </section>
+    <?php require_once 'app/view/inc/sidevarCarrito.php'?>
+    <script src="<?= APP_URL ?>public/js/sidevar.js"></script>
     <?php require_once './app/view/inc/footer.php' ?>
-</body>
-
-</html>

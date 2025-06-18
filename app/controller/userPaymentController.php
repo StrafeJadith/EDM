@@ -11,7 +11,7 @@ class userPaymentController extends mainModel{
     public function pagoCreditoController(){
 
         $correo = $_SESSION["correo"];
-        $pago = 002;
+        $pago = 2;
 
         $checkUser = $this->ejecutarConsulta("SELECT * FROM usuarios WHERE Correo_US = '$correo'");
         $dataUser = $checkUser->fetch();
@@ -38,7 +38,7 @@ class userPaymentController extends mainModel{
         $nameSale = $dataSale['Nombre_VENT'];
         $cantSale = $dataSale['Cantidad_VENT'];
         $saleState = $dataSale['Estado_VENT'];
-
+        $totalSale = $dataSale["sumvent"];
         $checkCredit = $this->ejecutarConsulta("SELECT * FROM credito WHERE Correo_CR = '$correo' AND Estado_ACT = 1");
 
         if($checkCredit->rowCount() < 0){
@@ -54,6 +54,8 @@ class userPaymentController extends mainModel{
             exit();
         }
 
+
+        
         $creditData = $checkCredit->fetch();
         $creditValue = $creditData["Valor_CR"];
 
@@ -118,6 +120,7 @@ class userPaymentController extends mainModel{
             exit();
         }
 
+
         $mail = new PHPMailer(true);
 
         try {
@@ -134,7 +137,7 @@ class userPaymentController extends mainModel{
 
             $mail->isHTML(true);
             $mail->Subject = 'Compra realizada';
-            $mail->Body = 'Hola, ' . $nombre . '<br> Gracias por tu compra en la tienda, aqui tienes un detalle de tu compra:  <br> Fecha compra: ' . $fecha . '<br> Nombre del producto: ' . $nombre_producto . '<br> Cantidad comprada: ' . $cantidad . '<br> Metodo de pago: ' . $nombre_pago . '<br> Total Compra: ' . $totalsum22 . '<br> Se notificara a su numero de telefono para la recoger el producto';
+            $mail->Body = 'Hola, ' . $nameUser . '<br> Gracias por tu compra en la tienda, aqui tienes un detalle de tu compra:  <br> Fecha compra: ' . $dateTime . '<br> Nombre del producto: ' . $nameSale . '<br> Cantidad comprada: ' . $cantSale . '<br> Metodo de pago: ' . "Credito" . '<br> Total Compra: ' . $totalSale . '<br> Se notificara a su numero de telefono para la recoger el producto';
 
             $mail->send();
         } catch (Exception $e) {
@@ -143,7 +146,7 @@ class userPaymentController extends mainModel{
 
         $dataCredit = [
             [
-                "campo_nombre" => ":Valor_CR",
+                "campo_nombre" => "Valor_CR",
                 "campo_marcador" => ":ValorCredito",
                 "campo_valor" => $spentCredit
             ]
@@ -152,7 +155,7 @@ class userPaymentController extends mainModel{
         ];
         $condition = [
             [
-                "campo_nombre" => ":Correo_CR",
+                "campo_nombre" => "Correo_CR",
                 "campo_marcador" => ":correo_Credito",
                 "campo_valor" => $correo
             ]
@@ -163,22 +166,22 @@ class userPaymentController extends mainModel{
 
         $dataInfoCredit = [
             [
-                "campo_nombre" => ":FECHA_DV",
+                "campo_nombre" => "FECHA_DV",
                 "campo_marcador" => ":Fecha",
                 "campo_valor" => $dateTime
             ],
             [
-                "campo_nombre" => ":TOTAL_DV",
+                "campo_nombre" => "TOTAL_DV",
                 "campo_marcador" => ":TotalVenta",
                 "campo_valor" => $sumSale
             ],
             [
-                "campo_nombre" => ":ID_US",
+                "campo_nombre" => "ID_US",
                 "campo_marcador" => ":IdUsuario",
                 "campo_valor" => $idUser
             ],
             [
-                "campo_nombre" => ":ID_MTP",
+                "campo_nombre" => "ID_MTP",
                 "campo_marcador" => ":MetodoPago",
                 "campo_valor" => $pago
             ]
@@ -188,7 +191,7 @@ class userPaymentController extends mainModel{
 
         $updateSaleState = [
             [
-                "campo_nombre" => ":Estado_VENT",
+                "campo_nombre" => "Estado_VENT",
                 "campo_marcador" => ":Estado_venta",
                 "campo_valor" => "Confirmado"
             ]
@@ -196,7 +199,7 @@ class userPaymentController extends mainModel{
 
         $conditionSaleState = [
             [
-                "campo_nombre" => ":ID_US",
+                "campo_nombre" => "ID_US",
                 "campo_marcador" => ":IdUsuario",
                 "campo_valor" => $idUser
             ]
@@ -241,7 +244,7 @@ class userPaymentController extends mainModel{
 
         $dataProdUpdate = [
             [
-                "campo_nombre" => ":cantidad_existente",
+                "campo_nombre" => "cantidad_existente",
                 "campo_marcador" => ":nuevaCantidad",
                 "campo_valor" => $newQuantity
             ]
@@ -249,7 +252,7 @@ class userPaymentController extends mainModel{
 
         $conditionProdUpdate = [
             [
-                "campo_nombre" => ":ID_PRO",
+                "campo_nombre" => "ID_PRO",
                 "campo_marcador" => ":IdProducto",
                 "campo_valor" => $idProd
             ]

@@ -9,6 +9,7 @@ if(!isset($_SESSION['correo'])){
 
 <?php require_once "./app/view/inc/headInicio.php" ?>
 <link rel="stylesheet" href="<?=APP_URL; ?>public/css/Productos/menu.css">
+<link rel="stylesheet" href="<?= APP_URL?>public/css/Usuario/sidevar.css">
 
 </head>
 
@@ -68,9 +69,9 @@ if(!isset($_SESSION['correo'])){
                             <summary>Aseo personal</summary>
                             <br>
                             <ul>
-                                <li><a href="higienefacial.php">Higiene facial</a></li>
-                                <li><a href="higienecorporal.php">Higiene corporal</a></li>
-                                <li><a href="higienebucal.php">Higiene bucal</a></li>
+                                <li><a href="<?=APP_URL?>indexHigieneFacial/">Higiene facial</a></li>
+                                <li><a href="<?=APP_URL?>indexHigieneCorporal/">Higiene corporal</a></li>
+                                <li><a href="<?=APP_URL?>indexHigienBBucal/">Higiene bucal</a></li>
                             </ul>
                         </details>
                     </div>
@@ -84,7 +85,7 @@ if(!isset($_SESSION['correo'])){
                             <summary>Limpieza del hogar</summary>
                             <br>
                             <ul>
-                                <li><a href="limpieza.php">Productos de limpieza</a></li>
+                                <li><a href="<?=APP_URL?>indexLimpieza/">Productos de limpieza</a></li>
                             </ul>
                         </details>
                     </div>
@@ -95,10 +96,10 @@ if(!isset($_SESSION['correo'])){
                     </div>
                     <div class="productossubtitulo">
                         <details>
-                            <summary>otros</summary>
+                            <summary>Otros</summary>
                             <br>
                             <ul>
-                                <li><a href="otros.php">1</a></li>
+                                <li><a href="<?=APP_URL?>indexOtros/">Ver mas</a></li>
                             </ul>
                         </details>
                     </div>
@@ -149,17 +150,6 @@ if(!isset($_SESSION['correo'])){
             </div>
         </div>
     </section>
-    <footer class="footerContainer">
-        <div class="contactos">
-            <h1>Contactanos</h1>
-        </div>
-        <div class="socialIcons">
-            <a href><i class="fa-brands fa-facebook"></i></a>
-            <a href><i class="fa-brands fa-whatsapp"></i></a>
-            <a href><i class="fa-brands fa-twitter"></i></a>
-            <a href><i class="fa-brands fa-google"></i></a>
-        </div>
-    </footer>
-</body>
-
-</html>
+    <?php require_once 'app/view/inc/sidevarCarrito.php'?>
+    <script src="<?= APP_URL ?>public/js/sidevar.js"></script>
+    <?php require_once './app/view/inc/footer.php' ?>
