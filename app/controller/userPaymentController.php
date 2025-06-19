@@ -6,9 +6,11 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-class userPaymentController extends mainModel{
+class userPaymentController extends mainModel
+{
 
-    public function pagoCreditoController(){
+    public function pagoCreditoController()
+    {
 
         $correo = $_SESSION["correo"];
         $pago = 2;
@@ -21,7 +23,7 @@ class userPaymentController extends mainModel{
 
         $checkSale = $this->ejecutarConsulta("SELECT sum(Valor_total) as sumvent, Cantidad_VENT, Nombre_VENT, Estado_VENT FROM ventas WHERE ID_US = $idUser AND Estado_VENT = 'Proceso'");
 
-        if ($checkSale->rowCount()<1) {
+        if ($checkSale->rowCount() < 1) {
             $alerta = [
                 "tipo" => "simple",
                 "titulo" => "¡Sin ventas!",
@@ -41,13 +43,13 @@ class userPaymentController extends mainModel{
         $totalSale = $dataSale["sumvent"];
         $checkCredit = $this->ejecutarConsulta("SELECT * FROM credito WHERE Correo_CR = '$correo' AND Estado_ACT = 1");
 
-        if($checkCredit->rowCount() < 0){
+        if ($checkCredit->rowCount() < 1) {
 
-            $alerta=[
-                "tipo"=>"simple",
-                "titulo"=>"Credito inactivo",
-                "texto"=>"No puede pagar con creditos porque no tiene uno activo en la tienda",
-                "icono"=>"error"
+            $alerta = [
+                "tipo" => "simple",
+                "titulo" => "Credito inactivo",
+                "texto" => "No puede pagar con creditos porque no tiene uno activo en la tienda",
+                "icono" => "error"
             ];
 
             return json_encode($alerta);
@@ -55,7 +57,7 @@ class userPaymentController extends mainModel{
         }
 
 
-        
+
         $creditData = $checkCredit->fetch();
         $creditId = $creditData["ID_CR"];
         $creditValue = $creditData["Valor_CR"];
@@ -127,22 +129,22 @@ class userPaymentController extends mainModel{
         // }
 
 
-        
+
 
         $dataCredit = [
             [
-                "campo_nombre"=>"Valor_CR",
-                "campo_marcador"=>":Valor",
-                "campo_valor"=>$spentCredit
+                "campo_nombre" => "Valor_CR",
+                "campo_marcador" => ":Valor",
+                "campo_valor" => $spentCredit
             ]
         ];
 
         $condicion = [
-            
-                "condicion_campo"=>"ID_US",
-                "condicion_marcador"=>":IdUsuario",
-                "condicion_valor"=>$idUser
-            
+
+            "condicion_campo" => "ID_US",
+            "condicion_marcador" => ":IdUsuario",
+            "condicion_valor" => $idUser
+
         ];
 
         $updateCredit = $this->actualizarDatos("credito", $dataCredit, $condicion);
@@ -182,11 +184,11 @@ class userPaymentController extends mainModel{
         ];
 
         $conditionSaleState = [
-            
-                "condicion_campo" => "ID_US",
-                "condicion_marcador" => ":IdUsuario",
-                "condicion_valor" => $idUser
-            
+
+            "condicion_campo" => "ID_US",
+            "condicion_marcador" => ":IdUsuario",
+            "condicion_valor" => $idUser
+
         ];
 
         $executeUpdate = $this->actualizarDatos("ventas", $updateSaleState, $conditionSaleState);
@@ -235,18 +237,18 @@ class userPaymentController extends mainModel{
         ];
 
         $conditionProdUpdate = [
-            
-                "condicion_campo" => "ID_PRO",
-                "condicion_marcador" => ":IdProducto",
-                "condicion_valor" => $idProd
-            
+
+            "condicion_campo" => "ID_PRO",
+            "condicion_marcador" => ":IdProducto",
+            "condicion_valor" => $idProd
+
         ];
 
         $executeProdData = $this->actualizarDatos("productos", $dataProdUpdate, $conditionProdUpdate);
 
-        
-        $correoEnviado = $this->enviarCorreoCompraExitosa($correo,$nameUser,$dateTime,$nameSale,$cantSale,$totalSale);
-        if($executeProdData && $correoEnviado){
+
+        $correoEnviado = $this->enviarCorreoCompraExitosa($correo, $nameUser, $dateTime, $nameSale, $cantSale, $totalSale);
+        if ($executeProdData && $correoEnviado) {
 
             $alerta = [
                 "tipo" => "recargar",
@@ -256,10 +258,8 @@ class userPaymentController extends mainModel{
             ];
             return json_encode($alerta);
             exit();
-            
-        }
 
-        else{
+        } else {
 
             $alerta = [
                 "tipo" => "recargar",
@@ -271,35 +271,36 @@ class userPaymentController extends mainModel{
             exit();
         }
 
-        
 
-        
+
+
     }
 
-    public function enviarCorreoCompraExitosa($correo,$nameUser,$dateTime,$nameSale,$cantSale,$totalSale){
+    public function enviarCorreoCompraExitosa($correo, $nameUser, $dateTime, $nameSale, $cantSale, $totalSale)
+    {
 
-            try {
-                    $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
-                    $mail->isSMTP();
-                    $mail->Host = 'smtp.gmail.com';
-                    $mail->SMTPAuth = true;
-                    $mail->Username = 'jmolinaresnavarro@gmail.com';
-                    $mail->Password = 'lgbp qnrr beou qrpq';
-                    $mail->SMTPSecure = 'tls';
-                    $mail->Port = 587;
+        try {
+            $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'jmolinaresnavarro@gmail.com';
+            $mail->Password = 'lgbp qnrr beou qrpq';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
 
-                    $mail->setFrom('jmolinaresnavarro@gmail.com', 'TIENDA LA MANO DE DIOS');
-                    $mail->addAddress($correo);
+            $mail->setFrom('jmolinaresnavarro@gmail.com', 'TIENDA LA MANO DE DIOS');
+            $mail->addAddress($correo);
 
-                    $mail->isHTML(true);
-                    $mail->Subject = 'Compra realizada';
-                    $mail->Body = 'Hola, ' . $nameUser . '<br> Gracias por tu compra en la tienda, aqui tienes un detalle de tu compra:  <br> Fecha compra: ' . $dateTime . '<br> Nombre del producto: ' . $nameSale . '<br> Cantidad comprada: ' . $cantSale . '<br> Metodo de pago: ' . "Credito" . '<br> Total Compra: ' . $totalSale . '<br> Se notificara a su numero de telefono para la recoger el producto';
+            $mail->isHTML(true);
+            $mail->Subject = 'Compra realizada';
+            $mail->Body = 'Hola, ' . $nameUser . '<br> Gracias por tu compra en la tienda, aqui tienes un detalle de tu compra:  <br> Fecha compra: ' . $dateTime . '<br> Nombre del producto: ' . $nameSale . '<br> Cantidad comprada: ' . $cantSale . '<br> Metodo de pago: ' . "Credito" . '<br> Total Compra: ' . $totalSale . '<br> Se notificara a su numero de telefono para la recoger el producto';
 
-                    $mail->send();
-                    return true;
-            } catch (\PHPMailer\PHPMailer\Exception $e) {
-                    return $mail->ErrorInfo;
-            }
+            $mail->send();
+            return true;
+        } catch (\PHPMailer\PHPMailer\Exception $e) {
+            return $mail->ErrorInfo;
+        }
     }
 }
 

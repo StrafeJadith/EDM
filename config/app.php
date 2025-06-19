@@ -4,7 +4,7 @@
 //const APP_URL = "http://localhost/Jadith/EasyDataManagement/";
 
 //En casa de Ali
- const APP_URL = "http://localhost/EDM/EDM/";
+//const APP_URL = "http://localhost/EDM/EDM/";
 
 // ADRIAN 
 // const APP_URL = "http://localhost/EasyDataManagement_2/EDM/";
@@ -13,7 +13,7 @@
 // const APP_URL = "http://localhost/EasyDataManagement_2/EDM/";
 
 // Sena Ali
-//const APP_URL = "http://localhost/Easy%20Data%20Management/EDM/";
+const APP_URL = "http://localhost/Easy%20Data%20Management/EDM/";
 
 //En el sena
 //const APP_URL = "http://localhost/Easy%20Data%20Management/";
