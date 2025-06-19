@@ -45,6 +45,7 @@ if (!isset($_SESSION['correo'])) {
                     $estadoCredito = "Sin solicitud de credito";
                     $valorCredito = 0;
                     $gasto_Credito = 0;
+                    $creditID = 0;
                     if (!empty($rowCr)) {
                         $creditID = $rowCr["ID_CR"];
                         $creditoTotal = $rowCr['Valor_Total'];
@@ -83,7 +84,7 @@ if (!isset($_SESSION['correo'])) {
                 </thead>
             </table>
             <br><br><br>
-            
+
         </div>
     </div>
 
