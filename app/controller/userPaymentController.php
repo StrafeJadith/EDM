@@ -57,6 +57,7 @@ class userPaymentController extends mainModel{
 
         
         $creditData = $checkCredit->fetch();
+        $creditId = $creditData["ID_CR"];
         $creditValue = $creditData["Valor_CR"];
 
         if ($sumSale > $creditValue) {
@@ -70,7 +71,7 @@ class userPaymentController extends mainModel{
             exit();
         }
 
-        $spentCredit = $sumSale - $creditValue;
+        $spentCredit = $creditValue - $sumSale;
         $dateTime = date("Y-m-d");
 
         $creditSale = [
@@ -90,6 +91,11 @@ class userPaymentController extends mainModel{
                 "campo_nombre" => "ID_US",
                 "campo_marcador" => ":idUser",
                 "campo_valor" => $idUser
+            ],
+            [
+                "campo_nombre" => "ID_CR",
+                "campo_marcador" => ":idCr",
+                "campo_valor" => $creditId
             ]
 
         ];

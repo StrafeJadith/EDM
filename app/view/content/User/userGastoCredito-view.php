@@ -46,6 +46,7 @@ if (!isset($_SESSION['correo'])) {
                     $valorCredito = 0;
                     $gasto_Credito = 0;
                     if (!empty($rowCr)) {
+                        $creditID = $rowCr["ID_CR"];
                         $creditoTotal = $rowCr['Valor_Total'];
                         $estadoCredito = $rowCr['Estado_CR'];
                         $valorCredito = $rowCr['Valor_CR'];
@@ -57,7 +58,7 @@ if (!isset($_SESSION['correo'])) {
                     $IdeUs = $resultIdAbono['ID_US'];
 
                     //!TRAER LOS GASTOS DEL USUARIO
-                    $ConsultaCr = $insLogin->ejecutarConsulta("SELECT sum(Valor_GC) as gasto FROM gasto_credito WHERE ID_US = $IdeUs");
+                    $ConsultaCr = $insLogin->ejecutarConsulta("SELECT sum(Valor_GC) as gasto FROM gasto_credito WHERE ID_CR = $creditID");
                     $resultConCr = $ConsultaCr->fetch();
                     $gasto_Credito = $resultConCr["gasto"];
 
@@ -82,24 +83,7 @@ if (!isset($_SESSION['correo'])) {
                 </thead>
             </table>
             <br><br><br>
-            <tr>
-                <?php
-                /* consulta para que aparezca el boton*/
-                $CreditoSolicitud = 0;
-                $estadoCredito = 0;
-
-                $sqlCredito = $insLogin->ejecutarConsulta("SELECT * FROM credito WHERE Correo_CR = '$correo'");
-                $consulta = $sqlCredito->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($consulta as $row) {
-
-                    $CreditoSolicitud = $row['Estado_ACT'];
-                    $estadoCredito = $row['Estado_CR'];
-                }
-                /* solicitud nuevo credito  */
-                if ($CreditoSolicitud == 0 && $estadoCredito == "Aceptado") { ?>
-                    <a href="nuevoCredito.php"><button type="button" class="btn">Solicitar un nuevo credito</button></a>
-                <?php } ?>
-            </tr>
+            
         </div>
     </div>
 
