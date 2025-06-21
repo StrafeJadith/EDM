@@ -58,7 +58,7 @@
                         </thead>
                         <Tbody>
                             <?php 
-                                $query = $insLogin->ejecutarConsulta("SELECT c.ID_CR, u.ID_US, u.Nombre_US, c.Correo_CR, c.Telefono_CR,c.Direccion_CR, c.Estado_CR, c.Fecha_CR,c.Valor_CR 
+                                $query = $insLogin->ejecutarConsulta("SELECT c.ID_CR, u.ID_US, u.Nombre_US, c.Correo_CR, c.Telefono_CR,c.Direccion_CR, c.Estado_CR, c.Fecha_CR,c.Valor_Total,c.Valor_CR 
                                 FROM credito c, usuarios u 
                                 WHERE c.ID_US = u.ID_US LIMIT $creditosPorPagina OFFSET $offset");  
                                 $rows = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -76,7 +76,7 @@
                                 <td><?php echo $row['Direccion_CR']?></td>
                                 <td><?php echo $row['Estado_CR']?></td>
                                 <td><?php echo $row['Fecha_CR']?></td>
-                                <td><?php echo $row['Valor_CR']?></td>
+                                <td><?php echo $row['Valor_Total']?></td>
 
                                 <td>
 

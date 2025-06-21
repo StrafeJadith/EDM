@@ -422,7 +422,6 @@ class sellerController extends mainModel
 
         $cedula1 = $this->limpiarCadena($_POST['usuario_cedula']);
 
-
         if ($cedula1 == "") {
 
             $alerta = [
@@ -456,8 +455,8 @@ class sellerController extends mainModel
         // $usuario = $this->seleccionarDatos("Unico","usuarios","ID_US",$cedula1);
         $usuario = $this->ejecutarConsulta("SELECT * FROM usuarios WHERE ID_US = $cedula1");
         $datos = $usuario->fetch(PDO::FETCH_ASSOC);
-
-        $usuario = $this->ejecutarConsulta("SELECT c.Valor_Total, c.ID_US, c.Valor_CR  FROM credito c WHERE c.ID_US = $cedula1");
+        $correo = $datos['Correo_US'];
+        $usuario = $this->ejecutarConsulta("SELECT c.Valor_Total, c.ID_US, c.Valor_CR  FROM credito c WHERE c.Estado_ACT = 1 and c.Correo_CR = '$correo'");
         $datosCr = $usuario->fetch(PDO::FETCH_ASSOC);
 
         $usuario1 = $this->ejecutarConsulta("SELECT sum(ac.Monto_AC) as MontoSuma FROM abono_credito ac
@@ -657,7 +656,7 @@ class sellerController extends mainModel
 
         if ($montoAbono + $montoSuma == $creditoTotal) {
 
-            $actualizarAValoresDeFabrica = $this->ejecutarConsulta("UPDATE credito SET Estado_ACT = 0 AND Estado_CR = 'Finalizado' WHERE Correo_CR = '$correo'");
+            $actualizarAValoresDeFabrica = $this->ejecutarConsulta("UPDATE credito SET Estado_ACT = 0, Estado_CR = 'Finalizado' WHERE Correo_CR = '$correo'");
 
             if ($actualizarAValoresDeFabrica) {
 

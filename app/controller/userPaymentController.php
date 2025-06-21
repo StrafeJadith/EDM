@@ -2,6 +2,8 @@
 
 namespace app\controller;
 use app\model\mainModel;
+use PDO;
+
 require_once __DIR__ . '/../../vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -21,7 +23,13 @@ class userPaymentController extends mainModel
         $idUser = $dataUser["ID_US"];
         $nameUser = $dataUser["Nombre_US"];
 
-        $checkSale = $this->ejecutarConsulta("SELECT sum(Valor_total) as sumvent, Cantidad_VENT, Nombre_VENT, Estado_VENT FROM ventas WHERE ID_US = $idUser AND Estado_VENT = 'Proceso'");
+        $checkSale = $this->ejecutarConsulta("SELECT 
+                Valor_total AS sumvent, 
+                Cantidad_VENT, 
+                Nombre_VENT, 
+                Estado_VENT 
+                FROM ventas 
+                WHERE ID_US = $idUser AND Estado_VENT = 'Proceso'");
 
         if ($checkSale->rowCount() < 1) {
             $alerta = [
@@ -34,14 +42,29 @@ class userPaymentController extends mainModel
             exit();
         }
 
-        $dataSale = $checkSale->fetch();
 
-        $sumSale = $dataSale['sumvent'];
-        $nameSale = $dataSale['Nombre_VENT'];
-        $cantSale = $dataSale['Cantidad_VENT'];
-        $saleState = $dataSale['Estado_VENT'];
-        $totalSale = $dataSale["sumvent"];
-        $checkCredit = $this->ejecutarConsulta("SELECT * FROM credito WHERE Correo_CR = '$correo' AND Estado_ACT = 1");
+        $detalleHTML = '';
+        $totalVenta = 0;
+        
+        $dataSale = $checkSale->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($dataSale as $row){
+
+            $nameSale = $row['Nombre_VENT'];
+            $cantSale = $row['Cantidad_VENT'];
+            $precio = $row['sumvent'];
+            // $sumSale = $row['sumvent'];
+            // $totalSale = $row['sumvent'];
+            $totalVenta += $precio;
+
+            $detalleHTML .= '
+                <tr>
+                    <td style="padding: 8px; border-bottom: 1px solid #eee;">' . htmlspecialchars($nameSale) . '</td>
+                    <td style="padding: 8px; border-bottom: 1px solid #eee;">' . intval($cantSale) . '</td>
+                    <td style="padding: 8px; border-bottom: 1px solid #eee;">$' . number_format($precio) . '</td>
+                </tr>';
+        }
+        
+        $checkCredit = $this->ejecutarConsulta("SELECT * FROM credito WHERE Correo_CR = '$correo' AND Valor_CR > 0");
 
         if ($checkCredit->rowCount() < 1) {
 
@@ -56,13 +79,11 @@ class userPaymentController extends mainModel
             exit();
         }
 
-
-
         $creditData = $checkCredit->fetch();
         $creditId = $creditData["ID_CR"];
         $creditValue = $creditData["Valor_CR"];
 
-        if ($sumSale > $creditValue) {
+        if ($totalVenta > $creditValue) {
             $alerta = [
                 "tipo" => "simple",
                 "titulo" => "Credito insuficiente",
@@ -73,14 +94,14 @@ class userPaymentController extends mainModel
             exit();
         }
 
-        $spentCredit = $creditValue - $sumSale;
+        $spentCredit = $creditValue - $totalVenta;
         $dateTime = date("Y-m-d");
 
         $creditSale = [
             [
                 "campo_nombre" => "Valor_GC",
                 "campo_marcador" => ":valor_Gasto",
-                "campo_valor" => $sumSale
+                "campo_valor" => $totalVenta
             ],
 
             [
@@ -128,26 +149,24 @@ class userPaymentController extends mainModel
         //     exit();
         // }
 
+        $updateCredit = $this->ejecutarConsulta("UPDATE credito SET Valor_CR = $spentCredit WHERE ID_US = $idUser AND Estado_ACT = 1");
+        // $dataCredit = [
+        //     [
+        //         "campo_nombre" => "Valor_CR",
+        //         "campo_marcador" => ":Valor",
+        //         "campo_valor" => $spentCredit
+        //     ]
+        // ];
 
+        // $condicion = [
 
+        //     "condicion_campo" => "ID_US",
+        //     "condicion_marcador" => ":IdUsuario",
+        //     "condicion_valor" => $idUser
 
-        $dataCredit = [
-            [
-                "campo_nombre" => "Valor_CR",
-                "campo_marcador" => ":Valor",
-                "campo_valor" => $spentCredit
-            ]
-        ];
+        // ];
 
-        $condicion = [
-
-            "condicion_campo" => "ID_US",
-            "condicion_marcador" => ":IdUsuario",
-            "condicion_valor" => $idUser
-
-        ];
-
-        $updateCredit = $this->actualizarDatos("credito", $dataCredit, $condicion);
+        // $updateCredit = $this->actualizarDatos("credito", $dataCredit, $condicion);
 
 
         $dataInfoCredit = [
@@ -159,7 +178,7 @@ class userPaymentController extends mainModel
             [
                 "campo_nombre" => "TOTAL_DV",
                 "campo_marcador" => ":TotalVenta",
-                "campo_valor" => $sumSale
+                "campo_valor" => $totalVenta
             ],
             [
                 "campo_nombre" => "ID_US",
@@ -246,37 +265,33 @@ class userPaymentController extends mainModel
 
         $executeProdData = $this->actualizarDatos("productos", $dataProdUpdate, $conditionProdUpdate);
 
+        $correoEnviado = $this->enviarCorreoCompraExitosa($correo, $nameUser, $detalleHTML,$totalVenta);
 
-        $correoEnviado = $this->enviarCorreoCompraExitosa($correo, $nameUser, $dateTime, $nameSale, $cantSale, $totalSale);
-        if ($executeProdData && $correoEnviado) {
+            if ($updateCredit && $correoEnviado) {
 
-            $alerta = [
-                "tipo" => "recargar",
-                "titulo" => "¡Compra exitosa!",
-                "texto" => "Compra realizada con exito",
-                "icono" => "success"
-            ];
-            return json_encode($alerta);
-            exit();
+                $alerta = [
+                    "tipo" => "recargar",
+                    "titulo" => "¡Compra exitosa!",
+                    "texto" => "Compra realizada con exito",
+                    "icono" => "success"
+                ];
+                return json_encode($alerta);
+                exit();
 
-        } else {
+            } else {
 
-            $alerta = [
-                "tipo" => "recargar",
-                "titulo" => "Ocurrio un error inesperado",
-                "texto" => "No se pudo realizar la compra o no se pudo enviar el correo correctamente",
-                "icono" => "error"
-            ];
-            return json_encode($alerta);
-            exit();
-        }
-
-
-
-
+                $alerta = [
+                    "tipo" => "recargar",
+                    "titulo" => "Ocurrio un error inesperado",
+                    "texto" => "No se pudo realizar la compra o no se pudo enviar el correo correctamente",
+                    "icono" => "error"
+                ];
+                return json_encode($alerta);
+                exit();
+            }
     }
 
-    public function enviarCorreoCompraExitosa($correo, $nameUser, $dateTime, $nameSale, $cantSale, $totalSale)
+    public function enviarCorreoCompraExitosa($correo, $nameUser, $detalleHTML,$totalVenta)
     {
 
         try {
@@ -294,7 +309,38 @@ class userPaymentController extends mainModel
 
             $mail->isHTML(true);
             $mail->Subject = 'Compra realizada';
-            $mail->Body = 'Hola, ' . $nameUser . '<br> Gracias por tu compra en la tienda, aqui tienes un detalle de tu compra:  <br> Fecha compra: ' . $dateTime . '<br> Nombre del producto: ' . $nameSale . '<br> Cantidad comprada: ' . $cantSale . '<br> Metodo de pago: ' . "Credito" . '<br> Total Compra: ' . $totalSale . '<br> Se notificara a su numero de telefono para la recoger el producto';
+            $mail->Body = '
+                    <div style="max-width: 600px; margin: auto; padding: 30px; background-color: #ffffff; border-radius: 10px; font-family: Arial, sans-serif; color: #333; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        <div style="text-align: center; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 20px;">
+                            <h2 style="color: #28a745; margin: 0;">¡Gracias por tu compra!</h2>
+                            <p style="font-size: 14px; color: #666;">Aquí tienes el resumen de tu pedido</p>
+                        </div>
+
+                        <p style="font-size: 16px;">Hola, <strong>' . $nameUser . '</strong></p>
+
+                        <p style="font-size: 14px;">Gracias por tu compra en nuestra tienda. Aquí están los detalles:</p>
+
+                        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 15px;">
+                            <thead>
+                                <tr style="background-color: #f1f1f1;">
+                                    <th style="padding: 10px; text-align: left;">Producto</th>
+                                    <th style="padding: 10px; text-align: left;">Cantidad</th>
+                                    <th style="padding: 10px; text-align: left;">Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ' . $detalleHTML . '
+                            </tbody>
+                        </table>
+
+                        <p style="margin-top: 20px;">Método de pago: <strong>Crédito</strong></p>
+                        <p style="color: #28a745; font-size: 16px;"><strong>Total: $' . number_format($totalVenta) . '</strong></p>
+
+                        <p>Se notificará a tu número de teléfono cuando el producto esté listo para recoger.</p>
+                        <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
+                        <p style="font-size: 12px; color: #aaa; text-align: center;">Este es un mensaje automático. No respondas a este correo.</p>
+                    </div>
+            ';
 
             $mail->send();
             return true;
