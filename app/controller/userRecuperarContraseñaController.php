@@ -98,7 +98,27 @@
                 $mail->addAddress($correo);
                 $mail->isHTML(true);
                 $mail->Subject = 'Recuperacion de contrasena';
-                $mail->Body = "Tu código de recuperación es: <strong>$codigo</strong><br>Este código es válido por 10 minutos.";
+                $mail->Body = '
+
+                        <div style="max-width: 600px; margin: auto; padding: 30px; background-color: #ffffff; border-radius: 10px; font-family: Arial, sans-serif; color: #333; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+                            <div style="text-align: center; padding-bottom: 20px;">
+                                <h2 style="color: #007bff; margin-bottom: 5px;">Recuperación de Contraseña</h2>
+                                <p style="font-size: 14px; color: #666;">Has solicitado recuperar tu contraseña</p>
+                            </div>
+
+                            <p style="font-size: 16px;">Tu código de recuperación es:</p>
+
+                            <div style="background-color: #f1f1f1; padding: 15px; text-align: center; border-radius: 8px; font-size: 24px; font-weight: bold; letter-spacing: 2px; color: #007bff; margin: 20px 0;">
+                                <strong>' . $codigo . '</strong>
+                            </div>
+
+                            <p style="font-size: 14px; color: #555;">Este código es válido por <strong>10 minutos</strong>. Si no solicitaste esta recuperación, puedes ignorar este mensaje.</p>
+
+                            <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
+
+                            <p style="font-size: 12px; color: #aaa; text-align: center;">No respondas a este correo. Si tienes preguntas, contáctanos desde nuestra plataforma.</p>
+                        </div>
+                ';
 
                 $mail->send();
                 return true;

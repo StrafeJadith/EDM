@@ -52,7 +52,7 @@
 
     <div id="seccion2"  class="containerProductos">
         <h1>Productos</h1>
-        <p>En este calago se mostraran algunos de los productos más comprados.</p>
+        <p>En este catalogo se mostraran algunos de los productos más comprados.</p>
 
         <div class="productosCatalogo">
 

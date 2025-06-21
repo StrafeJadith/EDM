@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-06-2025 a las 15:29:01
+-- Tiempo de generación: 21-06-2025 a las 16:55:29
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -35,16 +35,6 @@ CREATE TABLE `abono_credito` (
   `ID_US` int(10) NOT NULL,
   `ID_CR` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `abono_credito`
---
-
-INSERT INTO `abono_credito` (`ID_AC`, `Fecha_AC`, `Monto_AC`, `Telefono_AC`, `ID_US`, `ID_CR`) VALUES
-(82, '2025-05-09 15:46:37', 5000, NULL, 1042458, 86),
-(83, '2025-05-12 14:52:44', 1000, NULL, 1042458, 86),
-(84, '2025-05-12 15:03:07', 100, NULL, 1042458, 86),
-(85, '2025-06-05 16:49:12', 1000, NULL, 1042458, 86);
 
 -- --------------------------------------------------------
 
@@ -88,14 +78,6 @@ CREATE TABLE `credito` (
   `NDeCreditos_ACT` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `credito`
---
-
-INSERT INTO `credito` (`ID_CR`, `Nombre_CR`, `Correo_CR`, `Telefono_CR`, `Direccion_CR`, `Estado_CR`, `Fecha_CR`, `Valor_CR`, `ID_US`, `Valor_Total`, `Estado_ACT`, `NDeCreditos_ACT`) VALUES
-(86, 'Julissa', 'julissa@gmail.com', 2147483647, 'DG 50B #17-54', 'Aceptado', '2025-04-22 14:54:49', 0, 1042458, 10000, 1, 1),
-(87, 'Julissa', 'julissa@gmail.com', 2147483647, 'DG 50B #17-54', 'Aceptado', '2025-04-22 15:02:38', 0, 1042458, 20000, 0, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -110,15 +92,6 @@ CREATE TABLE `detalle_de_venta` (
   `ID_MTP` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `detalle_de_venta`
---
-
-INSERT INTO `detalle_de_venta` (`ID_DV`, `FECHA_DV`, `TOTAL_DV`, `ID_US`, `ID_MTP`) VALUES
-(130, '2025-04-22', 10000, 1042458, 2),
-(131, '2025-04-22', 10000, 1042458, 2),
-(132, '2025-04-22', 10000, 1042458, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -129,17 +102,9 @@ CREATE TABLE `gasto_credito` (
   `ID_GC` int(10) NOT NULL,
   `Valor_GC` int(10) NOT NULL,
   `Fecha_GC` date NOT NULL,
-  `ID_US` int(10) NOT NULL
+  `ID_US` int(10) NOT NULL,
+  `ID_CR` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `gasto_credito`
---
-
-INSERT INTO `gasto_credito` (`ID_GC`, `Valor_GC`, `Fecha_GC`, `ID_US`) VALUES
-(63, 10000, '2025-04-22', 1042458),
-(64, 10000, '2025-04-22', 1042458),
-(65, 10000, '2025-04-22', 1042458);
 
 -- --------------------------------------------------------
 
@@ -186,9 +151,9 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`ID_PRO`, `Nombre_PRO`, `Descripcion_PRO`, `Categoria_PRO`, `Valor_Unitario`, `Cantidad_Total`, `Cantidad_Existente`, `Fecha_Entrada`, `Fecha_Expedicion`, `ID_US`, `ID_CAT`, `Img`) VALUES
-(1, 'Carne', 'Carne de res x LB', 'Granos', 20000, 20, 20, '2025-05-02', '2025-05-10', 11223344, 2, 'public/img/Administrador/Productos/1.webp'),
-(2, 'Arroz', 'Arroz en bolsa', 'Granos', 2000, 10, 10, '0000-00-00', '0000-00-00', 11223344, 3, 'public/img/Administrador/Productos/2.webp'),
-(3, 'Pechuga', 'Pechuga de pollo', 'Proteinas', 10000, 20, 20, '0000-00-00', '0000-00-00', 11223344, 2, 'public/img/Administrador/Productos/3.jpg'),
+(1, 'Carne', 'Carne de res x LB', 'Granos', 20000, 20, 17, '2025-05-02', '2025-05-10', 11223344, 2, 'public/img/Administrador/Productos/1.webp'),
+(2, 'Arroz', 'Arroz en bolsa', 'Granos', 2000, 10, 9, '0000-00-00', '0000-00-00', 11223344, 3, 'public/img/Administrador/Productos/2.webp'),
+(3, 'Pechuga', 'Pechuga de pollo', 'Proteinas', 10000, 20, 16, '0000-00-00', '0000-00-00', 11223344, 2, 'public/img/Administrador/Productos/3.jpg'),
 (4, 'asdas', 'adasd', 'Proteinas', 1000, 10, 10, '0000-00-00', '0000-00-00', 11223344, 2, 'public/img/Administrador/Productos/4.jpg'),
 (5, 'juan', 'alberto', 'Proteinas', 10000, 5, 5, '0000-00-00', '0000-00-00', 11223344, 2, 'public/img/Administrador/Productos/5.webp'),
 (6, 'asdasdadasdasd', 'asdasdadsasda', 'Verduras', 10, 20, 20, '0000-00-00', '0000-00-00', 11223344, 1, 'public/img/Administrador/Productos/6.jpg');
@@ -236,15 +201,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`ID_US`, `Nombre_US`, `Correo_US`, `Direccion_US`, `Telefono_US`, `Contrasena_US`, `ID_TU`, `Codigo_US`, `CodigoExp_US`) VALUES
-(101, 'Saray', 'saray@gmail.com', 'Los robles', 2147483647, '$2y$10$SxXh8oVFaMu2SvWbLdHx4uT.mS5TaHLw28HYHtTqj2NAPabx7tNzO', 2, NULL, NULL),
-(102, 'Cachita', 'cachita@gmail.com', 'Villa Katango', 31361309, '$2y$10$tZt479oza6snmJTD2bc.i.CPQ0Go1vezPyMwaKopgovpQsA/Za9T6', 2, NULL, NULL),
-(103, 'JASDA', 'jasdja@gmail.com', 'asjdajsd', 121212, '$2y$10$V5i8tqD9xjuj51wriZNfW.sLxd.MnI0OKKOVcnaw.O8w01c2I5n2a', 2, NULL, NULL),
-(102121, 'asdasdasd', 'asdsad@gmail.com', 'sadasd', 13131313, '$2y$10$tDd9286lUQ0Tb.BeyEPcs.G6EEj1KC0hOm2B.J31wIPHzb4VRqnMu', 3, NULL, NULL),
-(1042458, 'Julissa xd', 'julissa@gmail.com', 'DG 50B #17-54', 2147483647, '$2y$10$dTX8rTGIWVreNXsWbAUkcePd8R1.JvopqYnp9h9f.PQvtL7uxjRXS', 3, NULL, NULL),
-(1101010, 'asdasd', 'asdasd@gmail.com', 'diagonao', 121212122, '$2y$10$ntz.SHIx5Q7Nv2u5qzPmreHBbKkpG/EJmollju57HSRwTWYfTCOzW', 3, NULL, NULL),
-(11223344, 'Ali', 'ali@gmail.com', 'Soledad cra 10b #17-54', 1234567890, '$2y$10$/x.aXqCVKAVijfteSnu3Q.IRI1UG7ycETEoH3k2qifB3B20fkcw4u', 1, NULL, NULL),
-(1072608622, 'Ali Erazo', 'el.aliherazo@gmail.com', 'Cra 22B #55-42', 2147483647, '$2y$10$ARD0Q9AEV4e43yf80L6tw.tIyJ7HXyG437sf2pSLKYt4my/fEll5O', 3, NULL, NULL),
-(1212121212, 'sadasdsad', 'sadsadsa@gmail.com', '12sadsad', 1213212, '$2y$10$uamq.bLo2N4qfBf5GcDBXuj/JOmwPvc.eebB8L0B6zYxu0.RplT6y', 3, NULL, NULL);
+(11223344, 'Ali', 'ali@gmail.com', 'Soledad cra 10b #17-54', 1234567890, '$2y$10$/x.aXqCVKAVijfteSnu3Q.IRI1UG7ycETEoH3k2qifB3B20fkcw4u', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -263,13 +220,6 @@ CREATE TABLE `ventas` (
   `ID_US` int(11) NOT NULL,
   `ID_PRO` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `ventas`
---
-
-INSERT INTO `ventas` (`ID_VENT`, `Fecha_VENT`, `Nombre_VENT`, `Precio_VENT`, `Cantidad_VENT`, `Valor_total`, `Estado_VENT`, `ID_US`, `ID_PRO`) VALUES
-(185, '2025-06-06', 'Carne', 20000, 2, 40000, 'Proceso', 1042458, 1);
 
 --
 -- Índices para tablas volcadas
@@ -309,7 +259,8 @@ ALTER TABLE `detalle_de_venta`
 --
 ALTER TABLE `gasto_credito`
   ADD PRIMARY KEY (`ID_GC`),
-  ADD KEY `ID_US` (`ID_US`);
+  ADD KEY `ID_US` (`ID_US`),
+  ADD KEY `ID_CR` (`ID_CR`);
 
 --
 -- Indices de la tabla `metodo_pago`
@@ -354,31 +305,31 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `abono_credito`
 --
 ALTER TABLE `abono_credito`
-  MODIFY `ID_AC` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `ID_AC` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT de la tabla `credito`
 --
 ALTER TABLE `credito`
-  MODIFY `ID_CR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `ID_CR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_de_venta`
 --
 ALTER TABLE `detalle_de_venta`
-  MODIFY `ID_DV` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `ID_DV` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 
 --
 -- AUTO_INCREMENT de la tabla `gasto_credito`
 --
 ALTER TABLE `gasto_credito`
-  MODIFY `ID_GC` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `ID_GC` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `ID_VENT` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
+  MODIFY `ID_VENT` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=198;
 
 --
 -- Restricciones para tablas volcadas
@@ -408,6 +359,7 @@ ALTER TABLE `detalle_de_venta`
 -- Filtros para la tabla `gasto_credito`
 --
 ALTER TABLE `gasto_credito`
+  ADD CONSTRAINT `ID_CR` FOREIGN KEY (`ID_CR`) REFERENCES `credito` (`ID_CR`),
   ADD CONSTRAINT `gasto_credito_ibfk_1` FOREIGN KEY (`ID_US`) REFERENCES `usuarios` (`ID_US`);
 
 --
