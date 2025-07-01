@@ -202,9 +202,10 @@ section {
     position: relative;
     left: 90px;
     top: 25px;
-    width: 1350px;
+    width: auto;
     height: 80%;
     background-color: #804e23;
+    padding-right: 40px;
 }
 
 .tablausuarios {
@@ -212,6 +213,11 @@ section {
     margin: 0px 20px;
     color: white;
     text-align: left;
+}
+
+.tablausuarios th, .tablausuarios td{
+
+    border: 1px solid white;
 }
 
 th,

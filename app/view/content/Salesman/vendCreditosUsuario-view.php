@@ -25,8 +25,8 @@
 
                         <div class="">
 
-                                    <span class="input-group-text" id="basic-addon1"><strong>Identificacion del credito</strong></span>
-                                    <input type="number" class="form-control" name="id_credito_usuario" placeholder="Id de credito" aria-label="ingrese su cedula" aria-describedby="basic-addon1" maxlength="15"><br>
+                                    <span class="input-group-text" id="basic-addon1"><strong>Identificacion del usuario</strong></span>
+                                    <input type="number" class="form-control" name="id_user_credito" placeholder="Id de credito" aria-label="ingrese su cedula" aria-describedby="basic-addon1" maxlength="15"><br>
                         </div>
 
                         <button type="submit" id="btnForm1" data-accion="Consultar"><strong>Consultar</strong></button>
@@ -43,10 +43,10 @@
                             <tr>
                                 <br>
                                 <th>ID CREDITO</th>
+                                <th>IDENTIFICACION</th>
                                 <th>NOMBRE</th>
                                 <th>CORREO</th>
                                 <th>TELEFONO</th>
-                                <th>DIRECCION</th>
                                 <th>ESTADO</th>
                                 <th>FECHA</th>
                                 <th>VALOR</th>
@@ -64,10 +64,10 @@
                             foreach($rows as $row) { ?>
                                 <tr>
                                     <td><?php echo $row['ID_CR'] ?></td>
+                                    <td><?php echo $row['ID_US'] ?></td>
                                     <td><?php echo $row['Nombre_CR'] ?></td>
                                     <td><?php echo $row['Correo_CR'] ?></td>
                                     <td><?php echo $row['Telefono_CR'] ?></td>
-                                    <td><?php echo $row['Direccion_CR'] ?></td>
                                     <td><?php echo $row['Estado_CR'] ?></td>
                                     <td><?php echo $row['Fecha_CR'] ?></td>
                                     <td><?php echo $row['Valor_CR'] ?></td>

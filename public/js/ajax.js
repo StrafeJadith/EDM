@@ -40,6 +40,8 @@ formularios_ajax.forEach(formularios => {
                     .then(respuesta => respuesta.json())
                     .then(respuesta => {
 
+                        console.log(respuesta.creditos);
+
                         // if (respuesta.error) {
                         //     Swal.fire({
                         //         icon: 'error',
@@ -51,6 +53,7 @@ formularios_ajax.forEach(formularios => {
                         //     // ... limpia otros campos ...
                         if(respuesta.usuarios){
                             // Asigna los valores del JSON a los inputs por sus IDs
+                            console.log(respuesta.creditos);
                             document.getElementById('ID_US').value = respuesta.usuarios.ID_US;
                             document.getElementById('Nombre_US').value = respuesta.usuarios.Nombre_US;
                             document.getElementById('Correo_US').value = respuesta.usuarios.Correo_US;
@@ -62,28 +65,33 @@ formularios_ajax.forEach(formularios => {
                         }
                         else if(respuesta.creditos){
 
+                            console.log(respuesta.creditos);
 
                             const tabla = document.getElementById("tablaCreditos").querySelector("tbody");
 
                             // Limpia la tabla si ya tenía datos
                             tabla.innerHTML = "";
 
-                            // Crea una fila con los datos
-                            const fila = `
-                                <tr>
-                                    <td>${respuesta.creditos.ID_CR}</td>
-                                    <td>${respuesta.creditos.Nombre_CR}</td>
-                                    <td>${respuesta.creditos.Correo_CR}</td>
-                                    <td>${respuesta.creditos.Telefono_CR}</td>
-                                    <td>${respuesta.creditos.Direccion_CR}</td>
-                                    <td>${respuesta.creditos.Estado_CR}</td>
-                                    <td>${respuesta.creditos.Fecha_CR}</td>
-                                    <td>${respuesta.creditos.Valor_CR}</td>
-                                </tr>
-                            `;
+                            respuesta.creditos.forEach(credito => {
 
-                            // Inserta la fila
-                            tabla.innerHTML = fila;
+                                // Crea una fila con los datos
+                                const fila = `
+                                    <tr>
+                                        <td>${credito.ID_CR}</td>
+                                        <td>${credito.ID_US}</td>
+                                        <td>${credito.Nombre_CR}</td>
+                                        <td>${credito.Correo_CR}</td>
+                                        <td>${credito.Telefono_CR}</td>
+                                        <td>${credito.Estado_CR}</td>
+                                        <td>${credito.Fecha_CR}</td>
+                                        <td>${credito.Valor_CR}</td>
+                                    </tr>
+                                `;
+
+                                // Inserta la fila
+                                tabla.innerHTML += fila;
+                            });
+                            
                         }
                         else{
 

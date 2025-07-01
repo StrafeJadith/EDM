@@ -696,9 +696,9 @@ class sellerController extends mainModel
     public function consultarCreditosUsuariosVendedorControlador()
     {
 
-        $idCredito = $this->limpiarCadena($_POST['id_credito_usuario']);
+        $idUser = $this->limpiarCadena($_POST['id_user_credito']);
 
-        if ($idCredito == "") {
+        if ($idUser == "") {
 
             $alerta = [
                 "tipo" => "simple",
@@ -714,21 +714,12 @@ class sellerController extends mainModel
         }
 
 
-        $sql = $this->ejecutarConsulta("SELECT * FROM credito WHERE ID_CR = $idCredito");
-        $datos = $sql->fetch();
+        $sql = $this->ejecutarConsulta("SELECT * FROM credito WHERE ID_US = $idUser");
+        $datos = $sql->fetchAll(PDO::FETCH_ASSOC);
 
         if ($datos) {
             $respuesta = [
-                "creditos" => [
-                    "ID_CR" => $datos['ID_CR'],
-                    "Nombre_CR" => $datos['Nombre_CR'],
-                    "Correo_CR" => $datos['Correo_CR'],
-                    "Telefono_CR" => $datos['Telefono_CR'],
-                    "Direccion_CR" => $datos['Direccion_CR'],
-                    "Estado_CR" => $datos['Estado_CR'],
-                    "Fecha_CR" => $datos['Fecha_CR'],
-                    "Valor_CR" => $datos['Valor_CR']
-                ]
+                "creditos" => $datos
             ];
 
             return json_encode($respuesta);
