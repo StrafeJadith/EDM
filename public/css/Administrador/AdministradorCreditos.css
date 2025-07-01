@@ -23,23 +23,25 @@
     position: relative;
     left: 80px;
     top: 100px;
-    width: 1350px;
+    width: 1440px;
     height: 516px;
     background-color: #804e23;
     border-radius: 20px;
+    border: 2px solid red;
 
 }
 
 #Cred{
-  
+
     width: 1200px;
     position: relative;
     left: 35px;
     top: 30px;
 }
 
-#Cred td, #Cred thead tr th{
-   
+#Cred Tbody td, #Cred thead tr th{
+
+    white-space: normal;
     text-align: center;
     color: #f7f7f7;
     padding: 10px;
