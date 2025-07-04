@@ -38,7 +38,7 @@
                 <?php
                 $correo = $_SESSION['correo'];
                 $ConsultaCr = $insLogin->ejecutarConsulta("SELECT * FROM credito WHERE Correo_CR = '$correo' AND Estado_ACT = 1");
-                $rowCr = $ConsultaCr->fetchAll(PDO::FETCH_ASSOC);
+                $rowCr = $ConsultaCr->fetch();
                 $creditoTotal = 0;
                 $fechasCr = "Sin credito realizado";
                 $AbonoMonto = 0;
@@ -47,11 +47,11 @@
                     $creditoTotal = $rowCr['Valor_Total'];
                     $fechasCr = $rowCr['Fecha_CR'];
                     $consultarIdAbono = $insLogin->ejecutarConsulta("SELECT ID_US FROM usuarios WHERE Correo_US = '$correo'");
-                    $rowAb = $consultarIdAbono->fetchAll(PDO::FETCH_ASSOC); 
+                    $rowAb = $consultarIdAbono->fetch(); 
                     $IdeUs = $rowAb['ID_US'];
 
                     $congastoAbono2 = $insLogin->ejecutarConsulta("SELECT ID_AC FROM abono_credito WHERE ID_US = $IdeUs");;
-                    $rowConGast = $congastoAbono2->fetchAll(PDO::FETCH_ASSOC);
+                    $rowConGast = $congastoAbono2->fetch();
                     if (!empty($rowConGast)) {
                         $IdAc = $rowConGast["ID_AC"];
                     }
@@ -60,7 +60,7 @@
 
 
                     $conGastoAbono = $insLogin->ejecutarConsulta("SELECT sum(Monto_AC) as MontoSuma FROM abono_credito WHERE ID_US = $IdeUs");
-                    $rowAbono = $conGastoAbono->fetchAll(PDO::FETCH_ASSOC);
+                    $rowAbono = $conGastoAbono->fetch();
                     $AbonoMonto = $rowAbono['MontoSuma'];
 
                     $CreditoRestante = $creditoTotal - $AbonoMonto;
