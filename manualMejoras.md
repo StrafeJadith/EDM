@@ -24,7 +24,7 @@ se añade la clase "FormularioAjax" para especificarle que la informacion que
 esta dentro del formulario se enviara a la clase formulario, esa clase esta
 dentro del archivo "ajax.js" en la carpeta js, en esa carpeta se maneja una
 estructura de manejo de datos recibidos de formularios y alertas para
-personalizar.
+personalizar...
 
 ### Envio de datos de los formularios
 
